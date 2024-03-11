@@ -21819,10 +21819,6 @@
           {
             "name": "PBI_ResultType",
             "value": "Table"
-          },
-          {
-            "name": "PBI_NavigationStepName",
-            "value": "Navigation"
           }
         ],
         "columns": [
@@ -22777,10 +22773,6 @@
           {
             "name": "PBI_ResultType",
             "value": "Table"
-          },
-          {
-            "name": "PBI_NavigationStepName",
-            "value": "Navigation"
           }
         ],
         "lineageTag": "e3955bab-56ba-4036-9ce0-6215adead548",
@@ -24190,10 +24182,6 @@
           {
             "name": "PBI_ResultType",
             "value": "Table"
-          },
-          {
-            "name": "PBI_NavigationStepName",
-            "value": "Navigation"
           }
         ],
         "lineageTag": "2588cf27-446e-4237-8097-d12da0624c96",
@@ -25644,10 +25632,6 @@
           {
             "name": "PBI_ResultType",
             "value": "Table"
-          },
-          {
-            "name": "PBI_NavigationStepName",
-            "value": "Navigation"
           }
         ],
         "lineageTag": "966bc2b2-b50d-49d0-a35a-b22f459518d0",
@@ -26490,10 +26474,6 @@
           {
             "name": "PBI_ResultType",
             "value": "Table"
-          },
-          {
-            "name": "PBI_NavigationStepName",
-            "value": "Navigation"
           }
         ],
         "lineageTag": "18b57027-7425-4003-b716-8a0f0ea07606",
@@ -26792,10 +26772,6 @@
           {
             "name": "PBI_ResultType",
             "value": "Table"
-          },
-          {
-            "name": "PBI_NavigationStepName",
-            "value": "Navigation"
           }
         ],
         "lineageTag": "6302671c-d4a2-4080-adf9-f4952ba7af80",
@@ -27177,10 +27153,6 @@
           {
             "name": "PBI_ResultType",
             "value": "Table"
-          },
-          {
-            "name": "PBI_NavigationStepName",
-            "value": "Navigation"
           }
         ],
         "columns": [
@@ -27451,10 +27423,6 @@
           {
             "name": "PBI_ResultType",
             "value": "Table"
-          },
-          {
-            "name": "PBI_NavigationStepName",
-            "value": "Navigation"
           }
         ],
         "columns": [
@@ -30100,10 +30068,6 @@
           {
             "name": "PBI_ResultType",
             "value": "Table"
-          },
-          {
-            "name": "PBI_NavigationStepName",
-            "value": "Navigation"
           }
         ],
         "columns": [
@@ -31472,10 +31436,6 @@
           {
             "name": "PBI_ResultType",
             "value": "Table"
-          },
-          {
-            "name": "PBI_NavigationStepName",
-            "value": "Navigation"
           }
         ],
         "columns": [
@@ -33829,10 +33789,6 @@
           {
             "name": "PBI_ResultType",
             "value": "Table"
-          },
-          {
-            "name": "PBI_NavigationStepName",
-            "value": "Navigation"
           }
         ],
         "columns": [
@@ -36358,10 +36314,6 @@
           {
             "name": "PBI_ResultType",
             "value": "Table"
-          },
-          {
-            "name": "PBI_NavigationStepName",
-            "value": "Navigation"
           }
         ],
         "columns": [
@@ -37134,10 +37086,6 @@
           {
             "name": "PBI_ResultType",
             "value": "Table"
-          },
-          {
-            "name": "PBI_NavigationStepName",
-            "value": "Navigation"
           }
         ],
         "columns": [
@@ -37457,10 +37405,6 @@
           {
             "name": "PBI_ResultType",
             "value": "Table"
-          },
-          {
-            "name": "PBI_NavigationStepName",
-            "value": "Navigation"
           }
         ],
         "columns": [
@@ -42310,8 +42254,11 @@
             "source": {
               "expression": [
                 "let",
-                "    Source = Sql.Database(\"gvbidbserver.database.windows.net,1433\", \"GVPBIDB\", [Query=\"SELECT *,floor(datediff(day, min(Entry_Date) OVER (#(lf)#(tab)#(tab)#(tab)#(tab)PARTITION BY Season_ID ORDER BY Entry_Date#(lf)#(tab)#(tab)#(tab)#(tab)), Entry_Date) / 7.0) + 1 AS week_num#(lf)#(tab),floor(datediff(day, min(Entry_Date) OVER (#(lf)#(tab)#(tab)#(tab)#(tab)PARTITION BY Season_ID ORDER BY Entry_Date#(lf)#(tab)#(tab)#(tab)#(tab)), Entry_Date)) + 1 AS day_num_tag#(lf)  FROM [dbo].[Hourwise_GuestEntry]\"]),",
-                "    #\"Replaced Value\" = Table.ReplaceValue(Source,0,24,Replacer.ReplaceValue,{\"Entry_Hour\"})",
+                "    Source = PowerBI.Dataflows(null),",
+                "    #\"900de5b0-2f7b-4d94-a465-ee52acdc5d72\" = Source{[workspaceId=\"900de5b0-2f7b-4d94-a465-ee52acdc5d72\"]}[Data],",
+                "    #\"a671d159-a017-4946-8f8f-c6a5b637746a\" = #\"900de5b0-2f7b-4d94-a465-ee52acdc5d72\"{[dataflowId=\"a671d159-a017-4946-8f8f-c6a5b637746a\"]}[Data],",
+                "    #\"Gates Hourwise Entry1\" = #\"a671d159-a017-4946-8f8f-c6a5b637746a\"{[entity=\"Gates Hourwise Entry\"]}[Data],",
+                "    #\"Replaced Value\" = Table.ReplaceValue(#\"Gates Hourwise Entry1\",0,24,Replacer.ReplaceValue,{\"Entry_Hour\"})",
                 "in",
                 "    #\"Replaced Value\""
               ],

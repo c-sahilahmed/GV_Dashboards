@@ -1,0 +1,9 @@
+{
+  "version": "1.0",
+  "datasetReference": {
+    "byPath": {
+      "path": "../Footfall Analysis Dashboard S28-1.Dataset"
+    },
+    "byConnection": null
+  }
+}

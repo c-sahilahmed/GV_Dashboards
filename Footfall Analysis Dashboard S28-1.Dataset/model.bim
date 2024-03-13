@@ -4,7 +4,7 @@
     "annotations": [
       {
         "name": "PBI_QueryOrder",
-        "value": "[\"ePavilion Wise Details\",\"Coordinates_wifi\",\"Gates Measures\",\"Footfall Measures\",\"Visitation Measures\",\"Demographics Measures\",\"Display Measures\",\"Pavilion Wise Details\",\"DwellByPavAndDate_alllocations\",\"GuestCounts\",\"GuestCounts (2)\",\"GuestCounts (3)\",\"Pav Sensor + Park Footfall 2\",\"Concerts\",\"S27_GuestCounts\",\"Forecast\",\"Slicer Design\",\"Pav Sensor Footfall by Hour\",\"Kaizen Modelling\",\"Sales Data all Seasons\",\"Dwell - Ground\",\"Visitation Length\",\"Movement - Wifi\",\"Gates Hourwise Entry\"]"
+        "value": "[\"ePavilion Wise Details\",\"Coordinates_wifi\",\"Gates Measures\",\"Footfall Measures\",\"Visitation Measures\",\"Demographics Measures\",\"Display Measures\",\"Pavilion Wise Details\",\"DwellByPavAndDate_alllocations\",\"GuestCounts\",\"GuestCounts (2)\",\"GuestCounts (3)\",\"Pav Sensor + Park Footfall 2\",\"Concerts\",\"S27_GuestCounts\",\"Forecast\",\"Slicer Design\",\"Pav Sensor Footfall by Hour\",\"Kaizen Modelling\",\"Sales Data all Seasons\",\"Dwell - Ground\",\"Visitation Length\",\"Movement - Wifi\",\"Gates Hourwise Entry\",\"Pav Sensor + Park Footfall 2 (2)\",\"Pav Sensor Footfall by Hour (2)\",\"S27_GuestCounts_2\",\"Sales Data all Seasons (2)\"]"
       },
       {
         "name": "__PBI_TimeIntelligenceEnabled",
@@ -20734,11 +20734,11 @@
           }
         ],
         "expression": [
-          "let\r",
-          "    Source = Table.FromRows(Json.Document(Binary.Decompress(Binary.FromText(\"i45WciwpKUpMLsnMz1OK1YlWCkgsy8wBc2IB\", BinaryEncoding.Base64), Compression.Deflate)), let _t = ((type nullable text) meta [Serialized.Text = true]) in type table [#\"Location Type\" = _t]),\r",
-          "    #\"Changed Type\" = Table.TransformColumnTypes(Source,{{\"Location Type\", type text}}),\r",
-          "    #\"Removed Columns\" = Table.RemoveColumns(#\"Changed Type\",{\"Location Type\"})\r",
-          "in\r",
+          "let",
+          "    Source = Table.FromRows(Json.Document(Binary.Decompress(Binary.FromText(\"i45WciwpKUpMLsnMz1OK1YlWCkgsy8wBc2IB\", BinaryEncoding.Base64), Compression.Deflate)), let _t = ((type nullable text) meta [Serialized.Text = true]) in type table [#\"Location Type\" = _t]),",
+          "    #\"Changed Type\" = Table.TransformColumnTypes(Source,{{\"Location Type\", type text}}),",
+          "    #\"Removed Columns\" = Table.RemoveColumns(#\"Changed Type\",{\"Location Type\"})",
+          "in",
           "    #\"Removed Columns\""
         ],
         "kind": "m",
@@ -21345,6 +21345,72 @@
         "fromTable": "GuestCounts (3)",
         "toColumn": "day_num_tag",
         "toTable": "S27_GuestCounts"
+      },
+      {
+        "name": "29798ccf-5732-4fee-9995-b8ba328e38f1",
+        "fromColumn": "Operation_Date",
+        "fromTable": "Pav Sensor + Park Footfall 2 (2)",
+        "joinOnDateBehavior": "datePartOnly",
+        "toColumn": "Date",
+        "toTable": "LocalDateTable_d46aa641-184a-47aa-b53d-e70f423e2c27"
+      },
+      {
+        "name": "78faac29-88c5-4008-ab84-45d28ad58242",
+        "fromColumn": "Operation_Date",
+        "fromTable": "Pav Sensor Footfall by Hour (2)",
+        "joinOnDateBehavior": "datePartOnly",
+        "toColumn": "Date",
+        "toTable": "LocalDateTable_c6b3be0f-2b2c-4a1c-9f42-416831735a37"
+      },
+      {
+        "name": "6d74822c-87de-45aa-924c-c7250c1920e9",
+        "fromColumn": "Date",
+        "fromTable": "S27_GuestCounts_2",
+        "joinOnDateBehavior": "datePartOnly",
+        "toColumn": "Date",
+        "toTable": "LocalDateTable_5c1cdbb3-6770-4400-9b16-989b283421d7"
+      },
+      {
+        "name": "242bc832-62bc-461f-8784-0d429252e3cf",
+        "fromColumn": "Location",
+        "fromTable": "Pav Sensor + Park Footfall 2 (2)",
+        "toColumn": "Location",
+        "toTable": "Coordinates_wifi"
+      },
+      {
+        "name": "b16cbb9a-00a1-46b8-8dc1-1ab98710d359",
+        "fromColumn": "Location",
+        "fromTable": "Pav Sensor Footfall by Hour (2)",
+        "toColumn": "Location",
+        "toTable": "Coordinates_wifi"
+      },
+      {
+        "name": "01e68bf5-cd55-429b-87cb-e0aed2caaa45",
+        "fromColumn": "day_num_tag",
+        "fromTable": "Pav Sensor + Park Footfall 2 (2)",
+        "toColumn": "day_num_tag",
+        "toTable": "S27_GuestCounts"
+      },
+      {
+        "name": "fd314345-ec53-4714-b35c-af2dbac09f16",
+        "fromColumn": "day_num_tag",
+        "fromTable": "Pav Sensor Footfall by Hour (2)",
+        "toColumn": "day_num_tag",
+        "toTable": "S27_GuestCounts"
+      },
+      {
+        "name": "8f7ec459-2484-4a7c-ac7a-702079445879",
+        "fromColumn": "day_num_tag",
+        "fromTable": "S27_GuestCounts_2",
+        "toColumn": "day_num_tag",
+        "toTable": "S27_GuestCounts"
+      },
+      {
+        "name": "836b9e66-c778-45f7-a452-548f29d761e1",
+        "fromColumn": "day_num_tag",
+        "fromTable": "Sales Data all Seasons (2)",
+        "toColumn": "day_num_tag",
+        "toTable": "S27_GuestCounts"
       }
     ],
     "sourceQueryCulture": "en-GB",
@@ -21850,7 +21916,7 @@
             "dataType": "double",
             "lineageTag": "ce3d6231-66f6-4a92-9583-25d5b06a5da9",
             "sourceColumn": "LATITUDE",
-            "summarizeBy": "none"
+            "summarizeBy": "sum"
           },
           {
             "name": "LONGITUDE",
@@ -21867,7 +21933,7 @@
             "dataType": "double",
             "lineageTag": "fff90f21-bf04-4ea2-b9af-b87b03418228",
             "sourceColumn": "LONGITUDE",
-            "summarizeBy": "none"
+            "summarizeBy": "sum"
           },
           {
             "name": "Area(m2)",
@@ -21884,7 +21950,7 @@
             "dataType": "double",
             "lineageTag": "1cfcb307-fe20-41ec-85af-6219ee05cc24",
             "sourceColumn": "Area(m2)",
-            "summarizeBy": "none"
+            "summarizeBy": "sum"
           }
         ],
         "lineageTag": "d055d83f-c846-49e0-bcf1-87443cd22c5c",
@@ -28642,6 +28708,10 @@
           {
             "name": "PBI_ResultType",
             "value": "Table"
+          },
+          {
+            "name": "PBI_NavigationStepName",
+            "value": "Navigation"
           }
         ],
         "columns": [
@@ -31145,6 +31215,10 @@
           {
             "name": "PBI_ResultType",
             "value": "Table"
+          },
+          {
+            "name": "PBI_NavigationStepName",
+            "value": "Navigation"
           }
         ],
         "columns": [
@@ -32888,6 +32962,10 @@
           {
             "name": "PBI_ResultType",
             "value": "Table"
+          },
+          {
+            "name": "PBI_NavigationStepName",
+            "value": "Navigation"
           }
         ],
         "columns": [
@@ -34555,6 +34633,10 @@
           {
             "name": "PBI_ResultType",
             "value": "Table"
+          },
+          {
+            "name": "PBI_NavigationStepName",
+            "value": "Navigation"
           }
         ],
         "columns": [
@@ -34964,6 +35046,10 @@
           {
             "name": "PBI_ResultType",
             "value": "Table"
+          },
+          {
+            "name": "PBI_NavigationStepName",
+            "value": "Navigation"
           }
         ],
         "columns": [
@@ -41439,6 +41525,10 @@
           {
             "name": "PBI_ResultType",
             "value": "Table"
+          },
+          {
+            "name": "PBI_NavigationStepName",
+            "value": "Navigation"
           }
         ],
         "columns": [
@@ -41587,6 +41677,10 @@
           {
             "name": "PBI_ResultType",
             "value": "Table"
+          },
+          {
+            "name": "PBI_NavigationStepName",
+            "value": "Navigation"
           }
         ],
         "columns": [
@@ -42726,6 +42820,10 @@
         "name": "GuestCounts (2)",
         "annotations": [
           {
+            "name": "PBI_NavigationStepName",
+            "value": "Navigation"
+          },
+          {
             "name": "PBI_ResultType",
             "value": "Table"
           }
@@ -43298,6 +43396,10 @@
       {
         "name": "GuestCounts (3)",
         "annotations": [
+          {
+            "name": "PBI_NavigationStepName",
+            "value": "Navigation"
+          },
           {
             "name": "PBI_ResultType",
             "value": "Table"
@@ -43876,6 +43978,2777 @@
           }
         ],
         "showAsVariationsOnly": true
+      },
+      {
+        "name": "Pav Sensor + Park Footfall 2 (2)",
+        "annotations": [
+          {
+            "name": "PBI_NavigationStepName",
+            "value": "Navigation"
+          },
+          {
+            "name": "PBI_ResultType",
+            "value": "Table"
+          }
+        ],
+        "columns": [
+          {
+            "name": "Season_ID",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "lineageTag": "027457c8-46cc-486d-a917-404a5f446d9a",
+            "sourceColumn": "Season_ID",
+            "summarizeBy": "count"
+          },
+          {
+            "name": "Operation_Date",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "dateTime",
+            "formatString": "General Date",
+            "lineageTag": "7a567e6b-af48-4847-a02f-1ffdb9aa8991",
+            "sourceColumn": "Operation_Date",
+            "summarizeBy": "none",
+            "variations": [
+              {
+                "name": "Variation",
+                "defaultHierarchy": {
+                  "hierarchy": "Date Hierarchy",
+                  "table": "LocalDateTable_d46aa641-184a-47aa-b53d-e70f423e2c27"
+                },
+                "isDefault": true,
+                "relationship": "29798ccf-5732-4fee-9995-b8ba328e38f1"
+              }
+            ]
+          },
+          {
+            "name": "Location_id",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "lineageTag": "ffd3601e-507b-4fad-8960-1411078c7cc1",
+            "sourceColumn": "Location_id",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "Location",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "b087a5c9-08e7-4422-8144-36001e5ace70",
+            "sourceColumn": "Location",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "Sensor",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "ea0148fb-c7d2-42d2-b920-3b822b6a6026",
+            "sourceColumn": "Sensor",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "Total_Entries",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              },
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "dataType": "double",
+            "lineageTag": "b2611ab7-0696-4b8f-889d-abd8e1da9773",
+            "sourceColumn": "Total_Entries",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "Total_Park_Attendence",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              },
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "dataType": "double",
+            "lineageTag": "acac31ce-8a2d-4b57-939e-ef5a3c2901b4",
+            "sourceColumn": "Total_Park_Attendence",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "GOW",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              },
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "dataType": "double",
+            "lineageTag": "4b1130b4-3be2-4136-ad30-bc8850123ce7",
+            "sourceColumn": "GOW",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "GOW & CG TVM",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              },
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "dataType": "double",
+            "lineageTag": "5235eb82-8202-4274-8da7-b5a342ac0cf6",
+            "sourceColumn": "GOW & CG TVM",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "CG",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              },
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "dataType": "double",
+            "lineageTag": "50a54a77-7035-429d-bf23-86929f830b83",
+            "sourceColumn": "CG",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "HG",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              },
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "dataType": "double",
+            "lineageTag": "720bf6d4-735d-4e78-9b76-7597dfd3ea0d",
+            "sourceColumn": "HG",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "HG TVM",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              },
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "dataType": "double",
+            "lineageTag": "41590981-748d-4b59-9766-e3d762a35a9c",
+            "sourceColumn": "HG TVM",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "week_num",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              },
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "dataType": "double",
+            "lineageTag": "e3914286-a531-4121-9cde-4553513475a5",
+            "sourceColumn": "week_num",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "day_num_tag",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "lineageTag": "9d2f7235-30af-4dfc-83a2-9234584d72d8",
+            "sourceColumn": "day_num_tag",
+            "summarizeBy": "none"
+          }
+        ],
+        "lineageTag": "60779a0c-f913-4356-876c-463fb48b1cfa",
+        "partitions": [
+          {
+            "name": "Pav Sensor + Park Footfall 2 (2)",
+            "mode": "import",
+            "source": {
+              "expression": [
+                "let",
+                "    Source = PowerBI.Dataflows(null),",
+                "    #\"900de5b0-2f7b-4d94-a465-ee52acdc5d72\" = Source{[workspaceId=\"900de5b0-2f7b-4d94-a465-ee52acdc5d72\"]}[Data],",
+                "    #\"a671d159-a017-4946-8f8f-c6a5b637746a\" = #\"900de5b0-2f7b-4d94-a465-ee52acdc5d72\"{[dataflowId=\"a671d159-a017-4946-8f8f-c6a5b637746a\"]}[Data],",
+                "    #\"Pav Sensor + Park Footfall 2 (2)1\" = #\"a671d159-a017-4946-8f8f-c6a5b637746a\"{[entity=\"Pav Sensor + Park Footfall 2 (2)\"]}[Data]",
+                "in",
+                "    #\"Pav Sensor + Park Footfall 2 (2)1\""
+              ],
+              "type": "m"
+            }
+          }
+        ]
+      },
+      {
+        "name": "LocalDateTable_d46aa641-184a-47aa-b53d-e70f423e2c27",
+        "annotations": [
+          {
+            "name": "__PBI_LocalDateTable",
+            "value": "true"
+          }
+        ],
+        "columns": [
+          {
+            "name": "Date",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "User"
+              }
+            ],
+            "dataCategory": "PaddedDateTableDates",
+            "dataType": "dateTime",
+            "isHidden": true,
+            "isNameInferred": true,
+            "lineageTag": "b956bce0-f785-401f-bf43-9277c7b54032",
+            "sourceColumn": "[Date]",
+            "summarizeBy": "none",
+            "type": "calculatedTableColumn"
+          },
+          {
+            "name": "Year",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "User"
+              },
+              {
+                "name": "TemplateId",
+                "value": "Year"
+              }
+            ],
+            "dataCategory": "Years",
+            "dataType": "int64",
+            "expression": "YEAR([Date])",
+            "isHidden": true,
+            "lineageTag": "0cfb10f1-0560-443b-a253-c69844c0f33c",
+            "summarizeBy": "none",
+            "type": "calculated"
+          },
+          {
+            "name": "MonthNo",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "User"
+              },
+              {
+                "name": "TemplateId",
+                "value": "MonthNumber"
+              }
+            ],
+            "dataCategory": "MonthOfYear",
+            "dataType": "int64",
+            "expression": "MONTH([Date])",
+            "isHidden": true,
+            "lineageTag": "64700fc2-811d-4334-99a9-e56bc706cfd0",
+            "summarizeBy": "none",
+            "type": "calculated"
+          },
+          {
+            "name": "Month",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "User"
+              },
+              {
+                "name": "TemplateId",
+                "value": "Month"
+              }
+            ],
+            "dataCategory": "Months",
+            "dataType": "string",
+            "expression": "FORMAT([Date], \"MMMM\")",
+            "isHidden": true,
+            "lineageTag": "3cf6c5ae-024e-49ba-8c68-eb44f887bb7d",
+            "sortByColumn": "MonthNo",
+            "summarizeBy": "none",
+            "type": "calculated"
+          },
+          {
+            "name": "QuarterNo",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "User"
+              },
+              {
+                "name": "TemplateId",
+                "value": "QuarterNumber"
+              }
+            ],
+            "dataCategory": "QuarterOfYear",
+            "dataType": "int64",
+            "expression": "INT(([MonthNo] + 2) / 3)",
+            "isHidden": true,
+            "lineageTag": "73764199-c265-408f-aefb-d30dcb0598be",
+            "summarizeBy": "none",
+            "type": "calculated"
+          },
+          {
+            "name": "Quarter",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "User"
+              },
+              {
+                "name": "TemplateId",
+                "value": "Quarter"
+              }
+            ],
+            "dataCategory": "Quarters",
+            "dataType": "string",
+            "expression": "\"Qtr \" & [QuarterNo]",
+            "isHidden": true,
+            "lineageTag": "80786ae8-b837-433c-866e-20db542e0819",
+            "sortByColumn": "QuarterNo",
+            "summarizeBy": "none",
+            "type": "calculated"
+          },
+          {
+            "name": "Day",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "User"
+              },
+              {
+                "name": "TemplateId",
+                "value": "Day"
+              }
+            ],
+            "dataCategory": "DayOfMonth",
+            "dataType": "int64",
+            "expression": "DAY([Date])",
+            "isHidden": true,
+            "lineageTag": "746d42da-5db8-4c2c-b4e0-04b09501ab10",
+            "summarizeBy": "none",
+            "type": "calculated"
+          }
+        ],
+        "hierarchies": [
+          {
+            "name": "Date Hierarchy",
+            "annotations": [
+              {
+                "name": "TemplateId",
+                "value": "DateHierarchy"
+              }
+            ],
+            "levels": [
+              {
+                "name": "Year",
+                "column": "Year",
+                "lineageTag": "be80b67a-abdd-4577-875c-6b3a520aa83e",
+                "ordinal": 0
+              },
+              {
+                "name": "Quarter",
+                "column": "Quarter",
+                "lineageTag": "9d4afea4-9287-4012-8fb8-91be583339df",
+                "ordinal": 1
+              },
+              {
+                "name": "Month",
+                "column": "Month",
+                "lineageTag": "54533d79-bd02-46f8-a257-f4d6b39917c2",
+                "ordinal": 2
+              },
+              {
+                "name": "Day",
+                "column": "Day",
+                "lineageTag": "36fcd48b-192a-4f20-9d27-a59e99dc85c9",
+                "ordinal": 3
+              }
+            ],
+            "lineageTag": "bc7b6e39-8327-4291-9556-7815169465d6"
+          }
+        ],
+        "isHidden": true,
+        "lineageTag": "00731b92-323e-40ea-9170-f3e12f7a6df3",
+        "partitions": [
+          {
+            "name": "LocalDateTable_d46aa641-184a-47aa-b53d-e70f423e2c27",
+            "mode": "import",
+            "source": {
+              "expression": "Calendar(Date(Year(MIN('Pav Sensor + Park Footfall 2 (2)'[Operation_Date])), 1, 1), Date(Year(MAX('Pav Sensor + Park Footfall 2 (2)'[Operation_Date])), 12, 31))",
+              "type": "calculated"
+            }
+          }
+        ],
+        "showAsVariationsOnly": true
+      },
+      {
+        "name": "Pav Sensor Footfall by Hour (2)",
+        "annotations": [
+          {
+            "name": "PBI_NavigationStepName",
+            "value": "Navigation"
+          },
+          {
+            "name": "PBI_ResultType",
+            "value": "Table"
+          }
+        ],
+        "columns": [
+          {
+            "name": "Season_ID",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "lineageTag": "dab3e4af-a00c-48c4-b205-333b63ef3d61",
+            "sourceColumn": "Season_ID",
+            "summarizeBy": "count"
+          },
+          {
+            "name": "Operation_Date",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "dateTime",
+            "formatString": "General Date",
+            "lineageTag": "74336d94-0916-4b7d-9616-a5299a3799e3",
+            "sourceColumn": "Operation_Date",
+            "summarizeBy": "none",
+            "variations": [
+              {
+                "name": "Variation",
+                "defaultHierarchy": {
+                  "hierarchy": "Date Hierarchy",
+                  "table": "LocalDateTable_c6b3be0f-2b2c-4a1c-9f42-416831735a37"
+                },
+                "isDefault": true,
+                "relationship": "78faac29-88c5-4008-ab84-45d28ad58242"
+              }
+            ]
+          },
+          {
+            "name": "Location_id",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "lineageTag": "05f1d8b7-f0c8-4140-b0f4-6a6e576a6ab9",
+            "sourceColumn": "Location_id",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "Location",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "0a207b50-9d82-4c15-ab81-7c5f5ee9ab04",
+            "sourceColumn": "Location",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "Entry_Hour",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "lineageTag": "36c50d80-5881-4f85-b63e-455577389310",
+            "sourceColumn": "Entry_Hour",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "Total_Entries",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              },
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "dataType": "double",
+            "lineageTag": "7ca5bc84-3f88-409e-808d-c036ad5f792f",
+            "sourceColumn": "Total_Entries",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "Total_Park_Attendence",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              },
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "dataType": "double",
+            "lineageTag": "c1575f6f-1f5e-4595-87d5-7ee2adbcf2af",
+            "sourceColumn": "Total_Park_Attendence",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "week_num",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              },
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "dataType": "double",
+            "lineageTag": "3128fb42-cba3-4eed-a8a2-5ff7ac6b18e3",
+            "sourceColumn": "week_num",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "day_num_tag",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "lineageTag": "1cac6fa1-3de7-4053-9b83-b23a19ab5bce",
+            "sourceColumn": "day_num_tag",
+            "summarizeBy": "none"
+          }
+        ],
+        "lineageTag": "9ea48522-276e-412a-bb34-809535a533bf",
+        "partitions": [
+          {
+            "name": "Pav Sensor Footfall by Hour (2)",
+            "mode": "import",
+            "source": {
+              "expression": [
+                "let",
+                "    Source = PowerBI.Dataflows(null),",
+                "    #\"900de5b0-2f7b-4d94-a465-ee52acdc5d72\" = Source{[workspaceId=\"900de5b0-2f7b-4d94-a465-ee52acdc5d72\"]}[Data],",
+                "    #\"a671d159-a017-4946-8f8f-c6a5b637746a\" = #\"900de5b0-2f7b-4d94-a465-ee52acdc5d72\"{[dataflowId=\"a671d159-a017-4946-8f8f-c6a5b637746a\"]}[Data],",
+                "    #\"Pav Sensor Footfall by Hour (2)1\" = #\"a671d159-a017-4946-8f8f-c6a5b637746a\"{[entity=\"Pav Sensor Footfall by Hour (2)\"]}[Data]",
+                "in",
+                "    #\"Pav Sensor Footfall by Hour (2)1\""
+              ],
+              "type": "m"
+            }
+          }
+        ]
+      },
+      {
+        "name": "LocalDateTable_c6b3be0f-2b2c-4a1c-9f42-416831735a37",
+        "annotations": [
+          {
+            "name": "__PBI_LocalDateTable",
+            "value": "true"
+          }
+        ],
+        "columns": [
+          {
+            "name": "Date",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "User"
+              }
+            ],
+            "dataCategory": "PaddedDateTableDates",
+            "dataType": "dateTime",
+            "isHidden": true,
+            "isNameInferred": true,
+            "lineageTag": "cd834a4b-2386-4eaa-b628-9580ef9b961b",
+            "sourceColumn": "[Date]",
+            "summarizeBy": "none",
+            "type": "calculatedTableColumn"
+          },
+          {
+            "name": "Year",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "User"
+              },
+              {
+                "name": "TemplateId",
+                "value": "Year"
+              }
+            ],
+            "dataCategory": "Years",
+            "dataType": "int64",
+            "expression": "YEAR([Date])",
+            "isHidden": true,
+            "lineageTag": "abc7f043-5b08-4442-8b62-5ce8f8d55b15",
+            "summarizeBy": "none",
+            "type": "calculated"
+          },
+          {
+            "name": "MonthNo",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "User"
+              },
+              {
+                "name": "TemplateId",
+                "value": "MonthNumber"
+              }
+            ],
+            "dataCategory": "MonthOfYear",
+            "dataType": "int64",
+            "expression": "MONTH([Date])",
+            "isHidden": true,
+            "lineageTag": "507477b7-8e5b-4ecb-9d22-da4dd89c7718",
+            "summarizeBy": "none",
+            "type": "calculated"
+          },
+          {
+            "name": "Month",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "User"
+              },
+              {
+                "name": "TemplateId",
+                "value": "Month"
+              }
+            ],
+            "dataCategory": "Months",
+            "dataType": "string",
+            "expression": "FORMAT([Date], \"MMMM\")",
+            "isHidden": true,
+            "lineageTag": "0b1b6acf-fa80-4500-bee6-0d40a3df314e",
+            "sortByColumn": "MonthNo",
+            "summarizeBy": "none",
+            "type": "calculated"
+          },
+          {
+            "name": "QuarterNo",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "User"
+              },
+              {
+                "name": "TemplateId",
+                "value": "QuarterNumber"
+              }
+            ],
+            "dataCategory": "QuarterOfYear",
+            "dataType": "int64",
+            "expression": "INT(([MonthNo] + 2) / 3)",
+            "isHidden": true,
+            "lineageTag": "912dd164-e8d6-4987-bbe9-7ae158cd32d8",
+            "summarizeBy": "none",
+            "type": "calculated"
+          },
+          {
+            "name": "Quarter",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "User"
+              },
+              {
+                "name": "TemplateId",
+                "value": "Quarter"
+              }
+            ],
+            "dataCategory": "Quarters",
+            "dataType": "string",
+            "expression": "\"Qtr \" & [QuarterNo]",
+            "isHidden": true,
+            "lineageTag": "be5fd91e-9c74-412f-9bcf-b0dc7499c710",
+            "sortByColumn": "QuarterNo",
+            "summarizeBy": "none",
+            "type": "calculated"
+          },
+          {
+            "name": "Day",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "User"
+              },
+              {
+                "name": "TemplateId",
+                "value": "Day"
+              }
+            ],
+            "dataCategory": "DayOfMonth",
+            "dataType": "int64",
+            "expression": "DAY([Date])",
+            "isHidden": true,
+            "lineageTag": "37a326af-a0a4-4af2-b70b-4e292a6bebb1",
+            "summarizeBy": "none",
+            "type": "calculated"
+          }
+        ],
+        "hierarchies": [
+          {
+            "name": "Date Hierarchy",
+            "annotations": [
+              {
+                "name": "TemplateId",
+                "value": "DateHierarchy"
+              }
+            ],
+            "levels": [
+              {
+                "name": "Year",
+                "column": "Year",
+                "lineageTag": "c17d5681-4fc3-45ca-b827-88e2dd915f25",
+                "ordinal": 0
+              },
+              {
+                "name": "Quarter",
+                "column": "Quarter",
+                "lineageTag": "bd7ce372-bbf9-4d1f-bd3e-7ab5b6e35921",
+                "ordinal": 1
+              },
+              {
+                "name": "Month",
+                "column": "Month",
+                "lineageTag": "4471226a-40dd-45ed-aa3a-e87ccc8c6af1",
+                "ordinal": 2
+              },
+              {
+                "name": "Day",
+                "column": "Day",
+                "lineageTag": "84a06d4b-9438-487b-9fb9-2e01b33e5de2",
+                "ordinal": 3
+              }
+            ],
+            "lineageTag": "4329024e-5174-4f80-8e7e-d3c6bb42218d"
+          }
+        ],
+        "isHidden": true,
+        "lineageTag": "cb6b0f90-b628-40a4-a484-e60a4846b0e3",
+        "partitions": [
+          {
+            "name": "LocalDateTable_c6b3be0f-2b2c-4a1c-9f42-416831735a37",
+            "mode": "import",
+            "source": {
+              "expression": "Calendar(Date(Year(MIN('Pav Sensor Footfall by Hour (2)'[Operation_Date])), 1, 1), Date(Year(MAX('Pav Sensor Footfall by Hour (2)'[Operation_Date])), 12, 31))",
+              "type": "calculated"
+            }
+          }
+        ],
+        "showAsVariationsOnly": true
+      },
+      {
+        "name": "S27_GuestCounts_2",
+        "annotations": [
+          {
+            "name": "PBI_NavigationStepName",
+            "value": "Navigation"
+          },
+          {
+            "name": "PBI_ResultType",
+            "value": "Table"
+          }
+        ],
+        "columns": [
+          {
+            "name": "Date",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "dateTime",
+            "formatString": "General Date",
+            "lineageTag": "332614ad-d9b6-43d7-8edc-30fa2327f908",
+            "sourceColumn": "Date",
+            "summarizeBy": "none",
+            "variations": [
+              {
+                "name": "Variation",
+                "defaultHierarchy": {
+                  "hierarchy": "Date Hierarchy",
+                  "table": "LocalDateTable_5c1cdbb3-6770-4400-9b16-989b283421d7"
+                },
+                "isDefault": true,
+                "relationship": "6d74822c-87de-45aa-924c-c7250c1920e9"
+              }
+            ]
+          },
+          {
+            "name": "Day",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "7b2fbc31-450c-46ee-b8a0-fd4fee12fa00",
+            "sourceColumn": "Day",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "Day_Type",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "91023a30-6414-4f37-84a7-14deedf29f01",
+            "sourceColumn": "Day_Type",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "Gate_of_the_World_GOTWA",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              },
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "dataType": "double",
+            "lineageTag": "0d8d53e6-57e8-4ff7-ad53-87966d9cfdd4",
+            "sourceColumn": "Gate_of_the_World_GOTWA",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "CulturalGate_CG",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              },
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "dataType": "double",
+            "lineageTag": "48a2f09f-5646-453b-a3ac-904f74871315",
+            "sourceColumn": "CulturalGate_CG",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "Happiness_Gate",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              },
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "dataType": "double",
+            "lineageTag": "a10089b9-ac93-470d-9c1f-449f86a3fc30",
+            "sourceColumn": "Happiness_Gate",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "GOTW & CG self vending kiosks",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              },
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "dataType": "double",
+            "lineageTag": "4a73dfae-9dce-49bb-922d-141f448480bc",
+            "sourceColumn": "GOTW & CG self vending kiosks",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "HG_Self_Vending_Kiosks",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              },
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "dataType": "double",
+            "lineageTag": "6b72034b-73b4-449e-86b3-514825e4bb57",
+            "sourceColumn": "HG_Self_Vending_Kiosks",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "Ticket_Printing_Error",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              },
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "dataType": "double",
+            "lineageTag": "9c94cbd0-0b2b-4d16-8d0e-4ea986aebe6b",
+            "sourceColumn": "Ticket_Printing_Error",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "Emergency_Tickets_and_Gate_5C",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              },
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "dataType": "double",
+            "lineageTag": "af53d530-3d87-4aad-a58f-d501694192bd",
+            "sourceColumn": "Emergency_Tickets_and_Gate_5C",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "Daily_Ticket_Sales",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              },
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "dataType": "double",
+            "lineageTag": "ae91fdae-ada7-40f8-a526-a225ed26572e",
+            "sourceColumn": "Daily_Ticket_Sales",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "VIP_Main_Gate",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              },
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "dataType": "double",
+            "lineageTag": "3e9d3803-9347-4f0c-bc37-32d3d7e1cd78",
+            "sourceColumn": "VIP_Main_Gate",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "VIP_Cultural_Gate",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              },
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "dataType": "double",
+            "lineageTag": "5092841d-ca4f-4ea8-9363-7df8d05dc8b3",
+            "sourceColumn": "VIP_Cultural_Gate",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "VIP_Happiness_Gate",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              },
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "dataType": "double",
+            "lineageTag": "d7e25feb-0a65-4627-b8fd-d4a3f962c33d",
+            "sourceColumn": "VIP_Happiness_Gate",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "Fazza_Main_Gate",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              },
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "dataType": "double",
+            "lineageTag": "d908b57c-d8ee-4360-9101-5e7d8b3d9a29",
+            "sourceColumn": "Fazza_Main_Gate",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "Fazza_Cultural_Gate",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              },
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "dataType": "double",
+            "lineageTag": "42a7329e-b61f-42ec-b234-5789382fb510",
+            "sourceColumn": "Fazza_Cultural_Gate",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "Fazza_Happiness_Gate",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              },
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "dataType": "double",
+            "lineageTag": "ec9bdc47-6003-43f3-80fa-55744f7e7de3",
+            "sourceColumn": "Fazza_Happiness_Gate",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "Family_Packs",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              },
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "dataType": "double",
+            "lineageTag": "3eeeebfe-d735-4d86-972f-0f85778640bb",
+            "sourceColumn": "Family_Packs",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "Pre_Sales_Group_Discount_and_Corporate",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              },
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "dataType": "double",
+            "lineageTag": "ab85e5e7-53f8-44fa-b6a3-55beba8fe97b",
+            "sourceColumn": "Pre_Sales_Group_Discount_and_Corporate",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "Travel_Agents_WEBB2B",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              },
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "dataType": "double",
+            "lineageTag": "b185524b-6463-4b57-856e-f9ca22f35a0e",
+            "sourceColumn": "Travel_Agents_WEBB2B",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "Fazaa/DXB",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              },
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "dataType": "double",
+            "lineageTag": "61901a18-aad4-4aa9-aa34-526513ee2152",
+            "sourceColumn": "Fazaa/DXB",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "Web_Sales_Total",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              },
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "dataType": "double",
+            "lineageTag": "b373de79-28c2-4c55-898e-2cd8a6c3019c",
+            "sourceColumn": "Web_Sales_Total",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "Web_Sales_B2C_AnyDay",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              },
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "dataType": "double",
+            "lineageTag": "df6dd43e-2881-4409-a454-10248a358348",
+            "sourceColumn": "Web_Sales_B2C_AnyDay",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "Web_Sales_B2CValue",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              },
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "dataType": "double",
+            "lineageTag": "f9b92e15-4d98-4470-bee7-3bf60c714862",
+            "sourceColumn": "Web_Sales_B2CValue",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "Esaad_B2CAnyDay",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              },
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "dataType": "double",
+            "lineageTag": "c5d21856-6ead-492a-a82e-ba8e0187fb4e",
+            "sourceColumn": "Esaad_B2CAnyDay",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "Esaad_B2CValue",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              },
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "dataType": "double",
+            "lineageTag": "8becdb19-fd0c-461f-b894-78313fc8842f",
+            "sourceColumn": "Esaad_B2CValue",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "AlSaada_B2CAnyDay",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              },
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "dataType": "double",
+            "lineageTag": "f65644fc-9abb-4cdb-9dbb-ada2478b15e8",
+            "sourceColumn": "AlSaada_B2CAnyDay",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "AlSaada_B2CValue",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              },
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "dataType": "double",
+            "lineageTag": "f34a31ea-d428-4021-8c9d-06c87bdaf71f",
+            "sourceColumn": "AlSaada_B2CValue",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "Homat_Al_Watan_B2CAnyDay",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              },
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "dataType": "double",
+            "lineageTag": "6087b25e-f5fb-400c-82e3-38e74064d23a",
+            "sourceColumn": "Homat_Al_Watan_B2CAnyDay",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "Homat_Al_Watan_B2CValue",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              },
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "dataType": "double",
+            "lineageTag": "6a72340b-ab53-4d9d-b577-5d4b7379299c",
+            "sourceColumn": "Homat_Al_Watan_B2CValue",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "Entries_from_pre_Sold_Tickets",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              },
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "dataType": "double",
+            "lineageTag": "46e48fb5-b48e-418f-8d6d-b431ae113d37",
+            "sourceColumn": "Entries_from_pre_Sold_Tickets",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "VIP_Comps_Total",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              },
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "dataType": "double",
+            "lineageTag": "736a72da-3c52-4c6e-8c7d-49406825b27b",
+            "sourceColumn": "VIP_Comps_Total",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "VIP_General_Admission_Complimentary",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              },
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "dataType": "double",
+            "lineageTag": "4d733489-9bba-4b28-a907-3ad7347f81a9",
+            "sourceColumn": "VIP_General_Admission_Complimentary",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "VIP_General_Admission_Mini",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              },
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "dataType": "double",
+            "lineageTag": "3d1d84e1-5716-4b29-855d-5b45369bec9f",
+            "sourceColumn": "VIP_General_Admission_Mini",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "VIP_General_Admission_Media",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              },
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "dataType": "double",
+            "lineageTag": "77b796fe-4ceb-447f-b7ba-8d9179ad39dd",
+            "sourceColumn": "VIP_General_Admission_Media",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "Family_Packs_Comp",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              },
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "dataType": "double",
+            "lineageTag": "1acd3eb0-e7f2-484c-8190-2d1aba23d3cc",
+            "sourceColumn": "Family_Packs_Comp",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "Employee_and_Other_comps_Total",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              },
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "dataType": "double",
+            "lineageTag": "b0815d5d-4632-4f92-850f-998a92f774b3",
+            "sourceColumn": "Employee_and_Other_comps_Total",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "Complimentary_A_Ticket",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              },
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "dataType": "double",
+            "lineageTag": "9589fd5c-af16-444d-9d49-c96c6ef23642",
+            "sourceColumn": "Complimentary_A_Ticket",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "GovtAuthority_Complimentary_Ticket",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              },
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "dataType": "double",
+            "lineageTag": "dcc66a8b-7519-4f93-a6f3-71088f622796",
+            "sourceColumn": "GovtAuthority_Complimentary_Ticket",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "GVCEOComplimentary_Ticket",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              },
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "dataType": "double",
+            "lineageTag": "17f67b41-8583-4e65-8eac-7ed1ba63705d",
+            "sourceColumn": "GVCEOComplimentary_Ticket",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "GV_Entertainment _Ticket",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              },
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "dataType": "double",
+            "lineageTag": "564d8ff1-b409-428a-b85f-2d5562236e93",
+            "sourceColumn": "GV_Entertainment _Ticket",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "Media_Pass",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              },
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "dataType": "double",
+            "lineageTag": "620c018f-7617-4bab-a6ad-c9e2bc607510",
+            "sourceColumn": "Media_Pass",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "Mystery_Shopper_Complimentary",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              },
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "dataType": "double",
+            "lineageTag": "88ebcc18-cdcc-4040-ac21-acca7797a00c",
+            "sourceColumn": "Mystery_Shopper_Complimentary",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "Security_Complimentary_Ticket",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              },
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "dataType": "double",
+            "lineageTag": "68557f5f-1d46-4e3e-94fe-c3f699ef73f9",
+            "sourceColumn": "Security_Complimentary_Ticket",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "Emirates_Airline_Promotion_Comp",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              },
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "dataType": "double",
+            "lineageTag": "5ba1994c-9e76-4133-98d3-8b78ebda7f9c",
+            "sourceColumn": "Emirates_Airline_Promotion_Comp",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "DHE_Family_Day",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              },
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "dataType": "double",
+            "lineageTag": "eeb095da-d000-4700-9747-60ecd1b82c3f",
+            "sourceColumn": "DHE_Family_Day",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "B2CAnyDay_General_Admission_DPRPromotion",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              },
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "dataType": "double",
+            "lineageTag": "9544a219-f6f0-48b7-ab78-7d9d4cdaa3cf",
+            "sourceColumn": "B2CAnyDay_General_Admission_DPRPromotion",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "Complimentary_Ticket_E",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              },
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "dataType": "double",
+            "lineageTag": "35987b30-80b7-41b4-97c1-a0d530267012",
+            "sourceColumn": "Complimentary_Ticket_E",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "Others",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              },
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "dataType": "double",
+            "lineageTag": "89902e28-376c-422a-b35b-c5c3828eff10",
+            "sourceColumn": "Others",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "Child_Under_3_years",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              },
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "dataType": "double",
+            "lineageTag": "76c90233-9e0d-4923-8ac8-6cd8dc97d562",
+            "sourceColumn": "Child_Under_3_years",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "People_of_Determination_Plus_Assistant",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              },
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "dataType": "double",
+            "lineageTag": "76a3d376-1153-46cd-b9a7-0e69f318caa9",
+            "sourceColumn": "People_of_Determination_Plus_Assistant",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "Senior_citizen_Over_65years",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              },
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "dataType": "double",
+            "lineageTag": "e2dd2b75-c649-44b2-a60f-79a180b433fc",
+            "sourceColumn": "Senior_citizen_Over_65years",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "Travel_Agents_Comp_B2B_EntryTicket",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              },
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "dataType": "double",
+            "lineageTag": "e90d8ed1-c828-4f66-aefa-9f5dabc7d170",
+            "sourceColumn": "Travel_Agents_Comp_B2B_EntryTicket",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "Not_Used",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              },
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "dataType": "double",
+            "lineageTag": "f6400174-7841-46f4-8911-1d1dc2def687",
+            "sourceColumn": "Not_Used",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "Entries_from_Complimentaries",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              },
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "dataType": "double",
+            "lineageTag": "fe7fe120-87f6-4509-8aaa-f46c2c1baba2",
+            "sourceColumn": "Entries_from_Complimentaries",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "Special_Edition_Silver_Entry",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "lineageTag": "1c6c9e1e-5248-4f9e-ad4c-510e009169e2",
+            "sourceColumn": "Special_Edition_Silver_Entry",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "Homat_Al_Watan_Gov_Pack",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "lineageTag": "4fc5c1aa-cd74-48a4-a9b0-3dd0bcb38975",
+            "sourceColumn": "Homat_Al_Watan_Gov_Pack",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "Entries_Al_Sadaa_Pack",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "lineageTag": "94f47f74-5472-4a9e-93c6-f5804612bedf",
+            "sourceColumn": "Entries_Al_Sadaa_Pack",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "Entries_Esaad_Packs",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "lineageTag": "0b635a39-57c8-4533-bc09-b3113da055a6",
+            "sourceColumn": "Entries_Esaad_Packs",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "Total_Park_Attendance",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              },
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "dataType": "double",
+            "lineageTag": "7c333e71-ae08-4ed7-8182-648d69eff263",
+            "sourceColumn": "Total_Park_Attendance",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "Season_Id",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "lineageTag": "a2c28849-c853-458d-babe-5d28e2664a81",
+            "sourceColumn": "Season_Id",
+            "summarizeBy": "count"
+          },
+          {
+            "name": "week_num",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              },
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "dataType": "double",
+            "lineageTag": "e5d8d5a8-8a3a-4e8e-89e4-0d01c2e99035",
+            "sourceColumn": "week_num",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "day_num_tag",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "lineageTag": "5c3b9859-9753-40f4-b269-3b4e6435226e",
+            "sourceColumn": "day_num_tag",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "B2C : Gate Tickets",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "fffe04e3-3b17-48d3-bbf9-b5f0b7e95f3d",
+            "sourceColumn": "B2C : Gate Tickets",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "B2C : Online Tickets",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "e4238bc9-5cde-4242-8b28-ce48e98e21cc",
+            "sourceColumn": "B2C : Online Tickets",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "B2C : Gate and Online",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "de656704-7d08-4cc5-9a61-9f249c40825a",
+            "sourceColumn": "B2C : Gate and Online",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "B2B : Corporate and Travel Agents Tickets",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "0cec8896-64b0-4d23-839d-d93214f2badc",
+            "sourceColumn": "B2B : Corporate and Travel Agents Tickets",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "B2C + B2B Tickets",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "aceff8c3-aad0-4730-8166-3ae84f0802c2",
+            "sourceColumn": "B2C + B2B Tickets",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "Pre-purchased Pack Tickets",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "ff1b33be-4cfe-4831-a2a0-07ff64902fa8",
+            "sourceColumn": "Pre-purchased Pack Tickets",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "Complimentary Tickets2",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "f457db70-98f0-4a05-8746-57eb9039570e",
+            "sourceColumn": "Complimentary Tickets2",
+            "summarizeBy": "none"
+          }
+        ],
+        "lineageTag": "5bdac55f-c823-438c-ba98-70cd750bee45",
+        "partitions": [
+          {
+            "name": "S27_GuestCounts_2",
+            "mode": "import",
+            "source": {
+              "expression": [
+                "let",
+                "    Source = PowerBI.Dataflows(null),",
+                "    #\"900de5b0-2f7b-4d94-a465-ee52acdc5d72\" = Source{[workspaceId=\"900de5b0-2f7b-4d94-a465-ee52acdc5d72\"]}[Data],",
+                "    #\"a671d159-a017-4946-8f8f-c6a5b637746a\" = #\"900de5b0-2f7b-4d94-a465-ee52acdc5d72\"{[dataflowId=\"a671d159-a017-4946-8f8f-c6a5b637746a\"]}[Data],",
+                "    #\"S27_GuestCounts (2)1\" = #\"a671d159-a017-4946-8f8f-c6a5b637746a\"{[entity=\"S27_GuestCounts (2)\"]}[Data]",
+                "in",
+                "    #\"S27_GuestCounts (2)1\""
+              ],
+              "type": "m"
+            }
+          }
+        ]
+      },
+      {
+        "name": "LocalDateTable_5c1cdbb3-6770-4400-9b16-989b283421d7",
+        "annotations": [
+          {
+            "name": "__PBI_LocalDateTable",
+            "value": "true"
+          }
+        ],
+        "columns": [
+          {
+            "name": "Date",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "User"
+              }
+            ],
+            "dataCategory": "PaddedDateTableDates",
+            "dataType": "dateTime",
+            "isHidden": true,
+            "isNameInferred": true,
+            "lineageTag": "a6d6acd9-ae0a-402a-b62d-1cdba37c0763",
+            "sourceColumn": "[Date]",
+            "summarizeBy": "none",
+            "type": "calculatedTableColumn"
+          },
+          {
+            "name": "Year",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "User"
+              },
+              {
+                "name": "TemplateId",
+                "value": "Year"
+              }
+            ],
+            "dataCategory": "Years",
+            "dataType": "int64",
+            "expression": "YEAR([Date])",
+            "isHidden": true,
+            "lineageTag": "f2faa28a-19ba-40eb-9a6e-f37c3d50cb37",
+            "summarizeBy": "none",
+            "type": "calculated"
+          },
+          {
+            "name": "MonthNo",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "User"
+              },
+              {
+                "name": "TemplateId",
+                "value": "MonthNumber"
+              }
+            ],
+            "dataCategory": "MonthOfYear",
+            "dataType": "int64",
+            "expression": "MONTH([Date])",
+            "isHidden": true,
+            "lineageTag": "0d100dfc-c380-4b6e-add0-638667668596",
+            "summarizeBy": "none",
+            "type": "calculated"
+          },
+          {
+            "name": "Month",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "User"
+              },
+              {
+                "name": "TemplateId",
+                "value": "Month"
+              }
+            ],
+            "dataCategory": "Months",
+            "dataType": "string",
+            "expression": "FORMAT([Date], \"MMMM\")",
+            "isHidden": true,
+            "lineageTag": "46b2c318-9544-486c-96d1-8aaafff5a673",
+            "sortByColumn": "MonthNo",
+            "summarizeBy": "none",
+            "type": "calculated"
+          },
+          {
+            "name": "QuarterNo",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "User"
+              },
+              {
+                "name": "TemplateId",
+                "value": "QuarterNumber"
+              }
+            ],
+            "dataCategory": "QuarterOfYear",
+            "dataType": "int64",
+            "expression": "INT(([MonthNo] + 2) / 3)",
+            "isHidden": true,
+            "lineageTag": "7f7ad5ab-8f77-4420-8492-b840553fe4ea",
+            "summarizeBy": "none",
+            "type": "calculated"
+          },
+          {
+            "name": "Quarter",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "User"
+              },
+              {
+                "name": "TemplateId",
+                "value": "Quarter"
+              }
+            ],
+            "dataCategory": "Quarters",
+            "dataType": "string",
+            "expression": "\"Qtr \" & [QuarterNo]",
+            "isHidden": true,
+            "lineageTag": "1edce5f3-483f-4c02-9cfb-60d3b2b6d9f3",
+            "sortByColumn": "QuarterNo",
+            "summarizeBy": "none",
+            "type": "calculated"
+          },
+          {
+            "name": "Day",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "User"
+              },
+              {
+                "name": "TemplateId",
+                "value": "Day"
+              }
+            ],
+            "dataCategory": "DayOfMonth",
+            "dataType": "int64",
+            "expression": "DAY([Date])",
+            "isHidden": true,
+            "lineageTag": "9e92383b-61f8-4f3b-ac0b-c34cb71f0d9f",
+            "summarizeBy": "none",
+            "type": "calculated"
+          }
+        ],
+        "hierarchies": [
+          {
+            "name": "Date Hierarchy",
+            "annotations": [
+              {
+                "name": "TemplateId",
+                "value": "DateHierarchy"
+              }
+            ],
+            "levels": [
+              {
+                "name": "Year",
+                "column": "Year",
+                "lineageTag": "6cc3ffa6-4ec2-4dc6-88dc-34cf88e6a421",
+                "ordinal": 0
+              },
+              {
+                "name": "Quarter",
+                "column": "Quarter",
+                "lineageTag": "118f2efa-63ed-40cf-a0af-034bb0c037fd",
+                "ordinal": 1
+              },
+              {
+                "name": "Month",
+                "column": "Month",
+                "lineageTag": "dbeb0d0a-7868-4fc2-ab9b-b3162436f47f",
+                "ordinal": 2
+              },
+              {
+                "name": "Day",
+                "column": "Day",
+                "lineageTag": "0d806cd6-e185-432e-902b-57e876fbf4f2",
+                "ordinal": 3
+              }
+            ],
+            "lineageTag": "fd5502b8-42ea-4a6f-bada-c207bf1bbd30"
+          }
+        ],
+        "isHidden": true,
+        "lineageTag": "85aab597-2dd9-48cb-bb85-c6f48ad43bef",
+        "partitions": [
+          {
+            "name": "LocalDateTable_5c1cdbb3-6770-4400-9b16-989b283421d7",
+            "mode": "import",
+            "source": {
+              "expression": "Calendar(Date(Year(MIN('S27_GuestCounts_2'[Date])), 1, 1), Date(Year(MAX('S27_GuestCounts_2'[Date])), 12, 31))",
+              "type": "calculated"
+            }
+          }
+        ],
+        "showAsVariationsOnly": true
+      },
+      {
+        "name": "Sales Data all Seasons (2)",
+        "annotations": [
+          {
+            "name": "PBI_NavigationStepName",
+            "value": "Navigation"
+          },
+          {
+            "name": "PBI_ResultType",
+            "value": "Table"
+          }
+        ],
+        "columns": [
+          {
+            "name": "Date",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "955d5edc-ec58-472c-956a-1386f143e073",
+            "sourceColumn": "Date",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "B2C : Gate Tickets",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "lineageTag": "d8bf5ded-837a-41ce-9a19-5125cae3b353",
+            "sourceColumn": "B2C : Gate Tickets",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "B2C : Online Tickets",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "lineageTag": "c703e4cd-538c-4933-9503-b919a5730729",
+            "sourceColumn": "B2C : Online Tickets",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "B2C : Gate and Online",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "lineageTag": "34e418ef-33dc-4044-bf3b-ce6371813caa",
+            "sourceColumn": "B2C : Gate and Online",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "B2B : Corporate and Travel Agents Tickets",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "lineageTag": "df598688-384f-4650-a0bc-02a45c99fc0f",
+            "sourceColumn": "B2B : Corporate and Travel Agents Tickets",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "B2C + B2B Tickets",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "lineageTag": "4e81fc9c-173e-48ca-879e-916449acaa79",
+            "sourceColumn": "B2C + B2B Tickets",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "Pre-purchased Pack Tickets",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "lineageTag": "000a219a-a7bc-4722-85dd-6bf65cafed66",
+            "sourceColumn": "Pre-purchased Pack Tickets",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "Total park attendance",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "lineageTag": "c2a9bf7b-a568-4e5e-9f00-646f838d768b",
+            "sourceColumn": "Total park attendance",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "B2C : Gate Sales",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              },
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "dataType": "double",
+            "lineageTag": "5efac0e9-f306-4531-8ce2-696b8dc0b646",
+            "sourceColumn": "B2C : Gate Sales",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "B2C : Online Sales",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              },
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "dataType": "double",
+            "lineageTag": "90365c76-b44a-4dc4-871f-14c44ca0bc07",
+            "sourceColumn": "B2C : Online Sales",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "B2C : Gate and Online Sales",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              },
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "dataType": "double",
+            "lineageTag": "0a7889da-24f2-47af-a129-33a4dc75176f",
+            "sourceColumn": "B2C : Gate and Online Sales",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "B2B : Corporate and Travel Agents Sales",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              },
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "dataType": "double",
+            "lineageTag": "08659f76-0d71-4629-9990-1f894ae27004",
+            "sourceColumn": "B2B : Corporate and Travel Agents Sales",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "B2C + B2B Ticket Revenue 2",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              },
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "dataType": "double",
+            "lineageTag": "89de3255-1036-4a83-9904-1fb40d9c981a",
+            "sourceColumn": "B2C + B2B Ticket Revenue 2",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "CARNAVAL : GV Rides + 3rd Party Games 3",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "lineageTag": "f5f035a0-2cbc-415a-8d4e-28bfae7dc593",
+            "sourceColumn": "CARNAVAL : GV Rides + 3rd Party Games 3",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "STUNT SHOW",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              },
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "dataType": "double",
+            "lineageTag": "2a7f5eb7-32c2-418e-9957-972ab0cab08f",
+            "sourceColumn": "STUNT SHOW",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "RIPLEYS",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              },
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "dataType": "double",
+            "lineageTag": "540a4df0-d9e1-4996-96d0-7934b7e4589a",
+            "sourceColumn": "RIPLEYS",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "PETER RABBIT 4",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "lineageTag": "e465ead7-e565-452c-9526-db548d9b7fc6",
+            "sourceColumn": "PETER RABBIT 4",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "VALET AND VIP PARKING",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              },
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "dataType": "double",
+            "lineageTag": "53ca255f-a46a-4f60-b2b1-6caef316f8e2",
+            "sourceColumn": "VALET AND VIP PARKING",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "Total Operating Revenue",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              },
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "dataType": "double",
+            "lineageTag": "92b68e5d-7c02-422d-a223-0b1f1925b826",
+            "sourceColumn": "Total Operating Revenue",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "Season_id",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "lineageTag": "4bf8e370-523c-4b85-9ddd-11b7ae2bc554",
+            "sourceColumn": "Season_id",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "Fazaa/DXB",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              },
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "dataType": "double",
+            "lineageTag": "e8f76378-5d3e-43e6-b510-718a0f002f97",
+            "sourceColumn": "Fazaa/DXB",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "Homat_Al_Watan_B2CAnyDay",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              },
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "dataType": "double",
+            "lineageTag": "da8e1687-b54c-49a9-bdba-101b6101e631",
+            "sourceColumn": "Homat_Al_Watan_B2CAnyDay",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "Homat_Al_Watan_B2CValue",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              },
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "dataType": "double",
+            "lineageTag": "5a2b6b16-405d-4952-8808-3ee73ad574e1",
+            "sourceColumn": "Homat_Al_Watan_B2CValue",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "B2CAnyDay_General_Admission_DPRPromotion",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              },
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "dataType": "double",
+            "lineageTag": "9d98a7af-823b-42e8-9800-622672717c2d",
+            "sourceColumn": "B2CAnyDay_General_Admission_DPRPromotion",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "Special_Edition_Silver_Entry",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "lineageTag": "be47a6be-7025-4aef-9678-89f442352a04",
+            "sourceColumn": "Special_Edition_Silver_Entry",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "Homat_Al_Watan_Gov_Pack",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "lineageTag": "cd57d28d-a48a-4c36-ad1a-dbd0416809f1",
+            "sourceColumn": "Homat_Al_Watan_Gov_Pack",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "Entries_Al_Sadaa_Pack",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "lineageTag": "1e474931-27ce-4b31-8020-49cdb1d1aaf8",
+            "sourceColumn": "Entries_Al_Sadaa_Pack",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "Entries_Esaad_Packs",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "lineageTag": "13fc501e-0fa0-49cf-adab-b2e75c14e3a8",
+            "sourceColumn": "Entries_Esaad_Packs",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "Total_Park_Attendance",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              },
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "dataType": "double",
+            "lineageTag": "4e8e2c28-f321-4d65-9da8-2ce7501d3e06",
+            "sourceColumn": "Total_Park_Attendance",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "Season_Id 2",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "lineageTag": "9b49e999-fc84-4bd5-909e-f8aff2b8ece4",
+            "sourceColumn": "Season_Id",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "week_num",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              },
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "dataType": "double",
+            "lineageTag": "1823c7aa-fc02-4ee4-a7f3-c2461d407ee4",
+            "sourceColumn": "week_num",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "day_num_tag",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "lineageTag": "d0e0c8d8-e7de-41b4-80c9-225272f677b3",
+            "sourceColumn": "day_num_tag",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "Complimentry Tickets",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "lineageTag": "0add4970-085a-4881-ba04-0b9d444e83ca",
+            "sourceColumn": "Complimentry Tickets",
+            "summarizeBy": "sum"
+          }
+        ],
+        "excludeFromModelRefresh": true,
+        "lineageTag": "2cbf85a0-8f2a-4e42-9cda-704dcea32af3",
+        "partitions": [
+          {
+            "name": "Sales Data all Seasons (2)",
+            "mode": "import",
+            "source": {
+              "expression": [
+                "let",
+                "    Source = PowerBI.Dataflows(null),",
+                "    #\"900de5b0-2f7b-4d94-a465-ee52acdc5d72\" = Source{[workspaceId=\"900de5b0-2f7b-4d94-a465-ee52acdc5d72\"]}[Data],",
+                "    #\"a671d159-a017-4946-8f8f-c6a5b637746a\" = #\"900de5b0-2f7b-4d94-a465-ee52acdc5d72\"{[dataflowId=\"a671d159-a017-4946-8f8f-c6a5b637746a\"]}[Data],",
+                "    #\"Sales Data all Seasons (2)1\" = #\"a671d159-a017-4946-8f8f-c6a5b637746a\"{[entity=\"Sales Data all Seasons\"]}[Data],",
+                "    #\"Sorted Rows1\" = Table.Sort(#\"Sales Data all Seasons (2)1\",{{\"Date\", Order.Descending}}),",
+                "    #\"Appended Query\" = Table.Combine({#\"Sorted Rows1\", S27_GuestCounts_2}),",
+                "    #\"Removed Columns\" = Table.RemoveColumns(#\"Appended Query\",{\"CulturalGate_CG\", \"Happiness_Gate\", \"GOTW & CG self vending kiosks\", \"HG_Self_Vending_Kiosks\", \"Ticket_Printing_Error\", \"Emergency_Tickets_and_Gate_5C\", \"Daily_Ticket_Sales\", \"VIP_Main_Gate\", \"VIP_Cultural_Gate\", \"VIP_Happiness_Gate\", \"Fazza_Main_Gate\", \"Fazza_Cultural_Gate\", \"Fazza_Happiness_Gate\", \"Family_Packs\", \"Pre_Sales_Group_Discount_and_Corporate\", \"Travel_Agents_WEBB2B\", \"Web_Sales_Total\", \"Web_Sales_B2C_AnyDay\", \"Web_Sales_B2CValue\", \"Esaad_B2CAnyDay\", \"Esaad_B2CValue\", \"AlSaada_B2CAnyDay\", \"AlSaada_B2CValue\", \"Entries_from_pre_Sold_Tickets\", \"VIP_Comps_Total\", \"VIP_General_Admission_Complimentary\", \"VIP_General_Admission_Mini\", \"VIP_General_Admission_Media\", \"Family_Packs_Comp\", \"Employee_and_Other_comps_Total\", \"Complimentary_A_Ticket\", \"GovtAuthority_Complimentary_Ticket\", \"GVCEOComplimentary_Ticket\", \"GV_Entertainment _Ticket\", \"Media_Pass\", \"Mystery_Shopper_Complimentary\", \"Security_Complimentary_Ticket\", \"Emirates_Airline_Promotion_Comp\", \"DHE_Family_Day\", \"Complimentary_Ticket_E\", \"Others\", \"Child_Under_3_years\", \"People_of_Determination_Plus_Assistant\", \"Senior_citizen_Over_65years\", \"Travel_Agents_Comp_B2B_EntryTicket\", \"Not_Used\", \"Entries_from_Complimentaries\", \"Gate_of_the_World_GOTWA\", \"Day_Type\", \"Day\"}),",
+                "    #\"Replaced Value\" = Table.ReplaceValue(#\"Removed Columns\",null,0,Replacer.ReplaceValue,{\"Fazaa/DXB\"}),",
+                "    #\"Sorted Rows\" = Table.Sort(#\"Replaced Value\",{{\"Date\", Order.Descending}}),",
+                "    #\"Merged Columns\" = Table.CombineColumns(Table.TransformColumnTypes(#\"Sorted Rows\", {{\"Complimentary Tickets\", type text}, {\"Complimentary Tickets2\", type text}}, \"en-US\"),{\"Complimentary Tickets\", \"Complimentary Tickets2\"},Combiner.CombineTextByDelimiter(\"\", QuoteStyle.None),\"Complimentry Tickets\"),",
+                "    #\"Changed Type1\" = Table.TransformColumnTypes(#\"Merged Columns\",{{\"B2C : Gate Tickets\", Int64.Type}, {\"B2C : Online Tickets\", Int64.Type}, {\"B2C : Gate and Online\", Int64.Type}, {\"B2B : Corporate and Travel Agents Tickets\", Int64.Type}, {\"B2C + B2B Tickets\", Int64.Type}, {\"Pre-purchased Pack Tickets\", Int64.Type}, {\"Total park attendance\", Int64.Type}, {\"Complimentry Tickets\", Int64.Type}})",
+                "in",
+                "    #\"Changed Type1\""
+              ],
+              "type": "m"
+            }
+          }
+        ]
       }
     ]
   }

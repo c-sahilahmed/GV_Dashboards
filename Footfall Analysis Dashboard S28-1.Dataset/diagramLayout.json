@@ -541,6 +541,57 @@
             "width": 234
           },
           "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 3896.3436133486766,
+            "y": 0
+          },
+          "nodeIndex": "Pav Sensor + Park Footfall 2 (2)",
+          "nodeLineageTag": "60779a0c-f913-4356-876c-463fb48b1cfa",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 4743.7630829926638,
+            "y": 2
+          },
+          "nodeIndex": "Pav Sensor Footfall by Hour (2)",
+          "nodeLineageTag": "9ea48522-276e-412a-bb34-809535a533bf",
+          "size": {
+            "height": 296,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 4320.05334817067,
+            "y": 0
+          },
+          "nodeIndex": "S27_GuestCounts_2",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 5027.7630829926638,
+            "y": 676.33333333333326
+          },
+          "nodeIndex": "Sales Data all Seasons (2)",
+          "nodeLineageTag": "2cbf85a0-8f2a-4e42-9cda-704dcea32af3",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
         }
       ],
       "name": "All tables",

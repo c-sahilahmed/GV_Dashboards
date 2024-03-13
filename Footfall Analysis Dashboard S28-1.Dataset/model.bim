@@ -20734,11 +20734,11 @@
           }
         ],
         "expression": [
-          "let",
-          "    Source = Table.FromRows(Json.Document(Binary.Decompress(Binary.FromText(\"i45WciwpKUpMLsnMz1OK1YlWCkgsy8wBc2IB\", BinaryEncoding.Base64), Compression.Deflate)), let _t = ((type nullable text) meta [Serialized.Text = true]) in type table [#\"Location Type\" = _t]),",
-          "    #\"Changed Type\" = Table.TransformColumnTypes(Source,{{\"Location Type\", type text}}),",
-          "    #\"Removed Columns\" = Table.RemoveColumns(#\"Changed Type\",{\"Location Type\"})",
-          "in",
+          "let\r",
+          "    Source = Table.FromRows(Json.Document(Binary.Decompress(Binary.FromText(\"i45WciwpKUpMLsnMz1OK1YlWCkgsy8wBc2IB\", BinaryEncoding.Base64), Compression.Deflate)), let _t = ((type nullable text) meta [Serialized.Text = true]) in type table [#\"Location Type\" = _t]),\r",
+          "    #\"Changed Type\" = Table.TransformColumnTypes(Source,{{\"Location Type\", type text}}),\r",
+          "    #\"Removed Columns\" = Table.RemoveColumns(#\"Changed Type\",{\"Location Type\"})\r",
+          "in\r",
           "    #\"Removed Columns\""
         ],
         "kind": "m",
@@ -28642,10 +28642,6 @@
           {
             "name": "PBI_ResultType",
             "value": "Table"
-          },
-          {
-            "name": "PBI_NavigationStepName",
-            "value": "Navigation"
           }
         ],
         "columns": [
@@ -31149,10 +31145,6 @@
           {
             "name": "PBI_ResultType",
             "value": "Table"
-          },
-          {
-            "name": "PBI_NavigationStepName",
-            "value": "Navigation"
           }
         ],
         "columns": [
@@ -32896,10 +32888,6 @@
           {
             "name": "PBI_ResultType",
             "value": "Table"
-          },
-          {
-            "name": "PBI_NavigationStepName",
-            "value": "Navigation"
           }
         ],
         "columns": [
@@ -34567,10 +34555,6 @@
           {
             "name": "PBI_ResultType",
             "value": "Table"
-          },
-          {
-            "name": "PBI_NavigationStepName",
-            "value": "Navigation"
           }
         ],
         "columns": [
@@ -34980,10 +34964,6 @@
           {
             "name": "PBI_ResultType",
             "value": "Table"
-          },
-          {
-            "name": "PBI_NavigationStepName",
-            "value": "Navigation"
           }
         ],
         "columns": [
@@ -41459,10 +41439,6 @@
           {
             "name": "PBI_ResultType",
             "value": "Table"
-          },
-          {
-            "name": "PBI_NavigationStepName",
-            "value": "Navigation"
           }
         ],
         "columns": [
@@ -41611,10 +41587,6 @@
           {
             "name": "PBI_ResultType",
             "value": "Table"
-          },
-          {
-            "name": "PBI_NavigationStepName",
-            "value": "Navigation"
           }
         ],
         "columns": [
@@ -42754,10 +42726,6 @@
         "name": "GuestCounts (2)",
         "annotations": [
           {
-            "name": "PBI_NavigationStepName",
-            "value": "Navigation"
-          },
-          {
             "name": "PBI_ResultType",
             "value": "Table"
           }
@@ -43330,10 +43298,6 @@
       {
         "name": "GuestCounts (3)",
         "annotations": [
-          {
-            "name": "PBI_NavigationStepName",
-            "value": "Navigation"
-          },
           {
             "name": "PBI_ResultType",
             "value": "Table"

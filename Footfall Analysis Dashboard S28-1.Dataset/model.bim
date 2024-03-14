@@ -27270,7 +27270,7 @@
         "annotations": [
           {
             "name": "PBI_ResultType",
-            "value": "Table"
+            "value": "Exception"
           }
         ],
         "columns": [
@@ -28686,6 +28686,10 @@
           {
             "name": "PBI_ResultType",
             "value": "Table"
+          },
+          {
+            "name": "PBI_NavigationStepName",
+            "value": "Navigation"
           }
         ],
         "columns": [
@@ -43616,10 +43620,6 @@
           {
             "name": "PBI_ResultType",
             "value": "Table"
-          },
-          {
-            "name": "PBI_NavigationStepName",
-            "value": "Navigation"
           }
         ],
         "columns": [
@@ -44410,23 +44410,6 @@
             "summarizeBy": "sum"
           },
           {
-            "name": "B2C-Any Day General Admission(DPR Promotion)",
-            "annotations": [
-              {
-                "name": "SummarizationSetBy",
-                "value": "Automatic"
-              },
-              {
-                "name": "PBI_FormatHint",
-                "value": "{\"isGeneralNumber\":true}"
-              }
-            ],
-            "dataType": "double",
-            "lineageTag": "9544a219-f6f0-48b7-ab78-7d9d4cdaa3cf",
-            "sourceColumn": "B2C-Any Day General Admission(DPR Promotion)",
-            "summarizeBy": "sum"
-          },
-          {
             "name": "Complimentary_Ticket_E",
             "annotations": [
               {
@@ -44619,23 +44602,6 @@
             "summarizeBy": "sum"
           },
           {
-            "name": "Total park attendance",
-            "annotations": [
-              {
-                "name": "SummarizationSetBy",
-                "value": "Automatic"
-              },
-              {
-                "name": "PBI_FormatHint",
-                "value": "{\"isGeneralNumber\":true}"
-              }
-            ],
-            "dataType": "double",
-            "lineageTag": "7c333e71-ae08-4ed7-8182-648d69eff263",
-            "sourceColumn": "Total park attendance",
-            "summarizeBy": "sum"
-          },
-          {
             "name": "Season_id",
             "annotations": [
               {
@@ -44770,6 +44736,40 @@
             "lineageTag": "f457db70-98f0-4a05-8746-57eb9039570e",
             "sourceColumn": "Complimentary Tickets2",
             "summarizeBy": "none"
+          },
+          {
+            "name": "B2C-Any Day General Admission(DPR Promotion)",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              },
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "dataType": "double",
+            "lineageTag": "9544a219-f6f0-48b7-ab78-7d9d4cdaa3cf",
+            "sourceColumn": "B2C-Any Day General Admission(DPR Promotion)",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "Total park attendance",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              },
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "dataType": "double",
+            "lineageTag": "7c333e71-ae08-4ed7-8182-648d69eff263",
+            "sourceColumn": "Total park attendance",
+            "summarizeBy": "sum"
           }
         ],
         "lineageTag": "5bdac55f-c823-438c-ba98-70cd750bee45",
@@ -44999,10 +44999,6 @@
       {
         "name": "Sales Data all Seasons (2)",
         "annotations": [
-          {
-            "name": "PBI_NavigationStepName",
-            "value": "Navigation"
-          },
           {
             "name": "PBI_ResultType",
             "value": "Table"

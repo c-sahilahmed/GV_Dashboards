@@ -35487,7 +35487,7 @@
               }
             ],
             "dataType": "dateTime",
-            "formatString": "Long Date",
+            "formatString": "Short Date",
             "lineageTag": "002c3e36-ffeb-45a1-9ed7-477c0247bc13",
             "sourceColumn": "Date",
             "summarizeBy": "none",

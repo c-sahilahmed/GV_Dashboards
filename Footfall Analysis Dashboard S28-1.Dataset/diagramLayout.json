@@ -518,32 +518,6 @@
         },
         {
           "location": {
-            "x": 3328.3436133486766,
-            "y": 676.33333333333326
-          },
-          "nodeIndex": "GuestCounts (2)",
-          "nodeLineageTag": "8a72fc4f-9f19-4045-94e5-a75c108c1dff",
-          "size": {
-            "height": 300,
-            "width": 234
-          },
-          "zIndex": 0
-        },
-        {
-          "location": {
-            "x": 3612.3436133486766,
-            "y": 676.33333333333326
-          },
-          "nodeIndex": "GuestCounts (3)",
-          "nodeLineageTag": "022b766c-751f-4bc6-9ecf-e6c2481bfe97",
-          "size": {
-            "height": 300,
-            "width": 234
-          },
-          "zIndex": 0
-        },
-        {
-          "location": {
             "x": 3896.3436133486766,
             "y": 0
           },
@@ -587,19 +561,6 @@
           },
           "nodeIndex": "Sales Data all Seasons (2)",
           "nodeLineageTag": "2cbf85a0-8f2a-4e42-9cda-704dcea32af3",
-          "size": {
-            "height": 300,
-            "width": 234
-          },
-          "zIndex": 0
-        },
-        {
-          "location": {
-            "x": 5311.7630829926638,
-            "y": 676.33333333333326
-          },
-          "nodeIndex": "S27_GuestCounts_3",
-          "nodeLineageTag": "0dcc31ee-c0aa-4f05-867a-f85c276e88ba",
           "size": {
             "height": 300,
             "width": 234

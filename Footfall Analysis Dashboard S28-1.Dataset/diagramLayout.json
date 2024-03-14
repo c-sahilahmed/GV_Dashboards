@@ -592,6 +592,19 @@
             "width": 234
           },
           "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 5311.7630829926638,
+            "y": 676.33333333333326
+          },
+          "nodeIndex": "S27_GuestCounts_3",
+          "nodeLineageTag": "0dcc31ee-c0aa-4f05-867a-f85c276e88ba",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
         }
       ],
       "name": "All tables",

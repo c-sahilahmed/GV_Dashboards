@@ -21863,6 +21863,10 @@
           {
             "name": "PBI_ResultType",
             "value": "Table"
+          },
+          {
+            "name": "PBI_NavigationStepName",
+            "value": "Navigation"
           }
         ],
         "columns": [
@@ -26814,6 +26818,10 @@
           {
             "name": "PBI_ResultType",
             "value": "Table"
+          },
+          {
+            "name": "PBI_NavigationStepName",
+            "value": "Navigation"
           }
         ],
         "lineageTag": "6302671c-d4a2-4080-adf9-f4952ba7af80",
@@ -27270,7 +27278,7 @@
         "annotations": [
           {
             "name": "PBI_ResultType",
-            "value": "Exception"
+            "value": "Table"
           }
         ],
         "columns": [
@@ -27541,6 +27549,10 @@
           {
             "name": "PBI_ResultType",
             "value": "Table"
+          },
+          {
+            "name": "PBI_NavigationStepName",
+            "value": "Navigation"
           }
         ],
         "columns": [
@@ -31550,6 +31562,10 @@
           {
             "name": "PBI_ResultType",
             "value": "Table"
+          },
+          {
+            "name": "PBI_NavigationStepName",
+            "value": "Navigation"
           }
         ],
         "columns": [
@@ -32920,10 +32936,9 @@
                 "    Source = PowerBI.Dataflows(null),",
                 "    #\"900de5b0-2f7b-4d94-a465-ee52acdc5d72\" = Source{[workspaceId=\"900de5b0-2f7b-4d94-a465-ee52acdc5d72\"]}[Data],",
                 "    #\"a671d159-a017-4946-8f8f-c6a5b637746a\" = #\"900de5b0-2f7b-4d94-a465-ee52acdc5d72\"{[dataflowId=\"a671d159-a017-4946-8f8f-c6a5b637746a\"]}[Data],",
-                "    S27_GuestCounts1 = #\"a671d159-a017-4946-8f8f-c6a5b637746a\"{[entity=\"S27_GuestCounts\"]}[Data],",
-                "    #\"Changed Type\" = Table.TransformColumnTypes(S27_GuestCounts1,{{\"Date\", type date}})",
+                "    S27_GuestCounts1 = #\"a671d159-a017-4946-8f8f-c6a5b637746a\"{[entity=\"S27_GuestCounts\"]}[Data]",
                 "in",
-                "    #\"Changed Type\""
+                "    S27_GuestCounts1"
               ],
               "type": "m"
             }
@@ -41643,6 +41658,10 @@
           {
             "name": "PBI_ResultType",
             "value": "Table"
+          },
+          {
+            "name": "PBI_NavigationStepName",
+            "value": "Navigation"
           }
         ],
         "columns": [
@@ -43620,6 +43639,10 @@
           {
             "name": "PBI_ResultType",
             "value": "Table"
+          },
+          {
+            "name": "PBI_NavigationStepName",
+            "value": "Navigation"
           }
         ],
         "columns": [
@@ -43679,57 +43702,6 @@
             "summarizeBy": "none"
           },
           {
-            "name": "Gate_of_the_World_GOTWA",
-            "annotations": [
-              {
-                "name": "SummarizationSetBy",
-                "value": "Automatic"
-              },
-              {
-                "name": "PBI_FormatHint",
-                "value": "{\"isGeneralNumber\":true}"
-              }
-            ],
-            "dataType": "double",
-            "lineageTag": "0d8d53e6-57e8-4ff7-ad53-87966d9cfdd4",
-            "sourceColumn": "Gate_of_the_World_GOTWA",
-            "summarizeBy": "sum"
-          },
-          {
-            "name": "CulturalGate_CG",
-            "annotations": [
-              {
-                "name": "SummarizationSetBy",
-                "value": "Automatic"
-              },
-              {
-                "name": "PBI_FormatHint",
-                "value": "{\"isGeneralNumber\":true}"
-              }
-            ],
-            "dataType": "double",
-            "lineageTag": "48a2f09f-5646-453b-a3ac-904f74871315",
-            "sourceColumn": "CulturalGate_CG",
-            "summarizeBy": "sum"
-          },
-          {
-            "name": "Happiness_Gate",
-            "annotations": [
-              {
-                "name": "SummarizationSetBy",
-                "value": "Automatic"
-              },
-              {
-                "name": "PBI_FormatHint",
-                "value": "{\"isGeneralNumber\":true}"
-              }
-            ],
-            "dataType": "double",
-            "lineageTag": "a10089b9-ac93-470d-9c1f-449f86a3fc30",
-            "sourceColumn": "Happiness_Gate",
-            "summarizeBy": "sum"
-          },
-          {
             "name": "GOTW & CG self vending kiosks",
             "annotations": [
               {
@@ -43747,227 +43719,6 @@
             "summarizeBy": "sum"
           },
           {
-            "name": "HG_Self_Vending_Kiosks",
-            "annotations": [
-              {
-                "name": "SummarizationSetBy",
-                "value": "Automatic"
-              },
-              {
-                "name": "PBI_FormatHint",
-                "value": "{\"isGeneralNumber\":true}"
-              }
-            ],
-            "dataType": "double",
-            "lineageTag": "6b72034b-73b4-449e-86b3-514825e4bb57",
-            "sourceColumn": "HG_Self_Vending_Kiosks",
-            "summarizeBy": "sum"
-          },
-          {
-            "name": "Ticket_Printing_Error",
-            "annotations": [
-              {
-                "name": "SummarizationSetBy",
-                "value": "Automatic"
-              },
-              {
-                "name": "PBI_FormatHint",
-                "value": "{\"isGeneralNumber\":true}"
-              }
-            ],
-            "dataType": "double",
-            "lineageTag": "9c94cbd0-0b2b-4d16-8d0e-4ea986aebe6b",
-            "sourceColumn": "Ticket_Printing_Error",
-            "summarizeBy": "sum"
-          },
-          {
-            "name": "Emergency_Tickets_and_Gate_5C",
-            "annotations": [
-              {
-                "name": "SummarizationSetBy",
-                "value": "Automatic"
-              },
-              {
-                "name": "PBI_FormatHint",
-                "value": "{\"isGeneralNumber\":true}"
-              }
-            ],
-            "dataType": "double",
-            "lineageTag": "af53d530-3d87-4aad-a58f-d501694192bd",
-            "sourceColumn": "Emergency_Tickets_and_Gate_5C",
-            "summarizeBy": "sum"
-          },
-          {
-            "name": "Daily_Ticket_Sales",
-            "annotations": [
-              {
-                "name": "SummarizationSetBy",
-                "value": "Automatic"
-              },
-              {
-                "name": "PBI_FormatHint",
-                "value": "{\"isGeneralNumber\":true}"
-              }
-            ],
-            "dataType": "double",
-            "lineageTag": "ae91fdae-ada7-40f8-a526-a225ed26572e",
-            "sourceColumn": "Daily_Ticket_Sales",
-            "summarizeBy": "sum"
-          },
-          {
-            "name": "VIP_Main_Gate",
-            "annotations": [
-              {
-                "name": "SummarizationSetBy",
-                "value": "Automatic"
-              },
-              {
-                "name": "PBI_FormatHint",
-                "value": "{\"isGeneralNumber\":true}"
-              }
-            ],
-            "dataType": "double",
-            "lineageTag": "3e9d3803-9347-4f0c-bc37-32d3d7e1cd78",
-            "sourceColumn": "VIP_Main_Gate",
-            "summarizeBy": "sum"
-          },
-          {
-            "name": "VIP_Cultural_Gate",
-            "annotations": [
-              {
-                "name": "SummarizationSetBy",
-                "value": "Automatic"
-              },
-              {
-                "name": "PBI_FormatHint",
-                "value": "{\"isGeneralNumber\":true}"
-              }
-            ],
-            "dataType": "double",
-            "lineageTag": "5092841d-ca4f-4ea8-9363-7df8d05dc8b3",
-            "sourceColumn": "VIP_Cultural_Gate",
-            "summarizeBy": "sum"
-          },
-          {
-            "name": "VIP_Happiness_Gate",
-            "annotations": [
-              {
-                "name": "SummarizationSetBy",
-                "value": "Automatic"
-              },
-              {
-                "name": "PBI_FormatHint",
-                "value": "{\"isGeneralNumber\":true}"
-              }
-            ],
-            "dataType": "double",
-            "lineageTag": "d7e25feb-0a65-4627-b8fd-d4a3f962c33d",
-            "sourceColumn": "VIP_Happiness_Gate",
-            "summarizeBy": "sum"
-          },
-          {
-            "name": "Fazza_Main_Gate",
-            "annotations": [
-              {
-                "name": "SummarizationSetBy",
-                "value": "Automatic"
-              },
-              {
-                "name": "PBI_FormatHint",
-                "value": "{\"isGeneralNumber\":true}"
-              }
-            ],
-            "dataType": "double",
-            "lineageTag": "d908b57c-d8ee-4360-9101-5e7d8b3d9a29",
-            "sourceColumn": "Fazza_Main_Gate",
-            "summarizeBy": "sum"
-          },
-          {
-            "name": "Fazza_Cultural_Gate",
-            "annotations": [
-              {
-                "name": "SummarizationSetBy",
-                "value": "Automatic"
-              },
-              {
-                "name": "PBI_FormatHint",
-                "value": "{\"isGeneralNumber\":true}"
-              }
-            ],
-            "dataType": "double",
-            "lineageTag": "42a7329e-b61f-42ec-b234-5789382fb510",
-            "sourceColumn": "Fazza_Cultural_Gate",
-            "summarizeBy": "sum"
-          },
-          {
-            "name": "Fazza_Happiness_Gate",
-            "annotations": [
-              {
-                "name": "SummarizationSetBy",
-                "value": "Automatic"
-              },
-              {
-                "name": "PBI_FormatHint",
-                "value": "{\"isGeneralNumber\":true}"
-              }
-            ],
-            "dataType": "double",
-            "lineageTag": "ec9bdc47-6003-43f3-80fa-55744f7e7de3",
-            "sourceColumn": "Fazza_Happiness_Gate",
-            "summarizeBy": "sum"
-          },
-          {
-            "name": "Family_Packs",
-            "annotations": [
-              {
-                "name": "SummarizationSetBy",
-                "value": "Automatic"
-              },
-              {
-                "name": "PBI_FormatHint",
-                "value": "{\"isGeneralNumber\":true}"
-              }
-            ],
-            "dataType": "double",
-            "lineageTag": "3eeeebfe-d735-4d86-972f-0f85778640bb",
-            "sourceColumn": "Family_Packs",
-            "summarizeBy": "sum"
-          },
-          {
-            "name": "Pre_Sales_Group_Discount_and_Corporate",
-            "annotations": [
-              {
-                "name": "SummarizationSetBy",
-                "value": "Automatic"
-              },
-              {
-                "name": "PBI_FormatHint",
-                "value": "{\"isGeneralNumber\":true}"
-              }
-            ],
-            "dataType": "double",
-            "lineageTag": "ab85e5e7-53f8-44fa-b6a3-55beba8fe97b",
-            "sourceColumn": "Pre_Sales_Group_Discount_and_Corporate",
-            "summarizeBy": "sum"
-          },
-          {
-            "name": "Travel_Agents_WEBB2B",
-            "annotations": [
-              {
-                "name": "SummarizationSetBy",
-                "value": "Automatic"
-              },
-              {
-                "name": "PBI_FormatHint",
-                "value": "{\"isGeneralNumber\":true}"
-              }
-            ],
-            "dataType": "double",
-            "lineageTag": "b185524b-6463-4b57-856e-f9ca22f35a0e",
-            "sourceColumn": "Travel_Agents_WEBB2B",
-            "summarizeBy": "sum"
-          },
-          {
             "name": "Fazaa/DXB",
             "annotations": [
               {
@@ -43982,125 +43733,6 @@
             "dataType": "double",
             "lineageTag": "61901a18-aad4-4aa9-aa34-526513ee2152",
             "sourceColumn": "Fazaa/DXB",
-            "summarizeBy": "sum"
-          },
-          {
-            "name": "Web_Sales_Total",
-            "annotations": [
-              {
-                "name": "SummarizationSetBy",
-                "value": "Automatic"
-              },
-              {
-                "name": "PBI_FormatHint",
-                "value": "{\"isGeneralNumber\":true}"
-              }
-            ],
-            "dataType": "double",
-            "lineageTag": "b373de79-28c2-4c55-898e-2cd8a6c3019c",
-            "sourceColumn": "Web_Sales_Total",
-            "summarizeBy": "sum"
-          },
-          {
-            "name": "Web_Sales_B2C_AnyDay",
-            "annotations": [
-              {
-                "name": "SummarizationSetBy",
-                "value": "Automatic"
-              },
-              {
-                "name": "PBI_FormatHint",
-                "value": "{\"isGeneralNumber\":true}"
-              }
-            ],
-            "dataType": "double",
-            "lineageTag": "df6dd43e-2881-4409-a454-10248a358348",
-            "sourceColumn": "Web_Sales_B2C_AnyDay",
-            "summarizeBy": "sum"
-          },
-          {
-            "name": "Web_Sales_B2CValue",
-            "annotations": [
-              {
-                "name": "SummarizationSetBy",
-                "value": "Automatic"
-              },
-              {
-                "name": "PBI_FormatHint",
-                "value": "{\"isGeneralNumber\":true}"
-              }
-            ],
-            "dataType": "double",
-            "lineageTag": "f9b92e15-4d98-4470-bee7-3bf60c714862",
-            "sourceColumn": "Web_Sales_B2CValue",
-            "summarizeBy": "sum"
-          },
-          {
-            "name": "Esaad_B2CAnyDay",
-            "annotations": [
-              {
-                "name": "SummarizationSetBy",
-                "value": "Automatic"
-              },
-              {
-                "name": "PBI_FormatHint",
-                "value": "{\"isGeneralNumber\":true}"
-              }
-            ],
-            "dataType": "double",
-            "lineageTag": "c5d21856-6ead-492a-a82e-ba8e0187fb4e",
-            "sourceColumn": "Esaad_B2CAnyDay",
-            "summarizeBy": "sum"
-          },
-          {
-            "name": "Esaad_B2CValue",
-            "annotations": [
-              {
-                "name": "SummarizationSetBy",
-                "value": "Automatic"
-              },
-              {
-                "name": "PBI_FormatHint",
-                "value": "{\"isGeneralNumber\":true}"
-              }
-            ],
-            "dataType": "double",
-            "lineageTag": "8becdb19-fd0c-461f-b894-78313fc8842f",
-            "sourceColumn": "Esaad_B2CValue",
-            "summarizeBy": "sum"
-          },
-          {
-            "name": "AlSaada_B2CAnyDay",
-            "annotations": [
-              {
-                "name": "SummarizationSetBy",
-                "value": "Automatic"
-              },
-              {
-                "name": "PBI_FormatHint",
-                "value": "{\"isGeneralNumber\":true}"
-              }
-            ],
-            "dataType": "double",
-            "lineageTag": "f65644fc-9abb-4cdb-9dbb-ada2478b15e8",
-            "sourceColumn": "AlSaada_B2CAnyDay",
-            "summarizeBy": "sum"
-          },
-          {
-            "name": "AlSaada_B2CValue",
-            "annotations": [
-              {
-                "name": "SummarizationSetBy",
-                "value": "Automatic"
-              },
-              {
-                "name": "PBI_FormatHint",
-                "value": "{\"isGeneralNumber\":true}"
-              }
-            ],
-            "dataType": "double",
-            "lineageTag": "f34a31ea-d428-4021-8c9d-06c87bdaf71f",
-            "sourceColumn": "AlSaada_B2CValue",
             "summarizeBy": "sum"
           },
           {
@@ -44138,295 +43770,6 @@
             "summarizeBy": "sum"
           },
           {
-            "name": "Entries_from_pre_Sold_Tickets",
-            "annotations": [
-              {
-                "name": "SummarizationSetBy",
-                "value": "Automatic"
-              },
-              {
-                "name": "PBI_FormatHint",
-                "value": "{\"isGeneralNumber\":true}"
-              }
-            ],
-            "dataType": "double",
-            "lineageTag": "46e48fb5-b48e-418f-8d6d-b431ae113d37",
-            "sourceColumn": "Entries_from_pre_Sold_Tickets",
-            "summarizeBy": "sum"
-          },
-          {
-            "name": "VIP_Comps_Total",
-            "annotations": [
-              {
-                "name": "SummarizationSetBy",
-                "value": "Automatic"
-              },
-              {
-                "name": "PBI_FormatHint",
-                "value": "{\"isGeneralNumber\":true}"
-              }
-            ],
-            "dataType": "double",
-            "lineageTag": "736a72da-3c52-4c6e-8c7d-49406825b27b",
-            "sourceColumn": "VIP_Comps_Total",
-            "summarizeBy": "sum"
-          },
-          {
-            "name": "VIP_General_Admission_Complimentary",
-            "annotations": [
-              {
-                "name": "SummarizationSetBy",
-                "value": "Automatic"
-              },
-              {
-                "name": "PBI_FormatHint",
-                "value": "{\"isGeneralNumber\":true}"
-              }
-            ],
-            "dataType": "double",
-            "lineageTag": "4d733489-9bba-4b28-a907-3ad7347f81a9",
-            "sourceColumn": "VIP_General_Admission_Complimentary",
-            "summarizeBy": "sum"
-          },
-          {
-            "name": "VIP_General_Admission_Mini",
-            "annotations": [
-              {
-                "name": "SummarizationSetBy",
-                "value": "Automatic"
-              },
-              {
-                "name": "PBI_FormatHint",
-                "value": "{\"isGeneralNumber\":true}"
-              }
-            ],
-            "dataType": "double",
-            "lineageTag": "3d1d84e1-5716-4b29-855d-5b45369bec9f",
-            "sourceColumn": "VIP_General_Admission_Mini",
-            "summarizeBy": "sum"
-          },
-          {
-            "name": "VIP_General_Admission_Media",
-            "annotations": [
-              {
-                "name": "SummarizationSetBy",
-                "value": "Automatic"
-              },
-              {
-                "name": "PBI_FormatHint",
-                "value": "{\"isGeneralNumber\":true}"
-              }
-            ],
-            "dataType": "double",
-            "lineageTag": "77b796fe-4ceb-447f-b7ba-8d9179ad39dd",
-            "sourceColumn": "VIP_General_Admission_Media",
-            "summarizeBy": "sum"
-          },
-          {
-            "name": "Family_Packs_Comp",
-            "annotations": [
-              {
-                "name": "SummarizationSetBy",
-                "value": "Automatic"
-              },
-              {
-                "name": "PBI_FormatHint",
-                "value": "{\"isGeneralNumber\":true}"
-              }
-            ],
-            "dataType": "double",
-            "lineageTag": "1acd3eb0-e7f2-484c-8190-2d1aba23d3cc",
-            "sourceColumn": "Family_Packs_Comp",
-            "summarizeBy": "sum"
-          },
-          {
-            "name": "Employee_and_Other_comps_Total",
-            "annotations": [
-              {
-                "name": "SummarizationSetBy",
-                "value": "Automatic"
-              },
-              {
-                "name": "PBI_FormatHint",
-                "value": "{\"isGeneralNumber\":true}"
-              }
-            ],
-            "dataType": "double",
-            "lineageTag": "b0815d5d-4632-4f92-850f-998a92f774b3",
-            "sourceColumn": "Employee_and_Other_comps_Total",
-            "summarizeBy": "sum"
-          },
-          {
-            "name": "Complimentary_A_Ticket",
-            "annotations": [
-              {
-                "name": "SummarizationSetBy",
-                "value": "Automatic"
-              },
-              {
-                "name": "PBI_FormatHint",
-                "value": "{\"isGeneralNumber\":true}"
-              }
-            ],
-            "dataType": "double",
-            "lineageTag": "9589fd5c-af16-444d-9d49-c96c6ef23642",
-            "sourceColumn": "Complimentary_A_Ticket",
-            "summarizeBy": "sum"
-          },
-          {
-            "name": "GovtAuthority_Complimentary_Ticket",
-            "annotations": [
-              {
-                "name": "SummarizationSetBy",
-                "value": "Automatic"
-              },
-              {
-                "name": "PBI_FormatHint",
-                "value": "{\"isGeneralNumber\":true}"
-              }
-            ],
-            "dataType": "double",
-            "lineageTag": "dcc66a8b-7519-4f93-a6f3-71088f622796",
-            "sourceColumn": "GovtAuthority_Complimentary_Ticket",
-            "summarizeBy": "sum"
-          },
-          {
-            "name": "GVCEOComplimentary_Ticket",
-            "annotations": [
-              {
-                "name": "SummarizationSetBy",
-                "value": "Automatic"
-              },
-              {
-                "name": "PBI_FormatHint",
-                "value": "{\"isGeneralNumber\":true}"
-              }
-            ],
-            "dataType": "double",
-            "lineageTag": "17f67b41-8583-4e65-8eac-7ed1ba63705d",
-            "sourceColumn": "GVCEOComplimentary_Ticket",
-            "summarizeBy": "sum"
-          },
-          {
-            "name": "GV_Entertainment _Ticket",
-            "annotations": [
-              {
-                "name": "SummarizationSetBy",
-                "value": "Automatic"
-              },
-              {
-                "name": "PBI_FormatHint",
-                "value": "{\"isGeneralNumber\":true}"
-              }
-            ],
-            "dataType": "double",
-            "lineageTag": "564d8ff1-b409-428a-b85f-2d5562236e93",
-            "sourceColumn": "GV_Entertainment _Ticket",
-            "summarizeBy": "sum"
-          },
-          {
-            "name": "Media_Pass",
-            "annotations": [
-              {
-                "name": "SummarizationSetBy",
-                "value": "Automatic"
-              },
-              {
-                "name": "PBI_FormatHint",
-                "value": "{\"isGeneralNumber\":true}"
-              }
-            ],
-            "dataType": "double",
-            "lineageTag": "620c018f-7617-4bab-a6ad-c9e2bc607510",
-            "sourceColumn": "Media_Pass",
-            "summarizeBy": "sum"
-          },
-          {
-            "name": "Mystery_Shopper_Complimentary",
-            "annotations": [
-              {
-                "name": "SummarizationSetBy",
-                "value": "Automatic"
-              },
-              {
-                "name": "PBI_FormatHint",
-                "value": "{\"isGeneralNumber\":true}"
-              }
-            ],
-            "dataType": "double",
-            "lineageTag": "88ebcc18-cdcc-4040-ac21-acca7797a00c",
-            "sourceColumn": "Mystery_Shopper_Complimentary",
-            "summarizeBy": "sum"
-          },
-          {
-            "name": "Security_Complimentary_Ticket",
-            "annotations": [
-              {
-                "name": "SummarizationSetBy",
-                "value": "Automatic"
-              },
-              {
-                "name": "PBI_FormatHint",
-                "value": "{\"isGeneralNumber\":true}"
-              }
-            ],
-            "dataType": "double",
-            "lineageTag": "68557f5f-1d46-4e3e-94fe-c3f699ef73f9",
-            "sourceColumn": "Security_Complimentary_Ticket",
-            "summarizeBy": "sum"
-          },
-          {
-            "name": "Emirates_Airline_Promotion_Comp",
-            "annotations": [
-              {
-                "name": "SummarizationSetBy",
-                "value": "Automatic"
-              },
-              {
-                "name": "PBI_FormatHint",
-                "value": "{\"isGeneralNumber\":true}"
-              }
-            ],
-            "dataType": "double",
-            "lineageTag": "5ba1994c-9e76-4133-98d3-8b78ebda7f9c",
-            "sourceColumn": "Emirates_Airline_Promotion_Comp",
-            "summarizeBy": "sum"
-          },
-          {
-            "name": "DHE_Family_Day",
-            "annotations": [
-              {
-                "name": "SummarizationSetBy",
-                "value": "Automatic"
-              },
-              {
-                "name": "PBI_FormatHint",
-                "value": "{\"isGeneralNumber\":true}"
-              }
-            ],
-            "dataType": "double",
-            "lineageTag": "eeb095da-d000-4700-9747-60ecd1b82c3f",
-            "sourceColumn": "DHE_Family_Day",
-            "summarizeBy": "sum"
-          },
-          {
-            "name": "Complimentary_Ticket_E",
-            "annotations": [
-              {
-                "name": "SummarizationSetBy",
-                "value": "Automatic"
-              },
-              {
-                "name": "PBI_FormatHint",
-                "value": "{\"isGeneralNumber\":true}"
-              }
-            ],
-            "dataType": "double",
-            "lineageTag": "35987b30-80b7-41b4-97c1-a0d530267012",
-            "sourceColumn": "Complimentary_Ticket_E",
-            "summarizeBy": "sum"
-          },
-          {
             "name": "Others",
             "annotations": [
               {
@@ -44441,108 +43784,6 @@
             "dataType": "double",
             "lineageTag": "89902e28-376c-422a-b35b-c5c3828eff10",
             "sourceColumn": "Others",
-            "summarizeBy": "sum"
-          },
-          {
-            "name": "Child_Under_3_years",
-            "annotations": [
-              {
-                "name": "SummarizationSetBy",
-                "value": "Automatic"
-              },
-              {
-                "name": "PBI_FormatHint",
-                "value": "{\"isGeneralNumber\":true}"
-              }
-            ],
-            "dataType": "double",
-            "lineageTag": "76c90233-9e0d-4923-8ac8-6cd8dc97d562",
-            "sourceColumn": "Child_Under_3_years",
-            "summarizeBy": "sum"
-          },
-          {
-            "name": "People_of_Determination_Plus_Assistant",
-            "annotations": [
-              {
-                "name": "SummarizationSetBy",
-                "value": "Automatic"
-              },
-              {
-                "name": "PBI_FormatHint",
-                "value": "{\"isGeneralNumber\":true}"
-              }
-            ],
-            "dataType": "double",
-            "lineageTag": "76a3d376-1153-46cd-b9a7-0e69f318caa9",
-            "sourceColumn": "People_of_Determination_Plus_Assistant",
-            "summarizeBy": "sum"
-          },
-          {
-            "name": "Senior_citizen_Over_65years",
-            "annotations": [
-              {
-                "name": "SummarizationSetBy",
-                "value": "Automatic"
-              },
-              {
-                "name": "PBI_FormatHint",
-                "value": "{\"isGeneralNumber\":true}"
-              }
-            ],
-            "dataType": "double",
-            "lineageTag": "e2dd2b75-c649-44b2-a60f-79a180b433fc",
-            "sourceColumn": "Senior_citizen_Over_65years",
-            "summarizeBy": "sum"
-          },
-          {
-            "name": "Travel_Agents_Comp_B2B_EntryTicket",
-            "annotations": [
-              {
-                "name": "SummarizationSetBy",
-                "value": "Automatic"
-              },
-              {
-                "name": "PBI_FormatHint",
-                "value": "{\"isGeneralNumber\":true}"
-              }
-            ],
-            "dataType": "double",
-            "lineageTag": "e90d8ed1-c828-4f66-aefa-9f5dabc7d170",
-            "sourceColumn": "Travel_Agents_Comp_B2B_EntryTicket",
-            "summarizeBy": "sum"
-          },
-          {
-            "name": "Not_Used",
-            "annotations": [
-              {
-                "name": "SummarizationSetBy",
-                "value": "Automatic"
-              },
-              {
-                "name": "PBI_FormatHint",
-                "value": "{\"isGeneralNumber\":true}"
-              }
-            ],
-            "dataType": "double",
-            "lineageTag": "f6400174-7841-46f4-8911-1d1dc2def687",
-            "sourceColumn": "Not_Used",
-            "summarizeBy": "sum"
-          },
-          {
-            "name": "Entries_from_Complimentaries",
-            "annotations": [
-              {
-                "name": "SummarizationSetBy",
-                "value": "Automatic"
-              },
-              {
-                "name": "PBI_FormatHint",
-                "value": "{\"isGeneralNumber\":true}"
-              }
-            ],
-            "dataType": "double",
-            "lineageTag": "fe7fe120-87f6-4509-8aaa-f46c2c1baba2",
-            "sourceColumn": "Entries_from_Complimentaries",
             "summarizeBy": "sum"
           },
           {
@@ -44600,20 +43841,6 @@
             "lineageTag": "0b635a39-57c8-4533-bc09-b3113da055a6",
             "sourceColumn": "Entries_Esaad_Packs",
             "summarizeBy": "sum"
-          },
-          {
-            "name": "Season_id",
-            "annotations": [
-              {
-                "name": "SummarizationSetBy",
-                "value": "Automatic"
-              }
-            ],
-            "dataType": "int64",
-            "formatString": "0",
-            "lineageTag": "a2c28849-c853-458d-babe-5d28e2664a81",
-            "sourceColumn": "Season_id",
-            "summarizeBy": "count"
           },
           {
             "name": "week_num",
@@ -44750,7 +43977,7 @@
               }
             ],
             "dataType": "double",
-            "lineageTag": "9544a219-f6f0-48b7-ab78-7d9d4cdaa3cf",
+            "lineageTag": "74f7bc4d-a28f-47a5-b8b3-17fd465bfc39",
             "sourceColumn": "B2C-Any Day General Admission(DPR Promotion)",
             "summarizeBy": "sum"
           },
@@ -44767,8 +43994,804 @@
               }
             ],
             "dataType": "double",
-            "lineageTag": "7c333e71-ae08-4ed7-8182-648d69eff263",
+            "lineageTag": "805a51d1-d362-4c96-a9bf-3767b56de1a9",
             "sourceColumn": "Total park attendance",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "Season_id",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "lineageTag": "0a5fe6e7-98a0-476c-a901-c53bf7743a55",
+            "sourceColumn": "Season_id",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "Gate of the World (GOTW-A)",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              },
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "dataType": "double",
+            "lineageTag": "f8015314-8f50-4a1c-ada1-7926f2ed824e",
+            "sourceColumn": "Gate of the World (GOTW-A)",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "Cultural Gate (CG)",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              },
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "dataType": "double",
+            "lineageTag": "5dc3632d-36ce-4fc8-8265-c9ef4d27b61a",
+            "sourceColumn": "Cultural Gate (CG)",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "Happiness Gate",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              },
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "dataType": "double",
+            "lineageTag": "81fdc506-4ea7-4167-8840-7f7bb665bd67",
+            "sourceColumn": "Happiness Gate",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "HG self vending kiosks",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              },
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "dataType": "double",
+            "lineageTag": "3a08f098-e29f-4662-954e-969f0ae0285a",
+            "sourceColumn": "HG self vending kiosks",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "Ticket Printing Error",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              },
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "dataType": "double",
+            "lineageTag": "385988a8-a691-45b3-9dd8-4fbf86645ce5",
+            "sourceColumn": "Ticket Printing Error",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "Emergency tickets / Gate 5C",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              },
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "dataType": "double",
+            "lineageTag": "d8be3501-4e62-40aa-83ba-82266e3cbc76",
+            "sourceColumn": "Emergency tickets / Gate 5C",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "Daily ticket sales",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              },
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "dataType": "double",
+            "lineageTag": "dfc63d10-c8af-4194-ac43-8ca269830bdf",
+            "sourceColumn": "Daily ticket sales",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "VIP - main gate S27",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              },
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "dataType": "double",
+            "lineageTag": "eb229d30-60df-4e9b-b8e5-95f21f5d44f6",
+            "sourceColumn": "VIP - main gate S27",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "VIP - cultural gate S27",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              },
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "dataType": "double",
+            "lineageTag": "ced3ff12-746c-4c73-86af-f187a5b972bc",
+            "sourceColumn": "VIP - cultural gate S27",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "VIP-Happiness Gate",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              },
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "dataType": "double",
+            "lineageTag": "399a4717-ab34-4c8a-8b25-e7d8b03c8459",
+            "sourceColumn": "VIP-Happiness Gate",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "Fazza - main gate",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              },
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "dataType": "double",
+            "lineageTag": "227d4789-0a29-4e02-a3bd-d9c606cd44f3",
+            "sourceColumn": "Fazza - main gate",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "Fazza - cultural gate",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              },
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "dataType": "double",
+            "lineageTag": "c294855e-8323-4462-9db6-b59a106ed320",
+            "sourceColumn": "Fazza - cultural gate",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "Fazza-Happiness Gate",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              },
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "dataType": "double",
+            "lineageTag": "6545802c-9758-4de8-a0e4-033684fea32c",
+            "sourceColumn": "Fazza-Happiness Gate",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "Family packs",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              },
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "dataType": "double",
+            "lineageTag": "d759c300-0c3a-4f5d-82a2-7aaaeec7b445",
+            "sourceColumn": "Family packs",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "Pre Sales,Group Discount,Pre Sales, Corporate S27",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              },
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "dataType": "double",
+            "lineageTag": "c395889d-d2fe-4308-a359-956e1bd59ed8",
+            "sourceColumn": "Pre Sales,Group Discount,Pre Sales, Corporate S27",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "Travel agents (WEB B2B)",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              },
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "dataType": "double",
+            "lineageTag": "5f31b28f-e6f0-4070-ae05-3d3b8be574e8",
+            "sourceColumn": "Travel agents (WEB B2B)",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "Web sales Total",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              },
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "dataType": "double",
+            "lineageTag": "2720f619-3d0c-4dc9-8154-29c321816cb6",
+            "sourceColumn": "Web sales Total",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "Web sales (B2C Any Day)",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              },
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "dataType": "double",
+            "lineageTag": "490b95ca-aa2e-4635-aaf9-7f2bc43105e8",
+            "sourceColumn": "Web sales (B2C Any Day)",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "Web sales (B2C Value)",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              },
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "dataType": "double",
+            "lineageTag": "45bf729f-0f32-4e57-b246-2cc3443dff23",
+            "sourceColumn": "Web sales (B2C Value)",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "Esaad (B2C Any Day)",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              },
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "dataType": "double",
+            "lineageTag": "5d38f8e2-231e-424d-9483-5cb997c2037a",
+            "sourceColumn": "Esaad (B2C Any Day)",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "Esaad (B2C Value)",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              },
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "dataType": "double",
+            "lineageTag": "3b0dbb1a-2816-4454-9253-8fd8147a2856",
+            "sourceColumn": "Esaad (B2C Value)",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "Al Saada (B2C Any Day)",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              },
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "dataType": "double",
+            "lineageTag": "441a868b-e15a-4f47-9336-609bf6af35b7",
+            "sourceColumn": "Al Saada (B2C Any Day)",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "Al Saada (B2C Value)",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              },
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "dataType": "double",
+            "lineageTag": "bb834cde-d240-4988-bd75-778f4431255c",
+            "sourceColumn": "Al Saada (B2C Value)",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "Entries from pre-sold tickets",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              },
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "dataType": "double",
+            "lineageTag": "1f28ac1a-7f0c-458d-8787-8ea52337576c",
+            "sourceColumn": "Entries from pre-sold tickets",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "VIP Comps Total",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              },
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "dataType": "double",
+            "lineageTag": "91eef719-7a2e-4191-ae73-2a26cccb1e9f",
+            "sourceColumn": "VIP Comps Total",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "VIP General Admission Complimentary",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              },
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "dataType": "double",
+            "lineageTag": "177ed408-9bcb-4f66-a8bc-42c6df8a5ba1",
+            "sourceColumn": "VIP General Admission Complimentary",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "VIP General Admission Mini",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              },
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "dataType": "double",
+            "lineageTag": "897099c9-2219-40ed-88ec-f78bc5e9b265",
+            "sourceColumn": "VIP General Admission Mini",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "VIP General Admission Media",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              },
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "dataType": "double",
+            "lineageTag": "497ea7af-a069-4961-b447-d73bbc841840",
+            "sourceColumn": "VIP General Admission Media",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "Family packs Comp",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              },
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "dataType": "double",
+            "lineageTag": "1f9bbd04-b871-4ad7-b7f5-0d09eb784f6d",
+            "sourceColumn": "Family packs Comp",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "Employee and other comps# Total",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              },
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "dataType": "double",
+            "lineageTag": "ffdecd86-95db-4ff0-9cb8-704019f34b36",
+            "sourceColumn": "Employee and other comps# Total",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "Complimentary A Ticket",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              },
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "dataType": "double",
+            "lineageTag": "9e599a45-3b78-44f2-864f-618d9548de0e",
+            "sourceColumn": "Complimentary A Ticket",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "Govt# Authority Complimentary Ticket",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              },
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "dataType": "double",
+            "lineageTag": "78210352-d07b-483d-a697-7530a92c8f58",
+            "sourceColumn": "Govt# Authority Complimentary Ticket",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "GV CEO Complimentary Ticket",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              },
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "dataType": "double",
+            "lineageTag": "f575db59-405a-4caf-86ce-139e1298301d",
+            "sourceColumn": "GV CEO Complimentary Ticket",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "GV Entertainment  Ticket",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              },
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "dataType": "double",
+            "lineageTag": "26c8147b-19bd-4c03-97f4-d77d257d5ca8",
+            "sourceColumn": "GV Entertainment  Ticket",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "Media Pass",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              },
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "dataType": "double",
+            "lineageTag": "6a83e84e-1e54-4d12-a7ef-b3169ccf6061",
+            "sourceColumn": "Media Pass",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "Mystery Shopper Complimentary",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              },
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "dataType": "double",
+            "lineageTag": "b064c621-c63f-481d-8600-6476e84c2658",
+            "sourceColumn": "Mystery Shopper Complimentary",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "Security Complimentary Ticket",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              },
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "dataType": "double",
+            "lineageTag": "90230d7d-8693-47e0-974d-d68c6369815f",
+            "sourceColumn": "Security Complimentary Ticket",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "Emirates Airline Promotion - Comp",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              },
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "dataType": "double",
+            "lineageTag": "810e2c37-2da9-4611-903c-7959e4623fc8",
+            "sourceColumn": "Emirates Airline Promotion - Comp",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "DHE Family Day",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              },
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "dataType": "double",
+            "lineageTag": "516902cd-a4f1-483b-a15a-ea168d716ed1",
+            "sourceColumn": "DHE Family Day",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "Complimentary Ticket E",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              },
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "dataType": "double",
+            "lineageTag": "a1f34cd4-2bdc-4d43-81b6-5f761adebddb",
+            "sourceColumn": "Complimentary Ticket E",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "Child under 3 years",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              },
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "dataType": "double",
+            "lineageTag": "f1564f13-b45a-4f6f-8aa9-21565bdcc44f",
+            "sourceColumn": "Child under 3 years",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "People of Determination + Assistant",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              },
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "dataType": "double",
+            "lineageTag": "5c8bd5d5-e4b4-48f9-baea-d287d6647f7e",
+            "sourceColumn": "People of Determination + Assistant",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "Senior citizen over 65 years",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              },
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "dataType": "double",
+            "lineageTag": "573ce313-0f30-49c6-9851-058e16b20c83",
+            "sourceColumn": "Senior citizen over 65 years",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "Travel agents Comp (B2B Entry Ticket C)",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              },
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "dataType": "double",
+            "lineageTag": "1ff2b1a8-1782-4ee8-9c4d-325f4685e6da",
+            "sourceColumn": "Travel agents Comp (B2B Entry Ticket C)",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "Not used",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              },
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "dataType": "double",
+            "lineageTag": "47261610-7e9a-473e-bcc5-7d52df00c0cb",
+            "sourceColumn": "Not used",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "Entries from complimentaries",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              },
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "dataType": "double",
+            "lineageTag": "1a47ae56-3b3b-4ef4-98e0-1bbb3e836de5",
+            "sourceColumn": "Entries from complimentaries",
             "summarizeBy": "sum"
           }
         ],
@@ -44783,12 +44806,9 @@
                 "    Source = PowerBI.Dataflows(null),",
                 "    #\"900de5b0-2f7b-4d94-a465-ee52acdc5d72\" = Source{[workspaceId=\"900de5b0-2f7b-4d94-a465-ee52acdc5d72\"]}[Data],",
                 "    #\"a671d159-a017-4946-8f8f-c6a5b637746a\" = #\"900de5b0-2f7b-4d94-a465-ee52acdc5d72\"{[dataflowId=\"a671d159-a017-4946-8f8f-c6a5b637746a\"]}[Data],",
-                "    #\"S27_GuestCounts (2)1\" = #\"a671d159-a017-4946-8f8f-c6a5b637746a\"{[entity=\"S27_GuestCounts (2)\"]}[Data],",
-                "    #\"Filtered Rows\" = Table.SelectRows(#\"S27_GuestCounts (2)1\", each ([Season_Id] = 21 or [Season_Id] = 22 or [Season_Id] = 27 or [Season_Id] = 28)),",
-                "    #\"Renamed Columns\" = Table.RenameColumns(#\"Filtered Rows\",{{\"Season_Id\", \"Season_id\"}, {\"Total_Park_Attendance\", \"Total park attendance\"}, {\"B2CAnyDay_General_Admission_DPRPromotion\", \"B2C-Any Day General Admission(DPR Promotion)\"}}),",
-                "    #\"Changed Type\" = Table.TransformColumnTypes(#\"Renamed Columns\",{{\"Date\", type date}})",
+                "    #\"S27_GuestCounts (2)1\" = #\"a671d159-a017-4946-8f8f-c6a5b637746a\"{[entity=\"S27_GuestCounts (2)\"]}[Data]",
                 "in",
-                "    #\"Changed Type\""
+                "    #\"S27_GuestCounts (2)1\""
               ],
               "type": "m"
             }
@@ -45002,6 +45022,10 @@
           {
             "name": "PBI_ResultType",
             "value": "Table"
+          },
+          {
+            "name": "PBI_NavigationStepName",
+            "value": "Navigation"
           }
         ],
         "columns": [
@@ -45512,7 +45536,7 @@
                 "    #\"Sales Data all Seasons (2)1\" = #\"a671d159-a017-4946-8f8f-c6a5b637746a\"{[entity=\"Sales Data all Seasons\"]}[Data],",
                 "    #\"Sorted Rows1\" = Table.Sort(#\"Sales Data all Seasons (2)1\",{{\"Date\", Order.Descending}}),",
                 "    #\"Appended Query\" = Table.Combine({#\"Sorted Rows1\", S27_GuestCounts_2}),",
-                "    #\"Removed Columns\" = Table.RemoveColumns(#\"Appended Query\",{\"CulturalGate_CG\", \"Happiness_Gate\", \"GOTW & CG self vending kiosks\", \"HG_Self_Vending_Kiosks\", \"Ticket_Printing_Error\", \"Emergency_Tickets_and_Gate_5C\", \"Daily_Ticket_Sales\", \"VIP_Main_Gate\", \"VIP_Cultural_Gate\", \"VIP_Happiness_Gate\", \"Fazza_Main_Gate\", \"Fazza_Cultural_Gate\", \"Fazza_Happiness_Gate\", \"Family_Packs\", \"Pre_Sales_Group_Discount_and_Corporate\", \"Travel_Agents_WEBB2B\", \"Web_Sales_Total\", \"Web_Sales_B2C_AnyDay\", \"Web_Sales_B2CValue\", \"Esaad_B2CAnyDay\", \"Esaad_B2CValue\", \"AlSaada_B2CAnyDay\", \"AlSaada_B2CValue\", \"Entries_from_pre_Sold_Tickets\", \"VIP_Comps_Total\", \"VIP_General_Admission_Complimentary\", \"VIP_General_Admission_Mini\", \"VIP_General_Admission_Media\", \"Family_Packs_Comp\", \"Employee_and_Other_comps_Total\", \"Complimentary_A_Ticket\", \"GovtAuthority_Complimentary_Ticket\", \"GVCEOComplimentary_Ticket\", \"GV_Entertainment _Ticket\", \"Media_Pass\", \"Mystery_Shopper_Complimentary\", \"Security_Complimentary_Ticket\", \"Emirates_Airline_Promotion_Comp\", \"DHE_Family_Day\", \"Complimentary_Ticket_E\", \"Others\", \"Child_Under_3_years\", \"People_of_Determination_Plus_Assistant\", \"Senior_citizen_Over_65years\", \"Travel_Agents_Comp_B2B_EntryTicket\", \"Not_Used\", \"Entries_from_Complimentaries\", \"Gate_of_the_World_GOTWA\", \"Day_Type\", \"Day\"}),",
+                "    #\"Removed Columns\" = Table.RemoveColumns(#\"Appended Query\",{\"Cultural Gate (CG)\", \"Happiness Gate\", \"GOTW & CG self vending kiosks\", \"HG self vending kiosks\", \"Ticket Printing Error\", \"Emergency tickets / Gate 5C\", \"Daily ticket sales\", \"VIP - main gate S27\", \"VIP - cultural gate S27\", \"VIP-Happiness Gate\", \"Fazza - main gate\", \"Fazza - cultural gate\", \"Fazza-Happiness Gate\", \"Family packs\", \"Pre Sales,Group Discount,Pre Sales, Corporate S27\", \"Travel agents (WEB B2B)\", \"Web sales Total\", \"Web sales (B2C Any Day)\", \"Web sales (B2C Value)\", \"Esaad (B2C Any Day)\", \"Esaad (B2C Value)\", \"Al Saada (B2C Any Day)\", \"Al Saada (B2C Value)\", \"Entries from pre-sold tickets\", \"VIP Comps Total\", \"VIP General Admission Complimentary\", \"VIP General Admission Mini\", \"VIP General Admission Media\", \"Family packs Comp\", \"Employee and other comps# Total\", \"Complimentary A Ticket\", \"Govt# Authority Complimentary Ticket\", \"GV CEO Complimentary Ticket\", \"GV Entertainment  Ticket\", \"Media Pass\", \"Mystery Shopper Complimentary\", \"Security Complimentary Ticket\", \"Emirates Airline Promotion - Comp\", \"DHE Family Day\", \"Complimentary Ticket E\", \"Others\", \"Child under 3 years\", \"People of Determination + Assistant\", \"Senior citizen over 65 years\", \"Travel agents Comp (B2B Entry Ticket C)\", \"Not used\", \"Entries from complimentaries\", \"Gate of the World (GOTW-A)\", \"Day_Type\", \"Day\"}),",
                 "    #\"Replaced Value\" = Table.ReplaceValue(#\"Removed Columns\",null,0,Replacer.ReplaceValue,{\"Fazaa/DXB\"}),",
                 "    #\"Sorted Rows\" = Table.Sort(#\"Replaced Value\",{{\"Date\", Order.Descending}}),",
                 "    #\"Merged Columns\" = Table.CombineColumns(Table.TransformColumnTypes(#\"Sorted Rows\", {{\"Complimentary Tickets\", type text}, {\"Complimentary Tickets2\", type text}}, \"en-US\"),{\"Complimentary Tickets\", \"Complimentary Tickets2\"},Combiner.CombineTextByDelimiter(\"\", QuoteStyle.None),\"Complimentry Tickets\"),",

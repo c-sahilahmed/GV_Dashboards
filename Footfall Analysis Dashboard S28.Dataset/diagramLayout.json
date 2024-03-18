@@ -1,0 +1,543 @@
+{
+  "version": "1.1.0",
+  "diagrams": [
+    {
+      "ordinal": 0,
+      "scrollPosition": {
+        "x": 1003.75,
+        "y": 0
+      },
+      "nodes": [
+        {
+          "location": {
+            "x": 262.07763713080158,
+            "y": 0
+          },
+          "nodeIndex": "Locations",
+          "nodeLineageTag": "20b2d6b9-d843-440f-b872-f4ec354a5dd3",
+          "size": {
+            "height": 200,
+            "width": 234
+          },
+          "zIndex": 23
+        },
+        {
+          "location": {
+            "x": 2744.3510548523209,
+            "y": 695.63291139240528
+          },
+          "nodeIndex": "Avg vs Sum",
+          "nodeLineageTag": "d4cc4ac4-3912-4910-adc0-c130fa088e9d",
+          "size": {
+            "height": 200,
+            "width": 234
+          },
+          "zIndex": 37
+        },
+        {
+          "location": {
+            "x": 0,
+            "y": 0
+          },
+          "nodeIndex": "Coordinates_wifi",
+          "nodeLineageTag": "d055d83f-c846-49e0-bcf1-87443cd22c5c",
+          "size": {
+            "height": 272,
+            "width": 234
+          },
+          "zIndex": 24
+        },
+        {
+          "location": {
+            "x": 2750.3797468354433,
+            "y": 1278.594936708861
+          },
+          "nodeIndex": "from_coordinates",
+          "nodeLineageTag": "fb470c23-ffb4-4af1-b34a-91478be3efc6",
+          "size": {
+            "height": 200,
+            "width": 234
+          },
+          "zIndex": 25
+        },
+        {
+          "location": {
+            "x": 2752.7569620253166,
+            "y": 455.59915611814324
+          },
+          "nodeIndex": "Compare with",
+          "nodeLineageTag": "f0c2000f-3879-4cf3-91f5-1ea2339e6d1d",
+          "size": {
+            "height": 200,
+            "width": 234
+          },
+          "zIndex": 26
+        },
+        {
+          "location": {
+            "x": 3044.3436133486766,
+            "y": 0
+          },
+          "nodeIndex": "Like to Like",
+          "nodeLineageTag": "9bf70832-b980-4e51-8479-f7aa28b147de",
+          "size": {
+            "height": 200,
+            "width": 234
+          },
+          "zIndex": 27
+        },
+        {
+          "location": {
+            "x": 2440.6666666666661,
+            "y": 686.66666666666674
+          },
+          "nodeIndex": "Average_movement",
+          "nodeLineageTag": "88d718c2-32cb-41a0-9148-0d921e166842",
+          "size": {
+            "height": 200,
+            "width": 234
+          },
+          "zIndex": 28
+        },
+        {
+          "location": {
+            "x": 2750.1274261603376,
+            "y": 1502.1603375527427
+          },
+          "nodeIndex": "Gates Measures",
+          "nodeLineageTag": "e3955bab-56ba-4036-9ce0-6215adead548",
+          "size": {
+            "height": 104,
+            "width": 234
+          },
+          "zIndex": 29
+        },
+        {
+          "location": {
+            "x": 2741.621097046414,
+            "y": 1152.15611814346
+          },
+          "nodeIndex": "Footfall Measures",
+          "nodeLineageTag": "2588cf27-446e-4237-8097-d12da0624c96",
+          "size": {
+            "height": 104,
+            "width": 234
+          },
+          "zIndex": 30
+        },
+        {
+          "location": {
+            "x": 3014.9950901419261,
+            "y": 1031.2458764863829
+          },
+          "nodeIndex": "Visitation Measures",
+          "nodeLineageTag": "966bc2b2-b50d-49d0-a35a-b22f459518d0",
+          "size": {
+            "height": 104,
+            "width": 234
+          },
+          "zIndex": 31
+        },
+        {
+          "location": {
+            "x": 3014.281626390487,
+            "y": 1178.4714230916761
+          },
+          "nodeIndex": "Demographics Measures",
+          "nodeLineageTag": "18b57027-7425-4003-b716-8a0f0ea07606",
+          "size": {
+            "height": 104,
+            "width": 234
+          },
+          "zIndex": 32
+        },
+        {
+          "location": {
+            "x": 3019.9390870732645,
+            "y": 1316.8573072497124
+          },
+          "nodeIndex": "Display Measures",
+          "nodeLineageTag": "6302671c-d4a2-4080-adf9-f4952ba7af80",
+          "size": {
+            "height": 104,
+            "width": 234
+          },
+          "zIndex": 33
+        },
+        {
+          "location": {
+            "x": 0,
+            "y": 466.33333333333337
+          },
+          "nodeIndex": "Pavilion Wise Details",
+          "nodeLineageTag": "fc02e7d0-316d-4a49-8ec1-5033ef8e4668",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 34
+        },
+        {
+          "location": {
+            "x": 866.96666666666488,
+            "y": 501.33333333333348
+          },
+          "nodeIndex": "DwellByPavAndDate_alllocations",
+          "nodeLineageTag": "76691e2e-7281-425c-9b93-50d82636b946",
+          "size": {
+            "height": 296,
+            "width": 234
+          },
+          "zIndex": 36
+        },
+        {
+          "location": {
+            "x": 3014.7908323743773,
+            "y": 793.974683544304
+          },
+          "nodeIndex": "Table",
+          "nodeLineageTag": "b6eb3a97-f7a2-4676-a0e9-af7e8293d7dc",
+          "size": {
+            "height": 200,
+            "width": 234
+          },
+          "zIndex": 9
+        },
+        {
+          "location": {
+            "x": 2733.2033755274265,
+            "y": 925.9493670886078
+          },
+          "nodeIndex": "Distinct_Movement_Wifi",
+          "nodeLineageTag": "5ac9cc36-f2f7-4a5d-aa91-8c2d1c1b8b48",
+          "size": {
+            "height": 200,
+            "width": 234
+          },
+          "zIndex": 10
+        },
+        {
+          "location": {
+            "x": 2756.8873417721506,
+            "y": 226.69620253164589
+          },
+          "nodeIndex": "Distinct Pav Sensor + Park Footfall",
+          "nodeLineageTag": "bdaba94c-6dab-4cae-841c-657e4ea8965a",
+          "size": {
+            "height": 200,
+            "width": 234
+          },
+          "zIndex": 11
+        },
+        {
+          "location": {
+            "x": 2758.65105485232,
+            "y": 0
+          },
+          "nodeIndex": "Distinct DwellByPavAndDate_alllocations",
+          "nodeLineageTag": "3d691c25-c9e6-4611-a851-69a22d1e3c29",
+          "size": {
+            "height": 200,
+            "width": 234
+          },
+          "zIndex": 12
+        },
+        {
+          "location": {
+            "x": 1352.0456755493219,
+            "y": 582.10378681626923
+          },
+          "nodeIndex": "GuestCounts",
+          "nodeLineageTag": "887b00b3-fe48-41c5-a345-161f1ba93d77",
+          "size": {
+            "height": 272,
+            "width": 234
+          },
+          "zIndex": 13
+        },
+        {
+          "location": {
+            "x": 356.86666666666588,
+            "y": 533.66666666666652
+          },
+          "nodeIndex": "Pav Sensor + Park Footfall 2",
+          "nodeLineageTag": "7973b9b3-398f-4075-8831-8357195acf00",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 35
+        },
+        {
+          "location": {
+            "x": 467.39999999999964,
+            "y": 258
+          },
+          "nodeIndex": "Sensors_Operation",
+          "nodeLineageTag": "9abb2204-dbad-441f-9109-9bc6ef8041a3",
+          "size": {
+            "height": 200,
+            "width": 234
+          },
+          "zIndex": 14
+        },
+        {
+          "location": {
+            "x": 510.69620253164544,
+            "y": 12.742616033755212
+          },
+          "nodeIndex": "Concerts",
+          "nodeLineageTag": "aa0165d5-cf9e-48d2-a2ea-f95681780ec3",
+          "size": {
+            "height": 176,
+            "width": 234
+          },
+          "zIndex": 15
+        },
+        {
+          "location": {
+            "x": 1146.2999999999984,
+            "y": 0
+          },
+          "nodeIndex": "S27_GuestCounts",
+          "nodeLineageTag": "e5792502-a396-4f9e-b01d-84d4754305c3",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 16
+        },
+        {
+          "location": {
+            "x": 346.13333333333139,
+            "y": 1229.3333333333333
+          },
+          "nodeIndex": "Dwell - Ground",
+          "nodeLineageTag": "f2382bf3-2788-4cc7-94bd-eb9612f947a2",
+          "size": {
+            "height": 200,
+            "width": 234
+          },
+          "zIndex": 38
+        },
+        {
+          "location": {
+            "x": 1360.3192942079022,
+            "y": 1250.9409282700421
+          },
+          "nodeIndex": "Pav Sensor Footfall by Hour",
+          "nodeLineageTag": "b2e93ed1-0bec-4320-b7a2-c67d9898fc03",
+          "size": {
+            "height": 72,
+            "width": 234
+          },
+          "zIndex": 17,
+          "expandedHeight": 296
+        },
+        {
+          "location": {
+            "x": 817.23333333333176,
+            "y": 0
+          },
+          "nodeIndex": "Sales Data all Seasons",
+          "nodeLineageTag": "e7112529-eac7-41d8-a8bc-1e87a7c98db7",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 18
+        },
+        {
+          "location": {
+            "x": 688.86666666666633,
+            "y": 968
+          },
+          "nodeIndex": "Kaizen Modelling",
+          "nodeLineageTag": "0967cd79-6e58-43bc-8f0a-c56e602d02c9",
+          "size": {
+            "height": 128,
+            "width": 234
+          },
+          "zIndex": 19
+        },
+        {
+          "location": {
+            "x": 1046.2154967395456,
+            "y": 986.3904871499808
+          },
+          "nodeIndex": "Forecast",
+          "nodeLineageTag": "cb2e19e0-191d-4c82-9084-454e2d07cc14",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 20
+        },
+        {
+          "location": {
+            "x": 334.56666666666752,
+            "y": 987.66666666666663
+          },
+          "nodeIndex": "Visitation Length",
+          "nodeLineageTag": "154409d8-718b-443e-ae52-ec00f60242e3",
+          "size": {
+            "height": 128,
+            "width": 234
+          },
+          "zIndex": 39
+        },
+        {
+          "location": {
+            "x": 2052.7666666666628,
+            "y": 690.66666666666686
+          },
+          "nodeIndex": "Movement - Wifi",
+          "nodeLineageTag": "d1d527cb-a51d-4dad-b97e-b14b878223f7",
+          "size": {
+            "height": 176,
+            "width": 234
+          },
+          "zIndex": 21
+        },
+        {
+          "location": {
+            "x": 3031.9574606827737,
+            "y": 552.96662830840012
+          },
+          "nodeIndex": "Selected Season",
+          "nodeLineageTag": "9be0ff41-35a5-49bd-9173-d8d68dedb58a",
+          "size": {
+            "height": 200,
+            "width": 234
+          },
+          "zIndex": 22
+        },
+        {
+          "location": {
+            "x": 1616.833333333333,
+            "y": 386
+          },
+          "nodeIndex": "GuestCounts_events",
+          "nodeLineageTag": "bbe49fbe-c67a-4c07-b091-4789a3e16f87",
+          "size": {
+            "height": 200,
+            "width": 234
+          },
+          "zIndex": 1
+        },
+        {
+          "location": {
+            "x": 0,
+            "y": 815.33333333333348
+          },
+          "nodeIndex": "Pav Sensor + Park Footfall events",
+          "nodeLineageTag": "104b8160-90fb-4b31-a448-4c8688b2d54e",
+          "size": {
+            "height": 200,
+            "width": 234
+          },
+          "zIndex": 2
+        },
+        {
+          "location": {
+            "x": 1593.566666666673,
+            "y": 1452.6666666666665
+          },
+          "nodeIndex": "Pav Sensor Footfall by hour events",
+          "nodeLineageTag": "b399bc01-992e-4fc0-b04b-86f23cdc0b33",
+          "size": {
+            "height": 200,
+            "width": 234
+          },
+          "zIndex": 3
+        },
+        {
+          "location": {
+            "x": 2156.0999999999972,
+            "y": 390
+          },
+          "nodeIndex": "Movement - Wifi events",
+          "nodeLineageTag": "bfd8f4b5-4bd4-4ca2-9928-155246811052",
+          "size": {
+            "height": 200,
+            "width": 234
+          },
+          "zIndex": 4
+        },
+        {
+          "location": {
+            "x": 1821.2999999999929,
+            "y": 0
+          },
+          "nodeIndex": "Dwell - Ground events",
+          "nodeLineageTag": "b15f5287-b335-4c18-bdf7-1e674af9f178",
+          "size": {
+            "height": 200,
+            "width": 234
+          },
+          "zIndex": 5
+        },
+        {
+          "location": {
+            "x": 1935.8333333333294,
+            "y": 961.66666666666686
+          },
+          "nodeIndex": "DwellByPavAndDate_alllocations events",
+          "nodeLineageTag": "1a6aeab4-5567-4caf-a224-29c7259d0897",
+          "size": {
+            "height": 200,
+            "width": 234
+          },
+          "zIndex": 6
+        },
+        {
+          "location": {
+            "x": 3041.6543536632112,
+            "y": 233.95512082853838
+          },
+          "nodeIndex": "ePavilion Wise Details",
+          "nodeLineageTag": "dfae5ee8-2f90-4db0-9cf0-72a3481d06f3",
+          "size": {
+            "height": 272,
+            "width": 234
+          },
+          "zIndex": 7
+        },
+        {
+          "location": {
+            "x": 1479.0666666666702,
+            "y": 0
+          },
+          "nodeIndex": "Gates Hourwise Entry",
+          "nodeLineageTag": "16fb362d-6ef7-4514-a0dd-17be84b3f33b",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 8
+        },
+        {
+          "location": {
+            "x": 3896.3436133486766,
+            "y": 0
+          },
+          "nodeIndex": "Pav Sensor + Park Footfall 2 (2)",
+          "nodeLineageTag": "60779a0c-f913-4356-876c-463fb48b1cfa",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        }
+      ],
+      "name": "All tables",
+      "zoomValue": 80,
+      "pinKeyFieldsToTop": false,
+      "showExtraHeaderInfo": false,
+      "hideKeyFieldsWhenCollapsed": true,
+      "tablesLocked": false
+    }
+  ],
+  "selectedDiagram": "All tables",
+  "defaultDiagram": "All tables"
+}

@@ -4,7 +4,7 @@
     {
       "ordinal": 0,
       "scrollPosition": {
-        "x": 464.34782608695656,
+        "x": 1003.75,
         "y": 0
       },
       "nodes": [
@@ -531,19 +531,6 @@
         },
         {
           "location": {
-            "x": 4743.7630829926638,
-            "y": 2
-          },
-          "nodeIndex": "Pav Sensor Footfall by Hour (2)",
-          "nodeLineageTag": "9ea48522-276e-412a-bb34-809535a533bf",
-          "size": {
-            "height": 296,
-            "width": 234
-          },
-          "zIndex": 0
-        },
-        {
-          "location": {
             "x": 4320.05334817067,
             "y": 0
           },
@@ -553,23 +540,10 @@
             "width": 234
           },
           "zIndex": 0
-        },
-        {
-          "location": {
-            "x": 5027.7630829926638,
-            "y": 676.33333333333326
-          },
-          "nodeIndex": "Sales Data all Seasons (2)",
-          "nodeLineageTag": "2cbf85a0-8f2a-4e42-9cda-704dcea32af3",
-          "size": {
-            "height": 300,
-            "width": 234
-          },
-          "zIndex": 0
         }
       ],
       "name": "All tables",
-      "zoomValue": 48.206360946745569,
+      "zoomValue": 80,
       "pinKeyFieldsToTop": false,
       "showExtraHeaderInfo": false,
       "hideKeyFieldsWhenCollapsed": true,

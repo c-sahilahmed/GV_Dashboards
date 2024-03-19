@@ -4,7 +4,7 @@
     "annotations": [
       {
         "name": "PBI_QueryOrder",
-        "value": "[\"ePavilion Wise Details\",\"Coordinates_wifi\",\"Gates Measures\",\"Footfall Measures\",\"Visitation Measures\",\"Demographics Measures\",\"Display Measures\",\"Pavilion Wise Details\",\"DwellByPavAndDate_alllocations\",\"GuestCounts\",\"Pav Sensor + Park Footfall 2\",\"Concerts\",\"S27_GuestCounts\",\"Forecast\",\"Slicer Design\",\"Pav Sensor Footfall by Hour\",\"Kaizen Modelling\",\"Sales Data all Seasons\",\"Dwell - Ground\",\"Visitation Length\",\"Movement - Wifi\",\"Gates Hourwise Entry\",\"Pav Sensor + Park Footfall 2 (2)\"]"
+        "value": "[\"ePavilion Wise Details\",\"Coordinates_wifi\",\"Gates Measures\",\"Footfall Measures\",\"Visitation Measures\",\"Demographics Measures\",\"Display Measures\",\"Pavilion Wise Details\",\"DwellByPavAndDate_alllocations\",\"GuestCounts\",\"Pav Sensor + Park Footfall 2\",\"Concerts\",\"S27_GuestCounts\",\"Forecast\",\"Slicer Design\",\"Pav Sensor Footfall by Hour\",\"Kaizen Modelling\",\"Sales Data all Seasons\",\"Dwell - Ground\",\"Visitation Length\",\"Movement - Wifi\",\"Gates Hourwise Entry\"]"
       },
       {
         "name": "__PBI_TimeIntelligenceEnabled",
@@ -21315,28 +21315,6 @@
         "fromTable": "DwellByPavAndDate_alllocations",
         "toColumn": "Location",
         "toTable": "Coordinates_wifi"
-      },
-      {
-        "name": "29798ccf-5732-4fee-9995-b8ba328e38f1",
-        "fromColumn": "Operation_Date",
-        "fromTable": "Pav Sensor + Park Footfall 2 (2)",
-        "joinOnDateBehavior": "datePartOnly",
-        "toColumn": "Date",
-        "toTable": "LocalDateTable_d46aa641-184a-47aa-b53d-e70f423e2c27"
-      },
-      {
-        "name": "242bc832-62bc-461f-8784-0d429252e3cf",
-        "fromColumn": "Location",
-        "fromTable": "Pav Sensor + Park Footfall 2 (2)",
-        "toColumn": "Location",
-        "toTable": "Coordinates_wifi"
-      },
-      {
-        "name": "01e68bf5-cd55-429b-87cb-e0aed2caaa45",
-        "fromColumn": "day_num_tag",
-        "fromTable": "Pav Sensor + Park Footfall 2 (2)",
-        "toColumn": "day_num_tag",
-        "toTable": "S27_GuestCounts"
       }
     ],
     "sourceQueryCulture": "en-GB",
@@ -21811,6 +21789,10 @@
           {
             "name": "PBI_ResultType",
             "value": "Table"
+          },
+          {
+            "name": "PBI_NavigationStepName",
+            "value": "Navigation"
           }
         ],
         "columns": [
@@ -21842,7 +21824,7 @@
             "dataType": "double",
             "lineageTag": "ce3d6231-66f6-4a92-9583-25d5b06a5da9",
             "sourceColumn": "LATITUDE",
-            "summarizeBy": "sum"
+            "summarizeBy": "none"
           },
           {
             "name": "LONGITUDE",
@@ -21859,7 +21841,7 @@
             "dataType": "double",
             "lineageTag": "fff90f21-bf04-4ea2-b9af-b87b03418228",
             "sourceColumn": "LONGITUDE",
-            "summarizeBy": "sum"
+            "summarizeBy": "none"
           },
           {
             "name": "Area(m2)",
@@ -21876,7 +21858,7 @@
             "dataType": "double",
             "lineageTag": "1cfcb307-fe20-41ec-85af-6219ee05cc24",
             "sourceColumn": "Area(m2)",
-            "summarizeBy": "sum"
+            "summarizeBy": "none"
           }
         ],
         "lineageTag": "d055d83f-c846-49e0-bcf1-87443cd22c5c",
@@ -24758,7 +24740,7 @@
             "lineageTag": "1a979bd2-2d54-425c-ab1e-3a4b3c5b6b7c"
           },
           {
-            "name": "S26 park footfall",
+            "name": "S27 park footfall",
             "annotations": [
               {
                 "name": "PBI_FormatHint",
@@ -24767,8 +24749,8 @@
             ],
             "expression": [
               "",
-              "VAR selectedseason = 27",
-              "VAR compare = 26",
+              "VAR selectedseason = 28",
+              "VAR compare = 27",
               "VAR selected_park_days=CALCULATE(MAX('Pav Sensor + Park Footfall 2'[day_num_tag_shifted]),'Pav Sensor + Park Footfall 2'[Season_id]=selectedseason)",
               "VAR compare_park_days=CALCULATE(MAX('Pav Sensor + Park Footfall 2'[day_num_tag_shifted]),'Pav Sensor + Park Footfall 2'[Season_id]=compare)",
               "",
@@ -24786,7 +24768,7 @@
             "lineageTag": "75c127d8-d83a-42bd-9820-6ef035c1c33e"
           },
           {
-            "name": "S26 park footfall max",
+            "name": "S27 park footfall max",
             "annotations": [
               {
                 "name": "PBI_FormatHint",
@@ -24795,7 +24777,7 @@
             ],
             "expression": [
               "",
-              "CALCULATE(SUM('GuestCounts'[Total_Park_Attendence]),'GuestCounts'[Season_ID]=26)  ",
+              "CALCULATE(SUM('GuestCounts'[Total_Park_Attendence]),'GuestCounts'[Season_ID]=27)  ",
               "",
               ""
             ],
@@ -24834,7 +24816,7 @@
             "lineageTag": "f1487af1-e8e6-4a66-afd7-f704146d73ae"
           },
           {
-            "name": "S27 park footfall",
+            "name": "S28 park footfall",
             "annotations": [
               {
                 "name": "PBI_FormatHint",
@@ -24843,8 +24825,8 @@
             ],
             "expression": [
               "",
-              "VAR selectedseason = 27",
-              "VAR compare = 26",
+              "VAR selectedseason = 28",
+              "VAR compare = 27",
               "VAR selected_park_days=CALCULATE(MAX('Pav Sensor + Park Footfall 2'[day_num_tag_shifted]),'Pav Sensor + Park Footfall 2'[Season_id]=selectedseason)",
               "VAR compare_park_days=CALCULATE(MAX('Pav Sensor + Park Footfall 2'[day_num_tag_shifted]),'Pav Sensor + Park Footfall 2'[Season_id]=compare)",
               "",
@@ -24856,7 +24838,7 @@
               "",
               "RETURN ",
               "CALCULATE(SUM('GuestCounts'[Total_Park_Attendence]),'GuestCounts'[Season_ID]=selectedseason,'GuestCounts'[day_num_tag_shifted]<=max_date,'GuestCounts'[day_num_tag_shifted]>=min_date)  ",
-              "",
+              "//CALCULATE(SUM(GuestCounts[Total_Park_Attendence]),GuestCounts[Season_ID]=selectedseason,GuestCounts[Date]<= DATE(2024,3,3))",
               ""
             ],
             "lineageTag": "957b1806-0e1d-44fe-b638-b0719539583a"
@@ -24892,7 +24874,7 @@
                 "value": "{\"isGeneralNumber\":true}"
               }
             ],
-            "expression": "('Footfall Measures'[S27 park footfall]-'Footfall Measures'[S26 park footfall])/'Footfall Measures'[S26 park footfall]",
+            "expression": "('Footfall Measures'[S28 park footfall]-'Footfall Measures'[S27 park footfall])/'Footfall Measures'[S27 park footfall]",
             "lineageTag": "c7f05812-e713-4444-bc41-52b8da6df931"
           },
           {
@@ -25069,9 +25051,9 @@
               "VAR count_below_Target=COUNTROWS(",
               "    FILTER(",
               "        GuestCounts,",
-              "        (VALUE('Footfall Measures'[S26 park footfall])",
+              "        (VALUE('Footfall Measures'[S27 park footfall])",
               "        <",
-              "        VALUE('Footfall Measures'[S27 park footfall]) ) &&'GuestCounts'[day_num_tag_shifted]<=max_date &&'GuestCounts'[day_num_tag_shifted]>=min_date",
+              "        VALUE('Footfall Measures'[S28 park footfall]) ) &&'GuestCounts'[day_num_tag_shifted]<=max_date &&'GuestCounts'[day_num_tag_shifted]>=min_date",
               "    ))",
               "",
               "Return IF(count_below_Target=BLANK(),0,count_below_Target)"
@@ -25531,7 +25513,7 @@
             "lineageTag": "58a1eb7a-62e6-44b1-9ac5-b54dfaeb9a10"
           },
           {
-            "name": "S27 current vs s26 footfall vs goal %",
+            "name": "S28 current vs s27 footfall vs goal %",
             "changedProperties": [
               {
                 "property": "FormatString"
@@ -25540,7 +25522,7 @@
             "expression": [
               "",
               "",
-              "VAR precentage= 'Footfall Measures'[S27 park footfall] /'Footfall Measures'[S26 park footfall]",
+              "VAR precentage= 'Footfall Measures'[S28 park footfall] /'Footfall Measures'[S27 park footfall]",
               "Return precentage-1",
               ""
             ],
@@ -25548,7 +25530,7 @@
             "lineageTag": "45ada396-f7be-4dc1-9a04-c257aa21d87e"
           },
           {
-            "name": "S27 running vs S26 footfall vs goal %",
+            "name": "S28 running vs S27 footfall vs goal %",
             "annotations": [
               {
                 "name": "PBI_FormatHint",
@@ -25557,9 +25539,9 @@
             ],
             "expression": [
               "",
-              "'Footfall Measures'[S27 park footfall] ",
+              "'Footfall Measures'[S28 park footfall] ",
               "/",
-              "'Footfall Measures'[S26 park footfall max] ",
+              "'Footfall Measures'[S27 park footfall max] ",
               "",
               ""
             ],
@@ -25596,6 +25578,12 @@
               ")"
             ],
             "lineageTag": "db68b7a2-707d-48b0-a51d-9d27e8d1fd95"
+          },
+          {
+            "name": "tesr",
+            "expression": "CALCULATE(SUM(GuestCounts[Total_Park_Attendence]), GuestCounts[Season_ID]=28,GuestCounts[Date]= DATE(2023,10,26))",
+            "formatString": "0",
+            "lineageTag": "87623d73-9980-4bb5-a12d-eadbee0f71bd"
           }
         ],
         "partitions": [
@@ -26941,7 +26929,7 @@
           },
           {
             "name": "Last_Refresh_Msg",
-            "expression": "\"Last Refresh: \" & FORMAT(CALCULATE(Max('Pav Sensor + Park Footfall 2'[Operation_Date])),\"D-MMM-YY\") &UNICHAR(10)& \"Season Day No: \"&CALCULATE(Max('Pav Sensor + Park Footfall 2'[day_num_tag_shifted]),'Pav Sensor + Park Footfall 2'[Season_ID]=27)",
+            "expression": "\"Last Refresh: \" & FORMAT(CALCULATE(Max('Pav Sensor + Park Footfall 2'[Operation_Date])),\"D-MMM-YY\") &UNICHAR(10)& \"Season Day No: \"&CALCULATE(Max('Pav Sensor + Park Footfall 2'[day_num_tag_shifted]),'Pav Sensor + Park Footfall 2'[Season_ID]=28)",
             "lineageTag": "a5985180-c1cb-4beb-96e2-d7a0bf09efdb"
           },
           {
@@ -27219,6 +27207,10 @@
           {
             "name": "PBI_ResultType",
             "value": "Table"
+          },
+          {
+            "name": "PBI_NavigationStepName",
+            "value": "Navigation"
           }
         ],
         "columns": [
@@ -27489,6 +27481,10 @@
           {
             "name": "PBI_ResultType",
             "value": "Table"
+          },
+          {
+            "name": "PBI_NavigationStepName",
+            "value": "Navigation"
           }
         ],
         "columns": [
@@ -28634,6 +28630,10 @@
           {
             "name": "PBI_ResultType",
             "value": "Table"
+          },
+          {
+            "name": "PBI_NavigationStepName",
+            "value": "Navigation"
           }
         ],
         "columns": [
@@ -28662,6 +28662,9 @@
             "changedProperties": [
               {
                 "property": "FormatString"
+              },
+              {
+                "property": "DataType"
               }
             ],
             "dataType": "dateTime",
@@ -28841,7 +28844,10 @@
               }
             ],
             "dataType": "int64",
-            "expression": "IF ([Date]>DATE(2022,1,1),[day_num_tag],[day_num_tag]+1)",
+            "expression": [
+              "//IF ([Date]>DATE(2023,1,1),[day_num_tag], [day_num_tag]+1)",
+              "IF(GuestCounts[Date]> DATE(2024,1,1),[day_num_tag],IF(GuestCounts[Date]>DATE(2023,1,1),GuestCounts[day_num_tag]+1,GuestCounts[day_num_tag]+2))"
+            ],
             "formatString": "0",
             "isDataTypeInferred": true,
             "lineageTag": "1eba7e9f-6f73-423c-b0ab-89973765119d",
@@ -31502,10 +31508,6 @@
           {
             "name": "PBI_ResultType",
             "value": "Table"
-          },
-          {
-            "name": "PBI_NavigationStepName",
-            "value": "Navigation"
           }
         ],
         "columns": [
@@ -33884,7 +33886,7 @@
             "expression": [
               "",
               "",
-              "VAR precentage= 'Footfall Measures'[S27 park footfall] /'Forecast'[Visitation_Forecast]",
+              "VAR precentage= 'Footfall Measures'[S28 park footfall] /'Forecast'[Visitation_Forecast]",
               "Return precentage-1",
               ""
             ],
@@ -33901,7 +33903,7 @@
             ],
             "expression": [
               "",
-              "'Footfall Measures'[S27 park footfall] ",
+              "'Footfall Measures'[S28 park footfall] ",
               "/",
               "'Forecast'[Visitation_Forecast max]",
               "",
@@ -33944,10 +33946,6 @@
           {
             "name": "PBI_ResultType",
             "value": "Table"
-          },
-          {
-            "name": "PBI_NavigationStepName",
-            "value": "Navigation"
           }
         ],
         "columns": [
@@ -34976,10 +34974,10 @@
             "lineageTag": "55b0c06a-1c7d-407a-ab9e-c5cbf27abe07"
           },
           {
-            "name": "S27 Kaizen footfall",
+            "name": "S28 Kaizen footfall",
             "expression": [
               "",
-              "VAR selectedseason = 27",
+              "VAR selectedseason = 28",
               "",
               "VAR selected_park_days=CALCULATE(MAX('Pav Sensor + Park Footfall 2'[day_num_tag_shifted]),'Pav Sensor + Park Footfall 2'[Season_id]=selectedseason)",
               "",
@@ -34994,7 +34992,7 @@
             "lineageTag": "8e2ba9d4-a32a-4cd3-95d4-04f4ab4f8d0b"
           },
           {
-            "name": "S27 running Kaizen footfall vs goal %",
+            "name": "S28 running Kaizen footfall vs goal %",
             "annotations": [
               {
                 "name": "PBI_FormatHint",
@@ -35008,7 +35006,7 @@
             ],
             "expression": [
               "",
-              "'Footfall Measures'[S27 park footfall] ",
+              "'Footfall Measures'[S28 park footfall] ",
               "/",
               "CALCULATE(SUM('Kaizen Modelling'[Kaizen - B2C Visitation(2022-09-28 Projection)])) ",
               "",
@@ -35017,7 +35015,7 @@
             "lineageTag": "04413e2a-0f68-4814-9e51-7a74b6b1ab2a"
           },
           {
-            "name": "S27 current Kaizen footfall vs goal %",
+            "name": "S28 current Kaizen footfall vs goal %",
             "changedProperties": [
               {
                 "property": "FormatString"
@@ -35026,7 +35024,7 @@
             "expression": [
               "",
               "",
-              "VAR precentage= 'Footfall Measures'[S27 park footfall] /'Kaizen Modelling'[S27 Kaizen footfall]",
+              "VAR precentage= 'Footfall Measures'[S28 park footfall] /'Kaizen Modelling'[S28 Kaizen footfall]",
               "Return precentage-1",
               ""
             ],
@@ -42911,474 +42909,6 @@
             "mode": "import",
             "source": {
               "expression": "Calendar(Date(Year(MIN('Sales Data all Seasons'[Date])), 1, 1), Date(Year(MAX('Sales Data all Seasons'[Date])), 12, 31))",
-              "type": "calculated"
-            }
-          }
-        ],
-        "showAsVariationsOnly": true
-      },
-      {
-        "name": "Pav Sensor + Park Footfall 2 (2)",
-        "annotations": [
-          {
-            "name": "PBI_ResultType",
-            "value": "Table"
-          },
-          {
-            "name": "PBI_NavigationStepName",
-            "value": "Navigation"
-          }
-        ],
-        "columns": [
-          {
-            "name": "Season_ID",
-            "annotations": [
-              {
-                "name": "SummarizationSetBy",
-                "value": "Automatic"
-              }
-            ],
-            "dataType": "int64",
-            "formatString": "0",
-            "lineageTag": "027457c8-46cc-486d-a917-404a5f446d9a",
-            "sourceColumn": "Season_ID",
-            "summarizeBy": "count"
-          },
-          {
-            "name": "Operation_Date",
-            "annotations": [
-              {
-                "name": "SummarizationSetBy",
-                "value": "Automatic"
-              },
-              {
-                "name": "UnderlyingDateTimeDataType",
-                "value": "Date"
-              }
-            ],
-            "dataType": "dateTime",
-            "formatString": "Long Date",
-            "lineageTag": "7a567e6b-af48-4847-a02f-1ffdb9aa8991",
-            "sourceColumn": "Operation_Date",
-            "summarizeBy": "none",
-            "variations": [
-              {
-                "name": "Variation",
-                "defaultHierarchy": {
-                  "hierarchy": "Date Hierarchy",
-                  "table": "LocalDateTable_d46aa641-184a-47aa-b53d-e70f423e2c27"
-                },
-                "isDefault": true,
-                "relationship": "29798ccf-5732-4fee-9995-b8ba328e38f1"
-              }
-            ]
-          },
-          {
-            "name": "Location_id",
-            "annotations": [
-              {
-                "name": "SummarizationSetBy",
-                "value": "Automatic"
-              }
-            ],
-            "dataType": "int64",
-            "formatString": "0",
-            "lineageTag": "ffd3601e-507b-4fad-8960-1411078c7cc1",
-            "sourceColumn": "Location_id",
-            "summarizeBy": "sum"
-          },
-          {
-            "name": "Location",
-            "annotations": [
-              {
-                "name": "SummarizationSetBy",
-                "value": "Automatic"
-              }
-            ],
-            "dataType": "string",
-            "lineageTag": "b087a5c9-08e7-4422-8144-36001e5ace70",
-            "sourceColumn": "Location",
-            "summarizeBy": "none"
-          },
-          {
-            "name": "Sensor",
-            "annotations": [
-              {
-                "name": "SummarizationSetBy",
-                "value": "Automatic"
-              }
-            ],
-            "dataType": "string",
-            "lineageTag": "ea0148fb-c7d2-42d2-b920-3b822b6a6026",
-            "sourceColumn": "Sensor",
-            "summarizeBy": "none"
-          },
-          {
-            "name": "Total_Entries",
-            "annotations": [
-              {
-                "name": "SummarizationSetBy",
-                "value": "Automatic"
-              },
-              {
-                "name": "PBI_FormatHint",
-                "value": "{\"isGeneralNumber\":true}"
-              }
-            ],
-            "dataType": "double",
-            "lineageTag": "b2611ab7-0696-4b8f-889d-abd8e1da9773",
-            "sourceColumn": "Total_Entries",
-            "summarizeBy": "sum"
-          },
-          {
-            "name": "Total_Park_Attendence",
-            "annotations": [
-              {
-                "name": "SummarizationSetBy",
-                "value": "Automatic"
-              },
-              {
-                "name": "PBI_FormatHint",
-                "value": "{\"isGeneralNumber\":true}"
-              }
-            ],
-            "dataType": "double",
-            "lineageTag": "acac31ce-8a2d-4b57-939e-ef5a3c2901b4",
-            "sourceColumn": "Total_Park_Attendence",
-            "summarizeBy": "sum"
-          },
-          {
-            "name": "GOW",
-            "annotations": [
-              {
-                "name": "SummarizationSetBy",
-                "value": "Automatic"
-              },
-              {
-                "name": "PBI_FormatHint",
-                "value": "{\"isGeneralNumber\":true}"
-              }
-            ],
-            "dataType": "double",
-            "lineageTag": "4b1130b4-3be2-4136-ad30-bc8850123ce7",
-            "sourceColumn": "GOW",
-            "summarizeBy": "sum"
-          },
-          {
-            "name": "GOW & CG TVM",
-            "annotations": [
-              {
-                "name": "SummarizationSetBy",
-                "value": "Automatic"
-              },
-              {
-                "name": "PBI_FormatHint",
-                "value": "{\"isGeneralNumber\":true}"
-              }
-            ],
-            "dataType": "double",
-            "lineageTag": "5235eb82-8202-4274-8da7-b5a342ac0cf6",
-            "sourceColumn": "GOW & CG TVM",
-            "summarizeBy": "sum"
-          },
-          {
-            "name": "CG",
-            "annotations": [
-              {
-                "name": "SummarizationSetBy",
-                "value": "Automatic"
-              },
-              {
-                "name": "PBI_FormatHint",
-                "value": "{\"isGeneralNumber\":true}"
-              }
-            ],
-            "dataType": "double",
-            "lineageTag": "50a54a77-7035-429d-bf23-86929f830b83",
-            "sourceColumn": "CG",
-            "summarizeBy": "sum"
-          },
-          {
-            "name": "HG",
-            "annotations": [
-              {
-                "name": "SummarizationSetBy",
-                "value": "Automatic"
-              },
-              {
-                "name": "PBI_FormatHint",
-                "value": "{\"isGeneralNumber\":true}"
-              }
-            ],
-            "dataType": "double",
-            "lineageTag": "720bf6d4-735d-4e78-9b76-7597dfd3ea0d",
-            "sourceColumn": "HG",
-            "summarizeBy": "sum"
-          },
-          {
-            "name": "HG TVM",
-            "annotations": [
-              {
-                "name": "SummarizationSetBy",
-                "value": "Automatic"
-              },
-              {
-                "name": "PBI_FormatHint",
-                "value": "{\"isGeneralNumber\":true}"
-              }
-            ],
-            "dataType": "double",
-            "lineageTag": "41590981-748d-4b59-9766-e3d762a35a9c",
-            "sourceColumn": "HG TVM",
-            "summarizeBy": "sum"
-          },
-          {
-            "name": "week_num",
-            "annotations": [
-              {
-                "name": "SummarizationSetBy",
-                "value": "Automatic"
-              },
-              {
-                "name": "PBI_FormatHint",
-                "value": "{\"isGeneralNumber\":true}"
-              }
-            ],
-            "dataType": "double",
-            "lineageTag": "e3914286-a531-4121-9cde-4553513475a5",
-            "sourceColumn": "week_num",
-            "summarizeBy": "sum"
-          },
-          {
-            "name": "day_num_tag",
-            "annotations": [
-              {
-                "name": "SummarizationSetBy",
-                "value": "Automatic"
-              }
-            ],
-            "dataType": "int64",
-            "formatString": "0",
-            "lineageTag": "9d2f7235-30af-4dfc-83a2-9234584d72d8",
-            "sourceColumn": "day_num_tag",
-            "summarizeBy": "none"
-          }
-        ],
-        "lineageTag": "60779a0c-f913-4356-876c-463fb48b1cfa",
-        "partitions": [
-          {
-            "name": "Pav Sensor + Park Footfall 2 (2)",
-            "mode": "import",
-            "source": {
-              "expression": [
-                "let",
-                "    Source = PowerBI.Dataflows(null),",
-                "    #\"900de5b0-2f7b-4d94-a465-ee52acdc5d72\" = Source{[workspaceId=\"900de5b0-2f7b-4d94-a465-ee52acdc5d72\"]}[Data],",
-                "    #\"a671d159-a017-4946-8f8f-c6a5b637746a\" = #\"900de5b0-2f7b-4d94-a465-ee52acdc5d72\"{[dataflowId=\"a671d159-a017-4946-8f8f-c6a5b637746a\"]}[Data],",
-                "    #\"Pav Sensor + Park Footfall 2 (2)1\" = #\"a671d159-a017-4946-8f8f-c6a5b637746a\"{[entity=\"Pav Sensor + Park Footfall 2 (2)\"]}[Data]",
-                "in",
-                "    #\"Pav Sensor + Park Footfall 2 (2)1\""
-              ],
-              "type": "m"
-            }
-          }
-        ]
-      },
-      {
-        "name": "LocalDateTable_d46aa641-184a-47aa-b53d-e70f423e2c27",
-        "annotations": [
-          {
-            "name": "__PBI_LocalDateTable",
-            "value": "true"
-          }
-        ],
-        "columns": [
-          {
-            "name": "Date",
-            "annotations": [
-              {
-                "name": "SummarizationSetBy",
-                "value": "User"
-              }
-            ],
-            "dataCategory": "PaddedDateTableDates",
-            "dataType": "dateTime",
-            "isHidden": true,
-            "isNameInferred": true,
-            "lineageTag": "b956bce0-f785-401f-bf43-9277c7b54032",
-            "sourceColumn": "[Date]",
-            "summarizeBy": "none",
-            "type": "calculatedTableColumn"
-          },
-          {
-            "name": "Year",
-            "annotations": [
-              {
-                "name": "SummarizationSetBy",
-                "value": "User"
-              },
-              {
-                "name": "TemplateId",
-                "value": "Year"
-              }
-            ],
-            "dataCategory": "Years",
-            "dataType": "int64",
-            "expression": "YEAR([Date])",
-            "isHidden": true,
-            "lineageTag": "0cfb10f1-0560-443b-a253-c69844c0f33c",
-            "summarizeBy": "none",
-            "type": "calculated"
-          },
-          {
-            "name": "MonthNo",
-            "annotations": [
-              {
-                "name": "SummarizationSetBy",
-                "value": "User"
-              },
-              {
-                "name": "TemplateId",
-                "value": "MonthNumber"
-              }
-            ],
-            "dataCategory": "MonthOfYear",
-            "dataType": "int64",
-            "expression": "MONTH([Date])",
-            "isHidden": true,
-            "lineageTag": "64700fc2-811d-4334-99a9-e56bc706cfd0",
-            "summarizeBy": "none",
-            "type": "calculated"
-          },
-          {
-            "name": "Month",
-            "annotations": [
-              {
-                "name": "SummarizationSetBy",
-                "value": "User"
-              },
-              {
-                "name": "TemplateId",
-                "value": "Month"
-              }
-            ],
-            "dataCategory": "Months",
-            "dataType": "string",
-            "expression": "FORMAT([Date], \"MMMM\")",
-            "isHidden": true,
-            "lineageTag": "3cf6c5ae-024e-49ba-8c68-eb44f887bb7d",
-            "sortByColumn": "MonthNo",
-            "summarizeBy": "none",
-            "type": "calculated"
-          },
-          {
-            "name": "QuarterNo",
-            "annotations": [
-              {
-                "name": "SummarizationSetBy",
-                "value": "User"
-              },
-              {
-                "name": "TemplateId",
-                "value": "QuarterNumber"
-              }
-            ],
-            "dataCategory": "QuarterOfYear",
-            "dataType": "int64",
-            "expression": "INT(([MonthNo] + 2) / 3)",
-            "isHidden": true,
-            "lineageTag": "73764199-c265-408f-aefb-d30dcb0598be",
-            "summarizeBy": "none",
-            "type": "calculated"
-          },
-          {
-            "name": "Quarter",
-            "annotations": [
-              {
-                "name": "SummarizationSetBy",
-                "value": "User"
-              },
-              {
-                "name": "TemplateId",
-                "value": "Quarter"
-              }
-            ],
-            "dataCategory": "Quarters",
-            "dataType": "string",
-            "expression": "\"Qtr \" & [QuarterNo]",
-            "isHidden": true,
-            "lineageTag": "80786ae8-b837-433c-866e-20db542e0819",
-            "sortByColumn": "QuarterNo",
-            "summarizeBy": "none",
-            "type": "calculated"
-          },
-          {
-            "name": "Day",
-            "annotations": [
-              {
-                "name": "SummarizationSetBy",
-                "value": "User"
-              },
-              {
-                "name": "TemplateId",
-                "value": "Day"
-              }
-            ],
-            "dataCategory": "DayOfMonth",
-            "dataType": "int64",
-            "expression": "DAY([Date])",
-            "isHidden": true,
-            "lineageTag": "746d42da-5db8-4c2c-b4e0-04b09501ab10",
-            "summarizeBy": "none",
-            "type": "calculated"
-          }
-        ],
-        "hierarchies": [
-          {
-            "name": "Date Hierarchy",
-            "annotations": [
-              {
-                "name": "TemplateId",
-                "value": "DateHierarchy"
-              }
-            ],
-            "levels": [
-              {
-                "name": "Year",
-                "column": "Year",
-                "lineageTag": "be80b67a-abdd-4577-875c-6b3a520aa83e",
-                "ordinal": 0
-              },
-              {
-                "name": "Quarter",
-                "column": "Quarter",
-                "lineageTag": "9d4afea4-9287-4012-8fb8-91be583339df",
-                "ordinal": 1
-              },
-              {
-                "name": "Month",
-                "column": "Month",
-                "lineageTag": "54533d79-bd02-46f8-a257-f4d6b39917c2",
-                "ordinal": 2
-              },
-              {
-                "name": "Day",
-                "column": "Day",
-                "lineageTag": "36fcd48b-192a-4f20-9d27-a59e99dc85c9",
-                "ordinal": 3
-              }
-            ],
-            "lineageTag": "bc7b6e39-8327-4291-9556-7815169465d6"
-          }
-        ],
-        "isHidden": true,
-        "lineageTag": "00731b92-323e-40ea-9170-f3e12f7a6df3",
-        "partitions": [
-          {
-            "name": "LocalDateTable_d46aa641-184a-47aa-b53d-e70f423e2c27",
-            "mode": "import",
-            "source": {
-              "expression": "Calendar(Date(Year(MIN('Pav Sensor + Park Footfall 2 (2)'[Operation_Date])), 1, 1), Date(Year(MAX('Pav Sensor + Park Footfall 2 (2)'[Operation_Date])), 12, 31))",
               "type": "calculated"
             }
           }

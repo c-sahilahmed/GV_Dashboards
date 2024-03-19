@@ -515,19 +515,6 @@
             "width": 234
           },
           "zIndex": 8
-        },
-        {
-          "location": {
-            "x": 3896.3436133486766,
-            "y": 0
-          },
-          "nodeIndex": "Pav Sensor + Park Footfall 2 (2)",
-          "nodeLineageTag": "60779a0c-f913-4356-876c-463fb48b1cfa",
-          "size": {
-            "height": 300,
-            "width": 234
-          },
-          "zIndex": 0
         }
       ],
       "name": "All tables",

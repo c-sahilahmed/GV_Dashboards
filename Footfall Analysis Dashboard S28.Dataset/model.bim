@@ -28827,8 +28827,14 @@
             ],
             "dataType": "int64",
             "expression": [
-              "//IF ([Date]>DATE(2023,1,1),[day_num_tag], [day_num_tag]+1)",
-              "IF(GuestCounts[Date]> DATE(2024,1,1),[day_num_tag],IF(GuestCounts[Date]>DATE(2023,1,1),GuestCounts[day_num_tag]+1,GuestCounts[day_num_tag]+2))"
+              "",
+              "IF ([Date]>DATE(2022,1,1),[day_num_tag], [day_num_tag]+1)",
+              "",
+              "/*IF (",
+              "    GuestCounts[Date] > DATE ( 2024, 1, 1 ),",
+              "    [day_num_tag],",
+              "           GuestCounts[day_num_tag] + 1",
+              ")*/"
             ],
             "formatString": "0",
             "isDataTypeInferred": true,
@@ -30134,7 +30140,7 @@
               }
             ],
             "dataType": "dateTime",
-            "formatString": "Long Date",
+            "formatString": "Short Date",
             "lineageTag": "670d5968-1b14-47a1-8a71-fd644441d4ca",
             "sourceColumn": "Operation_Date",
             "summarizeBy": "none"
@@ -30488,11 +30494,24 @@
             "dataType": "int64",
             "expression": [
               "",
+              "",
               "IF (",
               "    'Pav Sensor + Park Footfall 2'[Operation_Date] > DATE ( 2022, 1, 1 ),",
               "    'Pav Sensor + Park Footfall 2'[day_num_tag],",
               "    'Pav Sensor + Park Footfall 2'[day_num_tag] + 1",
-              ")"
+              ")",
+              "",
+              "/*",
+              "IF (",
+              "    'Pav Sensor + Park Footfall 2'[Operation_Date] > DATE ( 2023, 1, 1 ),",
+              "    [day_num_tag],",
+              "    IF (",
+              "        'Pav Sensor + Park Footfall 2'[Operation_Date] > DATE ( 2022, 1, 1 ),",
+              "        'Pav Sensor + Park Footfall 2'[day_num_tag] + 1,",
+              "        'Pav Sensor + Park Footfall 2'[day_num_tag] + 2",
+              "    )",
+              ")",
+              "*/"
             ],
             "formatString": "0",
             "isDataTypeInferred": true,

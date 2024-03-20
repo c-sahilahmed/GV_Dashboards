@@ -25581,6 +25581,38 @@
             "expression": "CALCULATE(SUM(GuestCounts[Total_Park_Attendence]), GuestCounts[Season_ID]=28,GuestCounts[Date]= DATE(2023,10,26))",
             "formatString": "0",
             "lineageTag": "87623d73-9980-4bb5-a12d-eadbee0f71bd"
+          },
+          {
+            "name": "_Plotting_Park_Footfall_compared_season_guestcounts Average",
+            "annotations": [
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "expression": [
+              "",
+              " ",
+              "VAR selectedseason = SELECTEDVALUE('Selected Season'[SeasonID])//SELECTEDVALUE('GuestCounts'[Season_id])",
+              "VAR compare = SELECTEDVALUE('Compare with'[Value])",
+              "VAR like_to_like = SELECTEDVALUE('Like to Like'[Value])",
+              "VAR selected_park_days=CALCULATE(MAX('Pav Sensor + Park Footfall 2'[day_num_tag_shifted]),'Pav Sensor + Park Footfall 2'[Season_id]=selectedseason)",
+              "VAR compare_park_days=CALCULATE(MAX('Pav Sensor + Park Footfall 2'[day_num_tag_shifted]),'Pav Sensor + Park Footfall 2'[Season_id]=compare)",
+              "",
+              "VAR selected_park_days_min=CALCULATE(MIN('Pav Sensor + Park Footfall 2'[day_num_tag_shifted]),'Pav Sensor + Park Footfall 2'[Season_ID]=selectedseason)",
+              "VAR compare_park_days_min=CALCULATE(MIN('Pav Sensor + Park Footfall 2'[day_num_tag_shifted]),'Pav Sensor + Park Footfall 2'[Season_ID]=compare)",
+              "",
+              "VAR min_date=MAX(selected_park_days_min, compare_park_days_min)",
+              "VAR max_date=IF(compare_park_days<> Blank(),MIN(selected_park_days, compare_park_days),selected_park_days)",
+              "",
+              "RETURN ",
+              "IF( ",
+              "    (like_to_like=\"Same # Of Days\"),",
+              "    CALCULATE(AVERAGE('GuestCounts'[Total_Park_Attendence]),'GuestCounts'[Season_ID]=compare,'GuestCounts'[day_num_tag_shifted]<=max_date,'GuestCounts'[day_num_tag_shifted]>=min_date),",
+              "    CALCULATE(AVERAGE('GuestCounts'[Total_Park_Attendence]),'GuestCounts'[Season_ID]=compare)   ",
+              ")"
+            ],
+            "lineageTag": "f77276c1-a8e5-4fe1-9975-b29bca1d2356"
           }
         ],
         "partitions": [

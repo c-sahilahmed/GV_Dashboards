@@ -30486,7 +30486,14 @@
               }
             ],
             "dataType": "int64",
-            "expression": "IF ('Pav Sensor + Park Footfall 2'[Operation_Date]>DATE(2022,1,1),'Pav Sensor + Park Footfall 2'[day_num_tag],'Pav Sensor + Park Footfall 2'[day_num_tag]+1)",
+            "expression": [
+              "",
+              "IF (",
+              "    'Pav Sensor + Park Footfall 2'[Operation_Date] > DATE ( 2022, 1, 1 ),",
+              "    'Pav Sensor + Park Footfall 2'[day_num_tag],",
+              "    'Pav Sensor + Park Footfall 2'[day_num_tag] + 1",
+              ")"
+            ],
             "formatString": "0",
             "isDataTypeInferred": true,
             "lineageTag": "862fa8bc-31a9-4f53-b5b7-0e00ca8c99b6",

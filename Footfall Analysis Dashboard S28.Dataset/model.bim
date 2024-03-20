@@ -20731,14 +20731,18 @@
           {
             "name": "PBI_ResultType",
             "value": "Table"
+          },
+          {
+            "name": "PBI_NavigationStepName",
+            "value": "Navigation"
           }
         ],
         "expression": [
-          "let",
-          "    Source = Table.FromRows(Json.Document(Binary.Decompress(Binary.FromText(\"i45WciwpKUpMLsnMz1OK1YlWCkgsy8wBc2IB\", BinaryEncoding.Base64), Compression.Deflate)), let _t = ((type nullable text) meta [Serialized.Text = true]) in type table [#\"Location Type\" = _t]),",
-          "    #\"Changed Type\" = Table.TransformColumnTypes(Source,{{\"Location Type\", type text}}),",
-          "    #\"Removed Columns\" = Table.RemoveColumns(#\"Changed Type\",{\"Location Type\"})",
-          "in",
+          "let\r",
+          "    Source = Table.FromRows(Json.Document(Binary.Decompress(Binary.FromText(\"i45WciwpKUpMLsnMz1OK1YlWCkgsy8wBc2IB\", BinaryEncoding.Base64), Compression.Deflate)), let _t = ((type nullable text) meta [Serialized.Text = true]) in type table [#\"Location Type\" = _t]),\r",
+          "    #\"Changed Type\" = Table.TransformColumnTypes(Source,{{\"Location Type\", type text}}),\r",
+          "    #\"Removed Columns\" = Table.RemoveColumns(#\"Changed Type\",{\"Location Type\"})\r",
+          "in\r",
           "    #\"Removed Columns\""
         ],
         "kind": "m",
@@ -21789,10 +21793,6 @@
           {
             "name": "PBI_ResultType",
             "value": "Table"
-          },
-          {
-            "name": "PBI_NavigationStepName",
-            "value": "Navigation"
           }
         ],
         "columns": [
@@ -24636,9 +24636,7 @@
               "    (like_to_like=\"Same # Of Days\"),",
               "    CALCULATE(AVERAGE('GuestCounts'[Total_Park_Attendence]),'GuestCounts'[Season_ID]=compare,'GuestCounts'[day_num_tag_shifted]<=max_date,'GuestCounts'[day_num_tag_shifted]>=min_date),",
               "    CALCULATE(AVERAGE('GuestCounts'[Total_Park_Attendence]),'GuestCounts'[Season_ID]=compare)   ",
-              ")",
-              "",
-              " "
+              ")"
             ],
             "lineageTag": "b7403d5e-97cd-491b-936d-71906feefbdc"
           },
@@ -24670,8 +24668,7 @@
               "  (like_to_like=\"Same # Of Days\"),",
               "    CALCULATE(AVERAGE('GuestCounts'[Total_Park_Attendence]),'GuestCounts'[Season_ID]=selectedseason,'GuestCounts'[day_num_tag_shifted]<=max_date,'GuestCounts'[day_num_tag_shifted]>=min_date),",
               "    CALCULATE(AVERAGE('GuestCounts'[Total_Park_Attendence]),'GuestCounts'[Season_ID]=selectedseason)   ",
-              ")",
-              ""
+              ")"
             ],
             "lineageTag": "7519c89f-9a9f-444d-aa27-28f910bec2a3"
           },
@@ -27207,10 +27204,6 @@
           {
             "name": "PBI_ResultType",
             "value": "Table"
-          },
-          {
-            "name": "PBI_NavigationStepName",
-            "value": "Navigation"
           }
         ],
         "columns": [
@@ -27481,10 +27474,6 @@
           {
             "name": "PBI_ResultType",
             "value": "Table"
-          },
-          {
-            "name": "PBI_NavigationStepName",
-            "value": "Navigation"
           }
         ],
         "columns": [
@@ -28630,10 +28619,6 @@
           {
             "name": "PBI_ResultType",
             "value": "Table"
-          },
-          {
-            "name": "PBI_NavigationStepName",
-            "value": "Navigation"
           }
         ],
         "columns": [
@@ -28662,9 +28647,6 @@
             "changedProperties": [
               {
                 "property": "FormatString"
-              },
-              {
-                "property": "DataType"
               }
             ],
             "dataType": "dateTime",
@@ -30136,10 +30118,6 @@
           {
             "name": "PBI_ResultType",
             "value": "Table"
-          },
-          {
-            "name": "PBI_NavigationStepName",
-            "value": "Navigation"
           }
         ],
         "columns": [

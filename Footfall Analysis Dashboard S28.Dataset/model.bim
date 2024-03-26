@@ -24704,102 +24704,6 @@
             "lineageTag": "3a457370-ff3a-4b54-85e2-4f22743c98c8"
           },
           {
-            "name": "S28 Vs S27 Pavilion_Footfall_Change_%",
-            "changedProperties": [
-              {
-                "property": "FormatString"
-              }
-            ],
-            "expression": "IFERROR(('Footfall Measures'[S28 Pavilion_Footfall_selected season]-'Footfall Measures'[S27 Pavilion_Footfall_compared_season])/'Footfall Measures'[S27 Pavilion_Footfall_compared_season],0)",
-            "formatString": "0.00%;-0.00%;0.00%",
-            "lineageTag": "036b3dc7-3927-4106-9b34-ebb675acbb92"
-          },
-          {
-            "name": "S27 Pavilion_Footfall_compared_season",
-            "annotations": [
-              {
-                "name": "PBI_FormatHint",
-                "value": "{\"isGeneralNumber\":true}"
-              }
-            ],
-            "expression": [
-              "",
-              "",
-              "VAR selectedseason = 28",
-              "VAR compare = 27",
-              "VAR like_to_like = SELECTEDVALUE('Like to Like'[Value])",
-              "VAR selected_park_days=CALCULATE(MAX('Pav Sensor + Park Footfall 2'[day_num_tag_shifted]),'Pav Sensor + Park Footfall 2'[Season_ID]=selectedseason)",
-              "VAR selected_park_days_min=CALCULATE(MIN('Pav Sensor + Park Footfall 2'[day_num_tag_shifted]),'Pav Sensor + Park Footfall 2'[Season_ID]=selectedseason)",
-              "VAR compare_park_days=CALCULATE(MAX('Pav Sensor + Park Footfall 2'[day_num_tag_shifted]),'Pav Sensor + Park Footfall 2'[Season_ID]=compare)",
-              "VAR compare_park_days_min=CALCULATE(MIN('Pav Sensor + Park Footfall 2'[day_num_tag_shifted]),'Pav Sensor + Park Footfall 2'[Season_ID]=compare)",
-              "",
-              "VAR min_date=MAX(selected_park_days_min, compare_park_days_min)",
-              "VAR max_date=IF(compare_park_days<> Blank(),MIN(selected_park_days, compare_park_days),selected_park_days)",
-              "VAR avg_sum = SELECTEDVALUE('Avg vs Sum'[Value])",
-              "",
-              "RETURN ",
-              "",
-              " CALCULATE(",
-              "    SUM('Pav Sensor + Park Footfall 2'[Total_Entries]),",
-              "    'Pav Sensor + Park Footfall 2'[Season_ID]=compare,",
-              "    'Pav Sensor + Park Footfall 2'[day_num_tag_shifted]<=max_date,",
-              "    'Pav Sensor + Park Footfall 2'[day_num_tag_shifted]>=min_date)",
-              "    /   ",
-              "    CALCULATE(",
-              "        // Max('Pav Sensor + Park Footfall 2'[day_num_tag_shifted])-Min('Pav Sensor + Park Footfall 2'[day_num_tag_shifted])+1,",
-              "        DISTINCTCOUNT('Pav Sensor + Park Footfall 2'[day_num_tag_shifted]),",
-              "        'Pav Sensor + Park Footfall 2'[Season_ID]=compare,",
-              "        'Pav Sensor + Park Footfall 2'[day_num_tag_shifted]<=max_date,",
-              "        'Pav Sensor + Park Footfall 2'[day_num_tag_shifted]>=min_date)"
-            ],
-            "lineageTag": "df627a68-eaff-4fac-b3d2-783a52d0ce13"
-          },
-          {
-            "name": "S28 Pavilion_Footfall_selected season",
-            "annotations": [
-              {
-                "name": "PBI_FormatHint",
-                "value": "{\"isGeneralNumber\":true}"
-              }
-            ],
-            "expression": [
-              "",
-              "",
-              "VAR selectedseason = 28",
-              "VAR compare = 27",
-              "VAR like_to_like = SELECTEDVALUE('Like to Like'[Value])",
-              "VAR selected_park_days=CALCULATE(MAX('Pav Sensor + Park Footfall 2'[day_num_tag_shifted]),'Pav Sensor + Park Footfall 2'[Season_id]=selectedseason)",
-              "VAR selected_park_days_min=CALCULATE(MIN('Pav Sensor + Park Footfall 2'[day_num_tag_shifted]),'Pav Sensor + Park Footfall 2'[Season_id]=selectedseason)",
-              "VAR compare_park_days=CALCULATE(MAX('Pav Sensor + Park Footfall 2'[day_num_tag_shifted]),'Pav Sensor + Park Footfall 2'[Season_ID]=compare)",
-              "VAR compare_park_days_min=CALCULATE(MIN('Pav Sensor + Park Footfall 2'[day_num_tag_shifted]),'Pav Sensor + Park Footfall 2'[Season_ID]=compare)",
-              "",
-              "VAR selected_park_days_all=CALCULATE(DISTINCT('Pav Sensor + Park Footfall 2'[day_num_tag_shifted]),'Pav Sensor + Park Footfall 2'[Season_id]=selectedseason)",
-              "",
-              "VAR compare_park_days_all=CALCULATE(DISTINCT('Pav Sensor + Park Footfall 2'[day_num_tag_shifted]),'Pav Sensor + Park Footfall 2'[Season_ID]=compare)",
-              "",
-              "VAR avg_sum = SELECTEDVALUE('Avg vs Sum'[Value])",
-              "VAR min_date=MAX(selected_park_days_min, compare_park_days_min)",
-              "VAR max_date=IF(compare_park_days<> Blank(),MIN(selected_park_days, compare_park_days),selected_park_days)",
-              "",
-              "RETURN ",
-              "",
-              "CALCULATE(",
-              "    SUM('Pav Sensor + Park Footfall 2'[Total_Entries]),",
-              "    'Pav Sensor + Park Footfall 2'[Season_ID]=selectedseason,",
-              "    'Pav Sensor + Park Footfall 2'[day_num_tag_shifted]<=max_date,",
-              "    'Pav Sensor + Park Footfall 2'[day_num_tag_shifted]>=min_date)",
-              "    /   ",
-              "    CALCULATE(",
-              "        // Max('Pav Sensor + Park Footfall 2'[day_num_tag_shifted])-Min('Pav Sensor + Park Footfall 2'[day_num_tag_shifted])+1,",
-              "        DISTINCTCOUNT('Pav Sensor + Park Footfall 2'[day_num_tag_shifted]),",
-              "        'Pav Sensor + Park Footfall 2'[Season_ID]=selectedseason,",
-              "        'Pav Sensor + Park Footfall 2'[day_num_tag_shifted]<=max_date,",
-              "        'Pav Sensor + Park Footfall 2'[day_num_tag_shifted]>=min_date)",
-              ""
-            ],
-            "lineageTag": "a22f3720-db55-47a3-aea1-1c7323cdb811"
-          },
-          {
             "name": "Pavilion_Footfall_per_m2_Change_%",
             "changedProperties": [
               {
@@ -25399,6 +25303,102 @@
             "expression": "CALCULATE(SUM(GuestCounts[Total_Park_Attendence]), GuestCounts[Season_ID]=28,GuestCounts[Date]= DATE(2023,10,26))",
             "formatString": "0",
             "lineageTag": "87623d73-9980-4bb5-a12d-eadbee0f71bd"
+          },
+          {
+            "name": "S28 Vs S27 Pavilion_Footfall_Change_%",
+            "changedProperties": [
+              {
+                "property": "FormatString"
+              }
+            ],
+            "expression": "IFERROR(('Footfall Measures'[S28 Pavilion_Footfall_selected season]-'Footfall Measures'[S27 Pavilion_Footfall_compared_season])/'Footfall Measures'[S27 Pavilion_Footfall_compared_season],0)",
+            "formatString": "0.00%;-0.00%;0.00%",
+            "lineageTag": "036b3dc7-3927-4106-9b34-ebb675acbb92"
+          },
+          {
+            "name": "S27 Pavilion_Footfall_compared_season",
+            "annotations": [
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "expression": [
+              "",
+              "",
+              "VAR selectedseason = 28",
+              "VAR compare = 27",
+              "VAR like_to_like = SELECTEDVALUE('Like to Like'[Value])",
+              "VAR selected_park_days=CALCULATE(MAX('Pav Sensor + Park Footfall 2'[day_num_tag_shifted]),'Pav Sensor + Park Footfall 2'[Season_ID]=selectedseason)",
+              "VAR selected_park_days_min=CALCULATE(MIN('Pav Sensor + Park Footfall 2'[day_num_tag_shifted]),'Pav Sensor + Park Footfall 2'[Season_ID]=selectedseason)",
+              "VAR compare_park_days=CALCULATE(MAX('Pav Sensor + Park Footfall 2'[day_num_tag_shifted]),'Pav Sensor + Park Footfall 2'[Season_ID]=compare)",
+              "VAR compare_park_days_min=CALCULATE(MIN('Pav Sensor + Park Footfall 2'[day_num_tag_shifted]),'Pav Sensor + Park Footfall 2'[Season_ID]=compare)",
+              "",
+              "VAR min_date=MAX(selected_park_days_min, compare_park_days_min)",
+              "VAR max_date=IF(compare_park_days<> Blank(),MIN(selected_park_days, compare_park_days),selected_park_days)",
+              "VAR avg_sum = SELECTEDVALUE('Avg vs Sum'[Value])",
+              "",
+              "RETURN ",
+              "",
+              " CALCULATE(",
+              "    SUM('Pav Sensor + Park Footfall 2'[Total_Entries]),",
+              "    'Pav Sensor + Park Footfall 2'[Season_ID]=compare,",
+              "    'Pav Sensor + Park Footfall 2'[day_num_tag_shifted]<=max_date,",
+              "    'Pav Sensor + Park Footfall 2'[day_num_tag_shifted]>=min_date)",
+              "    /   ",
+              "    CALCULATE(",
+              "        // Max('Pav Sensor + Park Footfall 2'[day_num_tag_shifted])-Min('Pav Sensor + Park Footfall 2'[day_num_tag_shifted])+1,",
+              "        DISTINCTCOUNT('Pav Sensor + Park Footfall 2'[day_num_tag_shifted]),",
+              "        'Pav Sensor + Park Footfall 2'[Season_ID]=compare,",
+              "        'Pav Sensor + Park Footfall 2'[day_num_tag_shifted]<=max_date,",
+              "        'Pav Sensor + Park Footfall 2'[day_num_tag_shifted]>=min_date)"
+            ],
+            "lineageTag": "df627a68-eaff-4fac-b3d2-783a52d0ce13"
+          },
+          {
+            "name": "S28 Pavilion_Footfall_selected season",
+            "annotations": [
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "expression": [
+              "",
+              "",
+              "VAR selectedseason = 28",
+              "VAR compare = 27",
+              "VAR like_to_like = SELECTEDVALUE('Like to Like'[Value])",
+              "VAR selected_park_days=CALCULATE(MAX('Pav Sensor + Park Footfall 2'[day_num_tag_shifted]),'Pav Sensor + Park Footfall 2'[Season_id]=selectedseason)",
+              "VAR selected_park_days_min=CALCULATE(MIN('Pav Sensor + Park Footfall 2'[day_num_tag_shifted]),'Pav Sensor + Park Footfall 2'[Season_id]=selectedseason)",
+              "VAR compare_park_days=CALCULATE(MAX('Pav Sensor + Park Footfall 2'[day_num_tag_shifted]),'Pav Sensor + Park Footfall 2'[Season_ID]=compare)",
+              "VAR compare_park_days_min=CALCULATE(MIN('Pav Sensor + Park Footfall 2'[day_num_tag_shifted]),'Pav Sensor + Park Footfall 2'[Season_ID]=compare)",
+              "",
+              "VAR selected_park_days_all=CALCULATE(DISTINCT('Pav Sensor + Park Footfall 2'[day_num_tag_shifted]),'Pav Sensor + Park Footfall 2'[Season_id]=selectedseason)",
+              "",
+              "VAR compare_park_days_all=CALCULATE(DISTINCT('Pav Sensor + Park Footfall 2'[day_num_tag_shifted]),'Pav Sensor + Park Footfall 2'[Season_ID]=compare)",
+              "",
+              "VAR avg_sum = SELECTEDVALUE('Avg vs Sum'[Value])",
+              "VAR min_date=MAX(selected_park_days_min, compare_park_days_min)",
+              "VAR max_date=IF(compare_park_days<> Blank(),MIN(selected_park_days, compare_park_days),selected_park_days)",
+              "",
+              "RETURN ",
+              "",
+              "CALCULATE(",
+              "    SUM('Pav Sensor + Park Footfall 2'[Total_Entries]),",
+              "    'Pav Sensor + Park Footfall 2'[Season_ID]=selectedseason,",
+              "    'Pav Sensor + Park Footfall 2'[day_num_tag_shifted]<=max_date,",
+              "    'Pav Sensor + Park Footfall 2'[day_num_tag_shifted]>=min_date)",
+              "    /   ",
+              "    CALCULATE(",
+              "        // Max('Pav Sensor + Park Footfall 2'[day_num_tag_shifted])-Min('Pav Sensor + Park Footfall 2'[day_num_tag_shifted])+1,",
+              "        DISTINCTCOUNT('Pav Sensor + Park Footfall 2'[day_num_tag_shifted]),",
+              "        'Pav Sensor + Park Footfall 2'[Season_ID]=selectedseason,",
+              "        'Pav Sensor + Park Footfall 2'[day_num_tag_shifted]<=max_date,",
+              "        'Pav Sensor + Park Footfall 2'[day_num_tag_shifted]>=min_date)",
+              ""
+            ],
+            "lineageTag": "a22f3720-db55-47a3-aea1-1c7323cdb811"
           }
         ],
         "partitions": [
@@ -25856,6 +25856,200 @@
             "lineageTag": "a4045606-5140-4d61-9a70-36cb6a268049"
           },
           {
+            "name": "Pavilion avg Footfall Penetration Compared",
+            "changedProperties": [
+              {
+                "property": "FormatString"
+              }
+            ],
+            "expression": [
+              "",
+              "//Percentage of entire park footfall going into any of the pavilions ",
+              "",
+              "VAR selectedseason = SELECTEDVALUE('Selected Season'[SeasonID])",
+              "VAR compare = SELECTEDVALUE('Compare with'[Value])",
+              "VAR max_day_num_tag=CALCULATE(MAX('Pav Sensor + Park Footfall 2'[day_num_tag_shifted]),'Pav Sensor + Park Footfall 2'[Season_id]=selectedseason)",
+              "VAR min_day_num_tag=CALCULATE(MIN('Pav Sensor + Park Footfall 2'[day_num_tag_shifted]),'Pav Sensor + Park Footfall 2'[Season_id]=selectedseason)",
+              "",
+              "VAR max_day_num_tag_compare=CALCULATE(MAX('Pav Sensor + Park Footfall 2'[day_num_tag_shifted]),'Pav Sensor + Park Footfall 2'[Season_id]=compare)",
+              "VAR min_day_num_tag_compare=CALCULATE(MIN('Pav Sensor + Park Footfall 2'[day_num_tag_shifted]),'Pav Sensor + Park Footfall 2'[Season_id]=compare)",
+              "",
+              "VAR compare_park_days=CALCULATE(MAX('Pav Sensor + Park Footfall 2'[day_num_tag_shifted]),'Pav Sensor + Park Footfall 2'[Season_id]=compare)",
+              "VAR max_date=Min(max_day_num_tag,max_day_num_tag_compare)",
+              "VAR min_date=MAX(min_day_num_tag,min_day_num_tag_compare)",
+              "",
+              "VAR like_to_like = SELECTEDVALUE('Like to Like'[Value])",
+              "",
+              "",
+              "RETURN",
+              "",
+              "",
+              "IF(like_to_like=\"ETD\",CALCULATE(SUM('Pav Sensor + Park Footfall 2'[Total_Entries]),",
+              "Filter('Pav Sensor + Park Footfall 2','Pav Sensor + Park Footfall 2'[Season_ID]=compare&&'Pav Sensor + Park Footfall 2'[Location_type]=\"Pavilion\"))",
+              "/",
+              "CALCULATE(SUM('GuestCounts'[Total_Park_Attendence]),'GuestCounts'[Season_id]=compare)",
+              "",
+              "/",
+              "(CALCULATE(",
+              "    DISTINCTCOUNT('Pav Sensor + Park Footfall 2'[Location]),Filter('Pav Sensor + Park Footfall 2',",
+              "    'Pav Sensor + Park Footfall 2'[Location_type]=\"Pavilion\"&&",
+              "    'Pav Sensor + Park Footfall 2'[Season_ID]=compare))",
+              "        )",
+              ",",
+              "CALCULATE(SUM('Pav Sensor + Park Footfall 2'[Total_Entries]),",
+              "Filter('Pav Sensor + Park Footfall 2',",
+              "'Pav Sensor + Park Footfall 2'[Season_ID]=compare&&        'Pav Sensor + Park Footfall 2'[day_num_tag_shifted]<=max_date&&",
+              "        'Pav Sensor + Park Footfall 2'[day_num_tag_shifted]>=min_date&&'Pav Sensor + Park Footfall 2'[Location_type]=\"Pavilion\"))",
+              "/",
+              "// CALCULATE(SUM('GuestCounts'[Total_Park_Attendence]),Filter('GuestCounts','GuestCounts'[Season_id]=compare&&'GuestCounts'[day_num_tag_shifted]<=max_date&&'GuestCounts'[day_num_tag_shifted]>=min_date))",
+              "CALCULATE(SUM('GuestCounts'[Total_Park_Attendence]),'GuestCounts'[Season_id]=compare,'GuestCounts'[day_num_tag_shifted]<=max_date,'GuestCounts'[day_num_tag_shifted]>=min_date)",
+              "",
+              "/",
+              "(CALCULATE(",
+              "    DISTINCTCOUNT('Pav Sensor + Park Footfall 2'[Location]),Filter('Pav Sensor + Park Footfall 2',",
+              "    'Pav Sensor + Park Footfall 2'[Location_type]=\"Pavilion\"&&",
+              "    'Pav Sensor + Park Footfall 2'[Season_ID]=compare&&",
+              "       'Pav Sensor + Park Footfall 2'[day_num_tag_shifted]<=max_date&&",
+              "        'Pav Sensor + Park Footfall 2'[day_num_tag_shifted]>=min_date))",
+              "        )",
+              ")"
+            ],
+            "formatString": "0.00%;-0.00%;0.00%",
+            "lineageTag": "bf151821-db96-4dc2-b29d-a2b654327110"
+          },
+          {
+            "name": "Pavilion avg Footfall Penetration Selected",
+            "changedProperties": [
+              {
+                "property": "FormatString"
+              }
+            ],
+            "expression": [
+              "",
+              "//Percentage of entire park footfall going into any of the pavilions ",
+              "",
+              "VAR selectedseason = SELECTEDVALUE('Selected Season'[SeasonID])",
+              "VAR compare = SELECTEDVALUE('Compare with'[Value])",
+              "VAR max_day_num_tag=CALCULATE(MAX('Pav Sensor + Park Footfall 2'[day_num_tag_shifted]),'Pav Sensor + Park Footfall 2'[Season_id]=selectedseason)",
+              "VAR min_day_num_tag=CALCULATE(MIN('Pav Sensor + Park Footfall 2'[day_num_tag_shifted]),'Pav Sensor + Park Footfall 2'[Season_id]=selectedseason)",
+              "",
+              "VAR max_day_num_tag_compare=CALCULATE(MAX('Pav Sensor + Park Footfall 2'[day_num_tag_shifted]),'Pav Sensor + Park Footfall 2'[Season_id]=compare)",
+              "VAR min_day_num_tag_compare=CALCULATE(MIN('Pav Sensor + Park Footfall 2'[day_num_tag_shifted]),'Pav Sensor + Park Footfall 2'[Season_id]=compare)",
+              "",
+              "VAR compare_park_days=CALCULATE(MAX('Pav Sensor + Park Footfall 2'[day_num_tag_shifted]),'Pav Sensor + Park Footfall 2'[Season_id]=compare)",
+              "VAR max_date=Min(max_day_num_tag,max_day_num_tag_compare)",
+              "VAR min_date=MAX(min_day_num_tag,min_day_num_tag_compare)",
+              "",
+              "VAR like_to_like = SELECTEDVALUE('Like to Like'[Value])",
+              "",
+              "",
+              "RETURN IF(like_to_like=\"ETD\",CALCULATE(SUM('Pav Sensor + Park Footfall 2'[Total_Entries]),'Pav Sensor + Park Footfall 2'[Season_ID]=selectedseason,'Pav Sensor + Park Footfall 2'[Location_type]=\"Pavilion\")",
+              "/",
+              "CALCULATE(SUM('GuestCounts'[Total_Park_Attendence]),'GuestCounts'[Season_id]=selectedseason)",
+              "",
+              "/",
+              "(CALCULATE(",
+              "    DISTINCTCOUNT('Pav Sensor + Park Footfall 2'[Location]),",
+              "    'Pav Sensor + Park Footfall 2'[Location_type]=\"Pavilion\",",
+              "    'Pav Sensor + Park Footfall 2'[Season_ID]=selectedseason)",
+              "        )",
+              ",",
+              "CALCULATE(SUM('Pav Sensor + Park Footfall 2'[Total_Entries]),'Pav Sensor + Park Footfall 2'[Season_ID]=selectedseason,        'Pav Sensor + Park Footfall 2'[day_num_tag_shifted]<=max_date,",
+              "        'Pav Sensor + Park Footfall 2'[day_num_tag_shifted]>=min_date,'Pav Sensor + Park Footfall 2'[Location_type]=\"Pavilion\")",
+              "/",
+              "//CALCULATE(SUM('GuestCounts'[Total_Park_Attendence]),'GuestCounts'[Season_id]=compare,'GuestCounts'[day_num_tag_shifted]<=max_date,'GuestCounts'[day_num_tag_shifted]>=min_date)",
+              "CALCULATE(SUM('GuestCounts'[Total_Park_Attendence]),'GuestCounts'[Season_id]=selectedseason,'GuestCounts'[day_num_tag_shifted]<=max_date,'GuestCounts'[day_num_tag_shifted]>=min_date)",
+              "",
+              "/",
+              "(CALCULATE(",
+              "    DISTINCTCOUNT('Pav Sensor + Park Footfall 2'[Location]),",
+              "    'Pav Sensor + Park Footfall 2'[Location_type]=\"Pavilion\",",
+              "    'Pav Sensor + Park Footfall 2'[Season_ID]=selectedseason,",
+              "       'Pav Sensor + Park Footfall 2'[day_num_tag_shifted]<=max_date,",
+              "        'Pav Sensor + Park Footfall 2'[day_num_tag_shifted]>=min_date)",
+              "        )",
+              ")"
+            ],
+            "formatString": "0.00%;-0.00%;0.00%",
+            "lineageTag": "1f939e4f-f1eb-40ef-ab0d-6cf172dad415"
+          },
+          {
+            "name": "S27 test",
+            "annotations": [
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "expression": [
+              "",
+              "VAR selectedseason = 27",
+              "VAR compare = 26",
+              "VAR like_to_like = SELECTEDVALUE('Like to Like'[Value])",
+              "VAR selected_park_days=CALCULATE(MAX('Pav Sensor + Park Footfall 2'[day_num_tag_shifted]),'Pav Sensor + Park Footfall 2'[Season_ID]=selectedseason)",
+              "VAR compare_park_days=CALCULATE(MAX('Pav Sensor + Park Footfall 2'[day_num_tag_shifted]),'Pav Sensor + Park Footfall 2'[Season_ID]=compare)",
+              "VAR avg_sum = SELECTEDVALUE('Avg vs Sum'[Value])",
+              "",
+              "",
+              "VAR selected_park_days_min=CALCULATE(MIN('Pav Sensor + Park Footfall 2'[day_num_tag_shifted]),'Pav Sensor + Park Footfall 2'[Season_ID]=selectedseason)",
+              "VAR compare_park_days_min=CALCULATE(MIN('Pav Sensor + Park Footfall 2'[day_num_tag_shifted]),'Pav Sensor + Park Footfall 2'[Season_ID]=compare)",
+              "",
+              "VAR min_date=MAX(selected_park_days_min, compare_park_days_min)",
+              "VAR max_date=IF(compare_park_days<> Blank(),MIN(selected_park_days, compare_park_days),selected_park_days)",
+              "",
+              "RETURN   ",
+              "    CALCULATE(SUM('Pav Sensor + Park Footfall 2'[Total_Entries]),'Pav Sensor + Park Footfall 2'[Season_ID]=selectedseason,'Pav Sensor + Park Footfall 2'[day_num_tag_shifted]<=max_date,'Pav Sensor + Park Footfall 2'[day_num_tag_shifted]>=min_date)",
+              "     / ",
+              "     CALCULATE(SUM('GuestCounts'[Total_Park_Attendence]),Filter('GuestCounts','GuestCounts'[Season_id]=selectedseason && 'GuestCounts'[day_num_tag_shifted]<=max_date && 'GuestCounts'[day_num_tag_shifted]>=min_date))",
+              ""
+            ],
+            "lineageTag": "d5e5486f-e18a-4150-8d0c-a39814ac136b"
+          },
+          {
+            "name": "S27 location Penetration Selected Season",
+            "changedProperties": [
+              {
+                "property": "FormatString"
+              }
+            ],
+            "expression": [
+              "",
+              "//Percentage of entire park footfall going into any of the pavilions ",
+              "VAR selectedseason = 27",
+              "VAR compare = 26",
+              "VAR max_day_num_tag=CALCULATE(MAX('Pav Sensor + Park Footfall 2'[day_num_tag_shifted]),'Pav Sensor + Park Footfall 2'[Season_id]=selectedseason)",
+              "VAR min_day_num_tag=CALCULATE(MIN('Pav Sensor + Park Footfall 2'[day_num_tag_shifted]),'Pav Sensor + Park Footfall 2'[Season_id]=selectedseason)",
+              "",
+              "VAR max_date=max_day_num_tag",
+              "VAR min_date=min_day_num_tag",
+              "",
+              "// VAR min_date=MAX(min_day_num_tag,  IF(min_day_num_tag_compare=Blank(),0,min_day_num_tag))",
+              "// VAR max_date=MIN(max_day_num_tag, IF(max_day_num_tag_compare=Blank(),0,max_day_num_tag_compare))",
+              "",
+              "",
+              "Return ",
+              "CALCULATE(SUM('Pav Sensor + Park Footfall 2'[Total_Entries]),",
+              "'Pav Sensor + Park Footfall 2'[Season_ID]=selectedseason,      ",
+              "  'Pav Sensor + Park Footfall 2'[day_num_tag_shifted]<=max_date,",
+              "        'Pav Sensor + Park Footfall 2'[day_num_tag_shifted]>=min_date)",
+              "/",
+              "CALCULATE(SUM('GuestCounts'[Total_Park_Attendence]),",
+              "'GuestCounts'[Season_id]=selectedseason,",
+              "'GuestCounts'[day_num_tag_shifted]<=max_date,",
+              "'GuestCounts'[day_num_tag_shifted]>=min_date)",
+              "/",
+              "",
+              "CALCULATE(",
+              "    DISTINCTCOUNT('Pav Sensor + Park Footfall 2'[Location]),",
+              "        'Pav Sensor + Park Footfall 2'[LocationInS28]=1,",
+              "    'Pav Sensor + Park Footfall 2'[Season_ID]=selectedseason,     ",
+              "       'Pav Sensor + Park Footfall 2'[day_num_tag_shifted]<=max_date,",
+              "        'Pav Sensor + Park Footfall 2'[day_num_tag_shifted]>=min_date)"
+            ],
+            "formatString": "0.00%;-0.00%;0.00%",
+            "lineageTag": "6bc8ce09-ea7a-4c39-9d89-e3be10222d09"
+          },
+          {
             "name": "S27 Pavilion Footfall Penetration Compared",
             "changedProperties": [
               {
@@ -26038,156 +26232,6 @@
             "lineageTag": "6a8578bc-97f5-4118-9995-307bc106949e"
           },
           {
-            "name": "Pavilion avg Footfall Penetration Compared",
-            "changedProperties": [
-              {
-                "property": "FormatString"
-              }
-            ],
-            "expression": [
-              "",
-              "//Percentage of entire park footfall going into any of the pavilions ",
-              "",
-              "VAR selectedseason = SELECTEDVALUE('Selected Season'[SeasonID])",
-              "VAR compare = SELECTEDVALUE('Compare with'[Value])",
-              "VAR max_day_num_tag=CALCULATE(MAX('Pav Sensor + Park Footfall 2'[day_num_tag_shifted]),'Pav Sensor + Park Footfall 2'[Season_id]=selectedseason)",
-              "VAR min_day_num_tag=CALCULATE(MIN('Pav Sensor + Park Footfall 2'[day_num_tag_shifted]),'Pav Sensor + Park Footfall 2'[Season_id]=selectedseason)",
-              "",
-              "VAR max_day_num_tag_compare=CALCULATE(MAX('Pav Sensor + Park Footfall 2'[day_num_tag_shifted]),'Pav Sensor + Park Footfall 2'[Season_id]=compare)",
-              "VAR min_day_num_tag_compare=CALCULATE(MIN('Pav Sensor + Park Footfall 2'[day_num_tag_shifted]),'Pav Sensor + Park Footfall 2'[Season_id]=compare)",
-              "",
-              "VAR compare_park_days=CALCULATE(MAX('Pav Sensor + Park Footfall 2'[day_num_tag_shifted]),'Pav Sensor + Park Footfall 2'[Season_id]=compare)",
-              "VAR max_date=Min(max_day_num_tag,max_day_num_tag_compare)",
-              "VAR min_date=MAX(min_day_num_tag,min_day_num_tag_compare)",
-              "",
-              "VAR like_to_like = SELECTEDVALUE('Like to Like'[Value])",
-              "",
-              "",
-              "RETURN",
-              "",
-              "",
-              "IF(like_to_like=\"ETD\",CALCULATE(SUM('Pav Sensor + Park Footfall 2'[Total_Entries]),",
-              "Filter('Pav Sensor + Park Footfall 2','Pav Sensor + Park Footfall 2'[Season_ID]=compare&&'Pav Sensor + Park Footfall 2'[Location_type]=\"Pavilion\"))",
-              "/",
-              "CALCULATE(SUM('GuestCounts'[Total_Park_Attendence]),'GuestCounts'[Season_id]=compare)",
-              "",
-              "/",
-              "(CALCULATE(",
-              "    DISTINCTCOUNT('Pav Sensor + Park Footfall 2'[Location]),Filter('Pav Sensor + Park Footfall 2',",
-              "    'Pav Sensor + Park Footfall 2'[Location_type]=\"Pavilion\"&&",
-              "    'Pav Sensor + Park Footfall 2'[Season_ID]=compare))",
-              "        )",
-              ",",
-              "CALCULATE(SUM('Pav Sensor + Park Footfall 2'[Total_Entries]),",
-              "Filter('Pav Sensor + Park Footfall 2',",
-              "'Pav Sensor + Park Footfall 2'[Season_ID]=compare&&        'Pav Sensor + Park Footfall 2'[day_num_tag_shifted]<=max_date&&",
-              "        'Pav Sensor + Park Footfall 2'[day_num_tag_shifted]>=min_date&&'Pav Sensor + Park Footfall 2'[Location_type]=\"Pavilion\"))",
-              "/",
-              "// CALCULATE(SUM('GuestCounts'[Total_Park_Attendence]),Filter('GuestCounts','GuestCounts'[Season_id]=compare&&'GuestCounts'[day_num_tag_shifted]<=max_date&&'GuestCounts'[day_num_tag_shifted]>=min_date))",
-              "CALCULATE(SUM('GuestCounts'[Total_Park_Attendence]),'GuestCounts'[Season_id]=compare,'GuestCounts'[day_num_tag_shifted]<=max_date,'GuestCounts'[day_num_tag_shifted]>=min_date)",
-              "",
-              "/",
-              "(CALCULATE(",
-              "    DISTINCTCOUNT('Pav Sensor + Park Footfall 2'[Location]),Filter('Pav Sensor + Park Footfall 2',",
-              "    'Pav Sensor + Park Footfall 2'[Location_type]=\"Pavilion\"&&",
-              "    'Pav Sensor + Park Footfall 2'[Season_ID]=compare&&",
-              "       'Pav Sensor + Park Footfall 2'[day_num_tag_shifted]<=max_date&&",
-              "        'Pav Sensor + Park Footfall 2'[day_num_tag_shifted]>=min_date))",
-              "        )",
-              ")"
-            ],
-            "formatString": "0.00%;-0.00%;0.00%",
-            "lineageTag": "bf151821-db96-4dc2-b29d-a2b654327110"
-          },
-          {
-            "name": "Pavilion avg Footfall Penetration Selected",
-            "changedProperties": [
-              {
-                "property": "FormatString"
-              }
-            ],
-            "expression": [
-              "",
-              "//Percentage of entire park footfall going into any of the pavilions ",
-              "",
-              "VAR selectedseason = SELECTEDVALUE('Selected Season'[SeasonID])",
-              "VAR compare = SELECTEDVALUE('Compare with'[Value])",
-              "VAR max_day_num_tag=CALCULATE(MAX('Pav Sensor + Park Footfall 2'[day_num_tag_shifted]),'Pav Sensor + Park Footfall 2'[Season_id]=selectedseason)",
-              "VAR min_day_num_tag=CALCULATE(MIN('Pav Sensor + Park Footfall 2'[day_num_tag_shifted]),'Pav Sensor + Park Footfall 2'[Season_id]=selectedseason)",
-              "",
-              "VAR max_day_num_tag_compare=CALCULATE(MAX('Pav Sensor + Park Footfall 2'[day_num_tag_shifted]),'Pav Sensor + Park Footfall 2'[Season_id]=compare)",
-              "VAR min_day_num_tag_compare=CALCULATE(MIN('Pav Sensor + Park Footfall 2'[day_num_tag_shifted]),'Pav Sensor + Park Footfall 2'[Season_id]=compare)",
-              "",
-              "VAR compare_park_days=CALCULATE(MAX('Pav Sensor + Park Footfall 2'[day_num_tag_shifted]),'Pav Sensor + Park Footfall 2'[Season_id]=compare)",
-              "VAR max_date=Min(max_day_num_tag,max_day_num_tag_compare)",
-              "VAR min_date=MAX(min_day_num_tag,min_day_num_tag_compare)",
-              "",
-              "VAR like_to_like = SELECTEDVALUE('Like to Like'[Value])",
-              "",
-              "",
-              "RETURN IF(like_to_like=\"ETD\",CALCULATE(SUM('Pav Sensor + Park Footfall 2'[Total_Entries]),'Pav Sensor + Park Footfall 2'[Season_ID]=selectedseason,'Pav Sensor + Park Footfall 2'[Location_type]=\"Pavilion\")",
-              "/",
-              "CALCULATE(SUM('GuestCounts'[Total_Park_Attendence]),'GuestCounts'[Season_id]=selectedseason)",
-              "",
-              "/",
-              "(CALCULATE(",
-              "    DISTINCTCOUNT('Pav Sensor + Park Footfall 2'[Location]),",
-              "    'Pav Sensor + Park Footfall 2'[Location_type]=\"Pavilion\",",
-              "    'Pav Sensor + Park Footfall 2'[Season_ID]=selectedseason)",
-              "        )",
-              ",",
-              "CALCULATE(SUM('Pav Sensor + Park Footfall 2'[Total_Entries]),'Pav Sensor + Park Footfall 2'[Season_ID]=selectedseason,        'Pav Sensor + Park Footfall 2'[day_num_tag_shifted]<=max_date,",
-              "        'Pav Sensor + Park Footfall 2'[day_num_tag_shifted]>=min_date,'Pav Sensor + Park Footfall 2'[Location_type]=\"Pavilion\")",
-              "/",
-              "//CALCULATE(SUM('GuestCounts'[Total_Park_Attendence]),'GuestCounts'[Season_id]=compare,'GuestCounts'[day_num_tag_shifted]<=max_date,'GuestCounts'[day_num_tag_shifted]>=min_date)",
-              "CALCULATE(SUM('GuestCounts'[Total_Park_Attendence]),'GuestCounts'[Season_id]=selectedseason,'GuestCounts'[day_num_tag_shifted]<=max_date,'GuestCounts'[day_num_tag_shifted]>=min_date)",
-              "",
-              "/",
-              "(CALCULATE(",
-              "    DISTINCTCOUNT('Pav Sensor + Park Footfall 2'[Location]),",
-              "    'Pav Sensor + Park Footfall 2'[Location_type]=\"Pavilion\",",
-              "    'Pav Sensor + Park Footfall 2'[Season_ID]=selectedseason,",
-              "       'Pav Sensor + Park Footfall 2'[day_num_tag_shifted]<=max_date,",
-              "        'Pav Sensor + Park Footfall 2'[day_num_tag_shifted]>=min_date)",
-              "        )",
-              ")"
-            ],
-            "formatString": "0.00%;-0.00%;0.00%",
-            "lineageTag": "1f939e4f-f1eb-40ef-ab0d-6cf172dad415"
-          },
-          {
-            "name": "S27 test",
-            "annotations": [
-              {
-                "name": "PBI_FormatHint",
-                "value": "{\"isGeneralNumber\":true}"
-              }
-            ],
-            "expression": [
-              "",
-              "VAR selectedseason = 27",
-              "VAR compare = 26",
-              "VAR like_to_like = SELECTEDVALUE('Like to Like'[Value])",
-              "VAR selected_park_days=CALCULATE(MAX('Pav Sensor + Park Footfall 2'[day_num_tag_shifted]),'Pav Sensor + Park Footfall 2'[Season_ID]=selectedseason)",
-              "VAR compare_park_days=CALCULATE(MAX('Pav Sensor + Park Footfall 2'[day_num_tag_shifted]),'Pav Sensor + Park Footfall 2'[Season_ID]=compare)",
-              "VAR avg_sum = SELECTEDVALUE('Avg vs Sum'[Value])",
-              "",
-              "",
-              "VAR selected_park_days_min=CALCULATE(MIN('Pav Sensor + Park Footfall 2'[day_num_tag_shifted]),'Pav Sensor + Park Footfall 2'[Season_ID]=selectedseason)",
-              "VAR compare_park_days_min=CALCULATE(MIN('Pav Sensor + Park Footfall 2'[day_num_tag_shifted]),'Pav Sensor + Park Footfall 2'[Season_ID]=compare)",
-              "",
-              "VAR min_date=MAX(selected_park_days_min, compare_park_days_min)",
-              "VAR max_date=IF(compare_park_days<> Blank(),MIN(selected_park_days, compare_park_days),selected_park_days)",
-              "",
-              "RETURN   ",
-              "    CALCULATE(SUM('Pav Sensor + Park Footfall 2'[Total_Entries]),'Pav Sensor + Park Footfall 2'[Season_ID]=selectedseason,'Pav Sensor + Park Footfall 2'[day_num_tag_shifted]<=max_date,'Pav Sensor + Park Footfall 2'[day_num_tag_shifted]>=min_date)",
-              "     / ",
-              "     CALCULATE(SUM('GuestCounts'[Total_Park_Attendence]),Filter('GuestCounts','GuestCounts'[Season_id]=selectedseason && 'GuestCounts'[day_num_tag_shifted]<=max_date && 'GuestCounts'[day_num_tag_shifted]>=min_date))",
-              ""
-            ],
-            "lineageTag": "d5e5486f-e18a-4150-8d0c-a39814ac136b"
-          },
-          {
             "name": "S28 vs S27 Footfall Penetration % diff",
             "changedProperties": [
               {
@@ -26197,50 +26241,6 @@
             "expression": "IFERROR(('Visitation Measures'[S28 Pavilion Footfall Penetration Selected Season]-'Visitation Measures'[S27 Pavilion Footfall Penetration Compared]),0)",
             "formatString": "0.00%;-0.00%;0.00%",
             "lineageTag": "3ce370fa-1c5b-427a-820d-f1d8d380bba8"
-          },
-          {
-            "name": "S27 location Penetration Selected Season",
-            "changedProperties": [
-              {
-                "property": "FormatString"
-              }
-            ],
-            "expression": [
-              "",
-              "//Percentage of entire park footfall going into any of the pavilions ",
-              "VAR selectedseason = 27",
-              "VAR compare = 26",
-              "VAR max_day_num_tag=CALCULATE(MAX('Pav Sensor + Park Footfall 2'[day_num_tag_shifted]),'Pav Sensor + Park Footfall 2'[Season_id]=selectedseason)",
-              "VAR min_day_num_tag=CALCULATE(MIN('Pav Sensor + Park Footfall 2'[day_num_tag_shifted]),'Pav Sensor + Park Footfall 2'[Season_id]=selectedseason)",
-              "",
-              "VAR max_date=max_day_num_tag",
-              "VAR min_date=min_day_num_tag",
-              "",
-              "// VAR min_date=MAX(min_day_num_tag,  IF(min_day_num_tag_compare=Blank(),0,min_day_num_tag))",
-              "// VAR max_date=MIN(max_day_num_tag, IF(max_day_num_tag_compare=Blank(),0,max_day_num_tag_compare))",
-              "",
-              "",
-              "Return ",
-              "CALCULATE(SUM('Pav Sensor + Park Footfall 2'[Total_Entries]),",
-              "'Pav Sensor + Park Footfall 2'[Season_ID]=selectedseason,      ",
-              "  'Pav Sensor + Park Footfall 2'[day_num_tag_shifted]<=max_date,",
-              "        'Pav Sensor + Park Footfall 2'[day_num_tag_shifted]>=min_date)",
-              "/",
-              "CALCULATE(SUM('GuestCounts'[Total_Park_Attendence]),",
-              "'GuestCounts'[Season_id]=selectedseason,",
-              "'GuestCounts'[day_num_tag_shifted]<=max_date,",
-              "'GuestCounts'[day_num_tag_shifted]>=min_date)",
-              "/",
-              "",
-              "CALCULATE(",
-              "    DISTINCTCOUNT('Pav Sensor + Park Footfall 2'[Location]),",
-              "        'Pav Sensor + Park Footfall 2'[LocationInS28]=1,",
-              "    'Pav Sensor + Park Footfall 2'[Season_ID]=selectedseason,     ",
-              "       'Pav Sensor + Park Footfall 2'[day_num_tag_shifted]<=max_date,",
-              "        'Pav Sensor + Park Footfall 2'[day_num_tag_shifted]>=min_date)"
-            ],
-            "formatString": "0.00%;-0.00%;0.00%",
-            "lineageTag": "6bc8ce09-ea7a-4c39-9d89-e3be10222d09"
           }
         ],
         "partitions": [
@@ -26900,7 +26900,7 @@
             "name": "New_week",
             "expression": [
               "",
-              "IF(Calculate(Min('GuestCounts'[WeekdayNum]),GuestCounts[Season_ID]=27)==1,1,Blank())",
+              "IF(Calculate(Min('GuestCounts'[WeekdayNum]),GuestCounts[Season_ID]=28)==1,1,Blank())",
               "//Calculate(Max('GuestCounts'[day_num_tag_shifted]))"
             ],
             "formatString": "0",
@@ -26916,27 +26916,6 @@
             ],
             "formatString": "0",
             "lineageTag": "3271e07a-24c3-4761-b53a-db6719493361"
-          },
-          {
-            "name": "Special Weather S27",
-            "expression": [
-              "",
-              "IF(Calculate(Min('GuestCounts'[Weather]),GuestCounts[Season_ID]=27)<>Blank(),10000,Blank())",
-              "// IF('GuestCounts'[Event Name]<>Blank(),1000,Blank())"
-            ],
-            "formatString": "0",
-            "lineageTag": "2ced5988-a037-4176-9158-5349e7f26f48"
-          },
-          {
-            "name": "Event S27",
-            "expression": [
-              "",
-              "",
-              "IF(Calculate(Min('GuestCounts'[Event]),GuestCounts[Season_ID]=27)<>Blank()&&Calculate(Min('GuestCounts'[Event]),GuestCounts[Season_ID]=27)<>\"Weekday\"&&Calculate(Min('GuestCounts'[Event]),GuestCounts[Season_ID]=27)<>\"Weekend\"&&Calculate(Min('GuestCounts'[Event]),GuestCounts[Season_ID]=27)<>\"Family Day\",1,Blank())",
-              "// IF('GuestCounts'[Event Name]<>Blank(),1000,Blank())"
-            ],
-            "formatString": "0",
-            "lineageTag": "0f3bd6cf-9dd3-44c4-8658-9a4e72a7beb2"
           },
           {
             "name": "Event compared season",
@@ -26996,6 +26975,27 @@
             "expression": "Max('Pav Sensor + Park Footfall 2'[Operation_Date])",
             "formatString": "General Date",
             "lineageTag": "fdd8334f-95c7-4677-bbe4-4118a6457e7d"
+          },
+          {
+            "name": "Special Weather S27",
+            "expression": [
+              "",
+              "IF(Calculate(Min('GuestCounts'[Weather]),GuestCounts[Season_ID]=27)<>Blank(),10000,Blank())",
+              "// IF('GuestCounts'[Event Name]<>Blank(),1000,Blank())"
+            ],
+            "formatString": "0",
+            "lineageTag": "2ced5988-a037-4176-9158-5349e7f26f48"
+          },
+          {
+            "name": "Event S27",
+            "expression": [
+              "",
+              "",
+              "IF(Calculate(Min('GuestCounts'[Event]),GuestCounts[Season_ID]=27)<>Blank()&&Calculate(Min('GuestCounts'[Event]),GuestCounts[Season_ID]=27)<>\"Weekday\"&&Calculate(Min('GuestCounts'[Event]),GuestCounts[Season_ID]=27)<>\"Weekend\"&&Calculate(Min('GuestCounts'[Event]),GuestCounts[Season_ID]=27)<>\"Family Day\",1,Blank())",
+              "// IF('GuestCounts'[Event Name]<>Blank(),1000,Blank())"
+            ],
+            "formatString": "0",
+            "lineageTag": "0f3bd6cf-9dd3-44c4-8658-9a4e72a7beb2"
           }
         ],
         "partitions": [
@@ -29462,29 +29462,11 @@
             "lineageTag": "601d2820-9828-4b69-8296-944d07cc96ad"
           },
           {
-            "name": "S28 Event Name",
+            "name": "S28 Week Day",
             "expression": [
               "",
               "",
-              "VAR selectedseason =28",
-              "VAR compare = 27",
-              "VAR like_to_like = SELECTEDVALUE('Like to Like'[Value])",
-              "",
-              "VAR events_selected_season=CALCULATE(MAX('GuestCounts'[Event]),'GuestCounts'[Season_ID]=selectedseason)",
-              "VAR events_compared_season=CALCULATE(MAX('GuestCounts'[Event]),'GuestCounts'[Season_ID]=compare)",
-              "",
-              "RETURN",
-              " \"S\"&selectedseason&\": \" & events_selected_season ",
-              ""
-            ],
-            "lineageTag": "1df56799-c3e0-4e29-b6ec-3915e6dc6f75"
-          },
-          {
-            "name": "S27 Week Day",
-            "expression": [
-              "",
-              "",
-              "VAR selectedseason = 27",
+              "VAR selectedseason = 28",
               "VAR events_selected_season=CALCULATE(MAX('GuestCounts'[Day_Type]),'GuestCounts'[Season_ID]=selectedseason)",
               "",
               "RETURN",
@@ -29913,6 +29895,24 @@
               "Return CALCULATE(AVERAGE(GuestCounts[Total_Park_Attendence]),Filter(GuestCounts,GuestCounts[WeekdayNum]=week && GuestCounts[Season_ID]=season),ALL())"
             ],
             "lineageTag": "27c9cab9-6d50-4eae-88e5-e5e5fbe34f39"
+          },
+          {
+            "name": "S28 Event Name",
+            "expression": [
+              "",
+              "",
+              "VAR selectedseason =28",
+              "VAR compare = 27",
+              "VAR like_to_like = SELECTEDVALUE('Like to Like'[Value])",
+              "",
+              "VAR events_selected_season=CALCULATE(MAX('GuestCounts'[Event]),'GuestCounts'[Season_ID]=selectedseason)",
+              "VAR events_compared_season=CALCULATE(MAX('GuestCounts'[Event]),'GuestCounts'[Season_ID]=compare)",
+              "",
+              "RETURN",
+              " \"S\"&selectedseason&\": \" & events_selected_season ",
+              ""
+            ],
+            "lineageTag": "1df56799-c3e0-4e29-b6ec-3915e6dc6f75"
           }
         ],
         "partitions": [
@@ -30373,30 +30373,6 @@
             "type": "calculated"
           },
           {
-            "name": "LocationInS28",
-            "annotations": [
-              {
-                "name": "SummarizationSetBy",
-                "value": "Automatic"
-              }
-            ],
-            "dataType": "int64",
-            "expression": [
-              "",
-              "VAR slected_season_locations28=CALCULATETABLE(DISTINCT('Pav Sensor + Park Footfall 2'[Location]),FILTER('Pav Sensor + Park Footfall 2',[Season_ID] = 28))",
-              "RETURN IF((('Pav Sensor + Park Footfall 2'[Location])) in slected_season_locations28 ,1,0)",
-              "",
-              "//LocationInS27 = ",
-              "//VAR slected_season_locations27=CALCULATETABLE(DISTINCT('Pav Sensor + Park Footfall 2'[Location]),FILTER('Pav Sensor + Park Footfall 2',[Season_ID] = 27))",
-              "//RETURN IF((('Pav Sensor + Park Footfall 2'[Location])) in slected_season_locations27 ,1,0)"
-            ],
-            "formatString": "0",
-            "isDataTypeInferred": true,
-            "lineageTag": "5b5a5a93-ad20-463b-ba61-06c67ed7427a",
-            "summarizeBy": "sum",
-            "type": "calculated"
-          },
-          {
             "name": "LocationInS27",
             "annotations": [
               {
@@ -30651,6 +30627,30 @@
             "lineageTag": "2466aedc-5b0f-4c9c-b782-5718539b26ee",
             "sourceColumn": "Season_ID",
             "summarizeBy": "count"
+          },
+          {
+            "name": "LocationInS28",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "expression": [
+              "",
+              "VAR slected_season_locations28=CALCULATETABLE(DISTINCT('Pav Sensor + Park Footfall 2'[Location]),FILTER('Pav Sensor + Park Footfall 2',[Season_ID] = 28))",
+              "RETURN IF((('Pav Sensor + Park Footfall 2'[Location])) in slected_season_locations28 ,1,0)",
+              "",
+              "//LocationInS27 = ",
+              "//VAR slected_season_locations27=CALCULATETABLE(DISTINCT('Pav Sensor + Park Footfall 2'[Location]),FILTER('Pav Sensor + Park Footfall 2',[Season_ID] = 27))",
+              "//RETURN IF((('Pav Sensor + Park Footfall 2'[Location])) in slected_season_locations27 ,1,0)"
+            ],
+            "formatString": "0",
+            "isDataTypeInferred": true,
+            "lineageTag": "5b5a5a93-ad20-463b-ba61-06c67ed7427a",
+            "summarizeBy": "sum",
+            "type": "calculated"
           },
           {
             "name": "Column",
@@ -33589,7 +33589,7 @@
             "lineageTag": "0af51821-3e5b-4f04-ace7-bcee91966db1"
           },
           {
-            "name": "S27 Actual Value vs Forecast",
+            "name": "S28 Actual Value vs Forecast",
             "annotations": [
               {
                 "name": "PBI_FormatHint",
@@ -33600,7 +33600,7 @@
               "",
               " ",
               "",
-              "VAR selectedseason = 27",
+              "VAR selectedseason = 28",
               "",
               "VAR selected_park_days=CALCULATE(MAX('GuestCounts'[day_num_tag_shifted]),'GuestCounts'[Season_ID]=selectedseason)",
               "VAR selected_park_days_min=CALCULATE(MIN('GuestCounts'[day_num_tag_shifted]),'GuestCounts'[Season_ID]=selectedseason)",
@@ -33611,7 +33611,7 @@
               "",
               "Var selected_SeasonAttend=CALCULATE(SUM('GuestCounts'[Total_Park_Attendence]),'GuestCounts'[Season_ID]=selectedseason,'GuestCounts'[day_num_tag_shifted]<=max_date,'GuestCounts'[day_num_tag_shifted]>=min_date)",
               "",
-              "Var vall=IF('Forecast'[S27 Variance Forecast]<0,selected_SeasonAttend,selected_SeasonAttend-ABS('Forecast'[S27 Variance Forecast]))",
+              "Var vall=IF('Forecast'[S28 Variance Forecast]<0,selected_SeasonAttend,selected_SeasonAttend-ABS('Forecast'[S28 Variance Forecast]))",
               "",
               "",
               "RETURN IF(vall<0,0,vall)",
@@ -33620,11 +33620,11 @@
             "lineageTag": "11096ad3-02d0-481d-aa3e-51f199251ecb"
           },
           {
-            "name": "S27 Variance Forecast",
+            "name": "S28 Variance Forecast",
             "expression": [
               "",
               "",
-              "VAR selectedseason = 27",
+              "VAR selectedseason = 28",
               "VAR selected_park_days=CALCULATE(MAX('GuestCounts'[day_num_tag_shifted]),'GuestCounts'[Season_ID]=selectedseason)",
               "",
               "",
@@ -33645,7 +33645,7 @@
             "lineageTag": "6e48c0b8-bcf8-4327-b04d-86ac506e0cbd"
           },
           {
-            "name": "S27 Over Target Forecast",
+            "name": "S28 Over Target Forecast",
             "annotations": [
               {
                 "name": "PBI_FormatHint",
@@ -33654,13 +33654,13 @@
             ],
             "expression": [
               "",
-              "IF ('Forecast'[S27 Variance Forecast]>0,'Forecast'[S27 Variance Forecast])",
+              "IF ('Forecast'[S28 Variance Forecast]>0,'Forecast'[S28 Variance Forecast])",
               ""
             ],
             "lineageTag": "61bb680d-d8a8-4fa7-ab15-5f398c682424"
           },
           {
-            "name": "S27 Under Target forecast",
+            "name": "S28 Under Target forecast",
             "annotations": [
               {
                 "name": "PBI_FormatHint",
@@ -33669,7 +33669,7 @@
             ],
             "expression": [
               "",
-              "IF ('Forecast'[S27 Variance Forecast]<0,ABS('Forecast'[S27 Variance Forecast]))",
+              "IF ('Forecast'[S28 Variance Forecast]<0,ABS('Forecast'[S28 Variance Forecast]))",
               ""
             ],
             "lineageTag": "18d24256-9cbc-46bb-89dd-e872f37b0b48"
@@ -33736,6 +33736,12 @@
             "lineageTag": "a0c5be8d-c090-4a43-a96b-0cb14548eec2"
           },
           {
+            "name": "Max",
+            "expression": "9000000",
+            "formatString": "0",
+            "lineageTag": "df63b0f4-f0dd-43d7-9682-67560dae40bf"
+          },
+          {
             "name": "S28 current target footfall vs goal %",
             "changedProperties": [
               {
@@ -33769,12 +33775,6 @@
               ""
             ],
             "lineageTag": "62a3e77d-f822-4cd6-bb1a-c21f2e1e85df"
-          },
-          {
-            "name": "Max",
-            "expression": "9000000",
-            "formatString": "0",
-            "lineageTag": "df63b0f4-f0dd-43d7-9682-67560dae40bf"
           }
         ],
         "partitions": [
@@ -39186,23 +39186,6 @@
             "type": "calculatedTableColumn"
           },
           {
-            "name": "LocationInS28",
-            "annotations": [
-              {
-                "name": "SummarizationSetBy",
-                "value": "Automatic"
-              }
-            ],
-            "dataType": "int64",
-            "formatString": "0",
-            "isDataTypeInferred": true,
-            "isNameInferred": true,
-            "lineageTag": "0b89be01-6aa1-4130-8318-ffb132369732",
-            "sourceColumn": "Pav Sensor + Park Footfall 2[LocationInS28]",
-            "summarizeBy": "sum",
-            "type": "calculatedTableColumn"
-          },
-          {
             "name": "LocationInS27",
             "annotations": [
               {
@@ -39390,6 +39373,23 @@
             "lineageTag": "8e87bff9-d217-486c-ab83-00cc8bfa0f06",
             "summarizeBy": "none",
             "type": "calculated"
+          },
+          {
+            "name": "LocationInS28",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "isDataTypeInferred": true,
+            "isNameInferred": true,
+            "lineageTag": "0b89be01-6aa1-4130-8318-ffb132369732",
+            "sourceColumn": "Pav Sensor + Park Footfall 2[LocationInS28]",
+            "summarizeBy": "sum",
+            "type": "calculatedTableColumn"
           },
           {
             "name": "Column",

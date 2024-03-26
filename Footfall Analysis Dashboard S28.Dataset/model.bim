@@ -33325,7 +33325,7 @@
               "",
               "",
               "",
-              "VAR selectedseason = 27 ",
+              "VAR selectedseason = 28 ",
               "VAR selected_park_days=CALCULATE(MAX('GuestCounts'[day_num_tag_shifted]),'GuestCounts'[Season_ID]=selectedseason)",
               "",
               "VAR max_date=selected_park_days",
@@ -33571,7 +33571,7 @@
             ],
             "expression": [
               "",
-              "VAR selectedseason = 27 // SELECTEDVALUE('GuestCounts'[Season_id])",
+              "VAR selectedseason = 28 // SELECTEDVALUE('GuestCounts'[Season_id])",
               "",
               "Return CALCULATE(SUM([Total Visitation (Tickets Utilized) 1]),'Forecast'[Season_ID]=selectedseason)"
             ],
@@ -33736,7 +33736,7 @@
             "lineageTag": "a0c5be8d-c090-4a43-a96b-0cb14548eec2"
           },
           {
-            "name": "S27 current target footfall vs goal %",
+            "name": "S28 current target footfall vs goal %",
             "changedProperties": [
               {
                 "property": "FormatString"
@@ -33753,7 +33753,7 @@
             "lineageTag": "38e7ef3a-fe9f-415f-a9cd-1d6eafc8caf5"
           },
           {
-            "name": "S27 running forecast footfall vs goal %",
+            "name": "S28 running forecast footfall vs goal %",
             "annotations": [
               {
                 "name": "PBI_FormatHint",

@@ -1580,122 +1580,6 @@
                   }
                 ]
               },
-              "coordinates_wifi.location": {
-                "Definition": {
-                  "Binding": {
-                    "ConceptualEntity": "Coordinates_wifi",
-                    "ConceptualProperty": "Location"
-                  }
-                },
-                "State": "Generated",
-                "Terms": [
-                  {
-                    "location": {
-                      "State": "Generated"
-                    }
-                  },
-                  {
-                    "locality": {
-                      "Source": {
-                        "Agent": "OfficeThesaurus"
-                      },
-                      "State": "Suggested",
-                      "Type": "Noun",
-                      "Weight": 0.736
-                    }
-                  },
-                  {
-                    "placement": {
-                      "Source": {
-                        "Agent": "OfficeThesaurus"
-                      },
-                      "State": "Suggested",
-                      "Type": "Noun",
-                      "Weight": 0.736
-                    }
-                  },
-                  {
-                    "scene": {
-                      "Source": {
-                        "Agent": "OfficeThesaurus"
-                      },
-                      "State": "Suggested",
-                      "Type": "Noun",
-                      "Weight": 0.736
-                    }
-                  },
-                  {
-                    "venue": {
-                      "Source": {
-                        "Agent": "OfficeThesaurus"
-                      },
-                      "State": "Suggested",
-                      "Type": "Noun",
-                      "Weight": 0.736
-                    }
-                  },
-                  {
-                    "address": {
-                      "Source": {
-                        "Agent": "OfficeThesaurus"
-                      },
-                      "State": "Suggested",
-                      "Type": "Noun",
-                      "Weight": 0.714
-                    }
-                  },
-                  {
-                    "place": {
-                      "Source": {
-                        "Agent": "OfficeThesaurus"
-                      },
-                      "State": "Suggested",
-                      "Type": "Noun",
-                      "Weight": 0.714
-                    }
-                  },
-                  {
-                    "position": {
-                      "Source": {
-                        "Agent": "OfficeThesaurus"
-                      },
-                      "State": "Suggested",
-                      "Type": "Noun",
-                      "Weight": 0.714
-                    }
-                  },
-                  {
-                    "setting": {
-                      "Source": {
-                        "Agent": "OfficeThesaurus"
-                      },
-                      "State": "Suggested",
-                      "Type": "Noun",
-                      "Weight": 0.714
-                    }
-                  },
-                  {
-                    "site": {
-                      "Source": {
-                        "Agent": "OfficeThesaurus"
-                      },
-                      "State": "Suggested",
-                      "Type": "Noun",
-                      "Weight": 0.714
-                    }
-                  },
-                  {
-                    "spot": {
-                      "Source": {
-                        "Agent": "OfficeThesaurus"
-                      },
-                      "State": "Suggested",
-                      "Type": "Noun",
-                      "Weight": 0.714
-                    }
-                  }
-                ]
-              },
               "coordinates_wifi.longitude": {
                 "Definition": {
                   "Binding": {
@@ -12300,95 +12184,6 @@
                   }
                 ]
               },
-              "pavilion_wise_detail.season_id": {
-                "Definition": {
-                  "Binding": {
-                    "ConceptualEntity": "Pavilion Wise Details",
-                    "ConceptualProperty": "Season_ID"
-                  }
-                },
-                "State": "Generated",
-                "Terms": [
-                  {
-                    "season ID": {
-                      "State": "Generated"
-                    }
-                  },
-                  {
-                    "Season_ID": {
-                      "State": "Generated",
-                      "Type": "Noun",
-                      "Weight": 0.99
-                    }
-                  },
-                  {
-                    "season": {
-                      "State": "Generated",
-                      "Weight": 0.97
-                    }
-                  },
-                  {
-                    "season identification": {
-                      "Source": {
-                        "Agent": "OfficeThesaurus"
-                      },
-                      "State": "Suggested",
-                      "Type": "Noun",
-                      "Weight": 0.75
-                    }
-                  },
-                  {
-                    "season identity": {
-                      "Source": {
-                        "Agent": "OfficeThesaurus"
-                      },
-                      "State": "Suggested",
-                      "Type": "Noun",
-                      "Weight": 0.75
-                    }
-                  },
-                  {
-                    "season identifier": {
-                      "Source": {
-                        "Agent": "OfficeThesaurus"
-                      },
-                      "State": "Suggested",
-                      "Type": "Noun",
-                      "Weight": 0.75
-                    }
-                  },
-                  {
-                    "season credential": {
-                      "Source": {
-                        "Agent": "OfficeThesaurus"
-                      },
-                      "State": "Suggested",
-                      "Type": "Noun",
-                      "Weight": 0.727
-                    }
-                  },
-                  {
-                    "term": {
-                      "Source": {
-                        "Agent": "OfficeThesaurus"
-                      },
-                      "State": "Suggested",
-                      "Type": "Noun",
-                      "Weight": 0.476
-                    }
-                  },
-                  {
-                    "spell": {
-                      "Source": {
-                        "Agent": "OfficeThesaurus"
-                      },
-                      "State": "Suggested",
-                      "Type": "Noun",
-                      "Weight": 0.476
-                    }
-                  }
-                ]
-              },
               "pavilion_wise_detail.seasonlocation_ID": {
                 "Definition": {
                   "Binding": {
@@ -20738,11 +20533,11 @@
           }
         ],
         "expression": [
-          "let\r",
-          "    Source = Table.FromRows(Json.Document(Binary.Decompress(Binary.FromText(\"i45WciwpKUpMLsnMz1OK1YlWCkgsy8wBc2IB\", BinaryEncoding.Base64), Compression.Deflate)), let _t = ((type nullable text) meta [Serialized.Text = true]) in type table [#\"Location Type\" = _t]),\r",
-          "    #\"Changed Type\" = Table.TransformColumnTypes(Source,{{\"Location Type\", type text}}),\r",
-          "    #\"Removed Columns\" = Table.RemoveColumns(#\"Changed Type\",{\"Location Type\"})\r",
-          "in\r",
+          "let",
+          "    Source = Table.FromRows(Json.Document(Binary.Decompress(Binary.FromText(\"i45WciwpKUpMLsnMz1OK1YlWCkgsy8wBc2IB\", BinaryEncoding.Base64), Compression.Deflate)), let _t = ((type nullable text) meta [Serialized.Text = true]) in type table [#\"Location Type\" = _t]),",
+          "    #\"Changed Type\" = Table.TransformColumnTypes(Source,{{\"Location Type\", type text}}),",
+          "    #\"Removed Columns\" = Table.RemoveColumns(#\"Changed Type\",{\"Location Type\"})",
+          "in",
           "    #\"Removed Columns\""
         ],
         "kind": "m",
@@ -20762,22 +20557,6 @@
       }
     ],
     "relationships": [
-      {
-        "name": "06616d3c-a328-47f6-a92a-71eb4898cedd",
-        "fromColumn": "Location",
-        "fromTable": "Pavilion Wise Details",
-        "isActive": false,
-        "toColumn": "Location",
-        "toTable": "Coordinates_wifi"
-      },
-      {
-        "name": "d1bd6578-ae1b-428f-9ef8-897960384be2",
-        "fromColumn": "Location",
-        "fromTable": "Pav Sensor + Park Footfall 2",
-        "isActive": false,
-        "toColumn": "Location",
-        "toTable": "Coordinates_wifi"
-      },
       {
         "name": "b80a5435-be37-4aa0-8ec2-89cfbcea01c6",
         "crossFilteringBehavior": "bothDirections",
@@ -21314,13 +21093,6 @@
         "toTable": "LocalDateTable_c7c4d261-be9f-4768-b288-545de5fe5221"
       },
       {
-        "name": "2fc2b242-b0c0-4a44-8173-6862fd562655",
-        "fromColumn": "Location",
-        "fromTable": "DwellByPavAndDate_alllocations",
-        "toColumn": "Location",
-        "toTable": "Coordinates_wifi"
-      },
-      {
         "name": "5136b033-78d7-4f64-a55e-fd634eb204ba",
         "fromColumn": "Date",
         "fromTable": "S28_GuestCounts",
@@ -21336,6 +21108,44 @@
         "fromTable": "S28_GuestCounts",
         "toColumn": "day_num_tag",
         "toTable": "S27_GuestCounts"
+      },
+      {
+        "name": "b2737307-0690-46f6-8213-aaa433a26599",
+        "fromColumn": "Location",
+        "fromTable": "Pavilion Wise Details",
+        "toColumn": "Location",
+        "toTable": "Coordinates_wifi"
+      },
+      {
+        "name": "7c105b1f-3c10-49f2-a0e3-d12153be4d24",
+        "fromColumn": "Location",
+        "fromTable": "DwellByPavAndDate_alllocations",
+        "isActive": false,
+        "toColumn": "Location",
+        "toTable": "Coordinates_wifi"
+      },
+      {
+        "name": "b7fcb61c-c86e-40ce-bd13-cf4b0331ed5a",
+        "fromColumn": "Location",
+        "fromTable": "Pav Sensor + Park Footfall 2",
+        "isActive": false,
+        "toColumn": "Location",
+        "toTable": "Coordinates_wifi"
+      },
+      {
+        "name": "88116a71-1658-45b2-bd43-59b3afceef08",
+        "fromColumn": "Location",
+        "fromTable": "Pav Sensor Footfall by Hour",
+        "isActive": false,
+        "toColumn": "Location",
+        "toTable": "Coordinates_wifi"
+      },
+      {
+        "name": "f0c78e23-e83f-4369-9042-3037f52a1b69",
+        "fromColumn": "Location",
+        "fromTable": "ePavilion Wise Details",
+        "toColumn": "Location",
+        "toTable": "Coordinates_wifi"
       }
     ],
     "sourceQueryCulture": "en-GB",
@@ -21810,22 +21620,13 @@
           {
             "name": "PBI_ResultType",
             "value": "Table"
+          },
+          {
+            "name": "PBI_NavigationStepName",
+            "value": "Navigation"
           }
         ],
         "columns": [
-          {
-            "name": "Location",
-            "annotations": [
-              {
-                "name": "SummarizationSetBy",
-                "value": "Automatic"
-              }
-            ],
-            "dataType": "string",
-            "lineageTag": "c64f182f-20f6-4173-8582-594d2a1cf29b",
-            "sourceColumn": "Location",
-            "summarizeBy": "none"
-          },
           {
             "name": "LATITUDE",
             "annotations": [
@@ -21841,7 +21642,7 @@
             "dataType": "double",
             "lineageTag": "ce3d6231-66f6-4a92-9583-25d5b06a5da9",
             "sourceColumn": "LATITUDE",
-            "summarizeBy": "none"
+            "summarizeBy": "sum"
           },
           {
             "name": "LONGITUDE",
@@ -21858,7 +21659,7 @@
             "dataType": "double",
             "lineageTag": "fff90f21-bf04-4ea2-b9af-b87b03418228",
             "sourceColumn": "LONGITUDE",
-            "summarizeBy": "none"
+            "summarizeBy": "sum"
           },
           {
             "name": "Area(m2)",
@@ -21875,6 +21676,19 @@
             "dataType": "double",
             "lineageTag": "1cfcb307-fe20-41ec-85af-6219ee05cc24",
             "sourceColumn": "Area(m2)",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "Location",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "9b96c965-0ba9-4028-8c1b-eb1e4bb1ec96",
+            "sourceColumn": "Location",
             "summarizeBy": "none"
           }
         ],
@@ -21886,25 +21700,12 @@
             "source": {
               "expression": [
                 "let",
-                "    Source = SharePoint.Files(\"https://dubaiholding.sharepoint.com/sites/DHEIT-FinanceShared/\", [ApiVersion = 15]),",
-                "    #\"Filtered Rows\" = Table.SelectRows(Source, each ([Name] = \"PARK ATTRACTIONS COORDINATES.xlsx\")),",
-                "    #\"Events xlsx_https://dubaiholding sharepoint com/sites/DHEIT-FinanceShared/Shared Documents/GV Dataflow/Lana Alhaj - Handover - DHE Data Scientist/GV/00  Dashbaords/\" = #\"Filtered Rows\"{[Name=\"PARK ATTRACTIONS COORDINATES.xlsx\",#\"Folder Path\"=\"https://dubaiholding.sharepoint.com/sites/DHEIT-FinanceShared/Shared Documents/GV Dataflow/Lana Alhaj - Handover - DHE Data Scientist/GV/00. Dashbaords/\"]}[Content],",
-                "    #\"Imported Excel Workbook\" = Excel.Workbook(#\"Events xlsx_https://dubaiholding sharepoint com/sites/DHEIT-FinanceShared/Shared Documents/GV Dataflow/Lana Alhaj - Handover - DHE Data Scientist/GV/00  Dashbaords/\"),",
-                "    Cleaned_Sheet = #\"Imported Excel Workbook\"{[Item=\"Cleaned\",Kind=\"Sheet\"]}[Data],",
-                "    #\"Promoted Headers\" = Table.PromoteHeaders(Cleaned_Sheet, [PromoteAllScalars=true]),",
-                "    #\"Changed Type\" = Table.TransformColumnTypes(#\"Promoted Headers\",{{\"Area1\", type text}, {\"Area2\", type text}, {\"LATITUDE\", type number}, {\"LONGITUDE\", type number}, {\"Area(m2)\", type number}, {\"Column6\", type any}, {\"Column7\", type any}, {\"Column8\", type any}}),",
-                "    #\"Renamed Columns\" = Table.RenameColumns(#\"Changed Type\",{{\"Area2\", \"toZone\"}}),",
-                "    #\"Removed Columns\" = Table.RemoveColumns(#\"Renamed Columns\",{\"Column8\", \"Column7\", \"Column6\", \"Area1\"}),",
-                "    #\"Renamed Columns1\" = Table.RenameColumns(#\"Removed Columns\",{{\"toZone\", \"Location\"}}),",
-                "    #\"Replaced Value\" = Table.ReplaceValue(#\"Renamed Columns1\",\"TOILET01\",\"TOILET 01\",Replacer.ReplaceText,{\"Location\"}),",
-                "    #\"Replaced Value1\" = Table.ReplaceValue(#\"Replaced Value\",\"TOILET02\",\"TOILET 02\",Replacer.ReplaceText,{\"Location\"}),",
-                "    #\"Replaced Value2\" = Table.ReplaceValue(#\"Replaced Value1\",\"TOILET03\",\"TOILET 03\",Replacer.ReplaceText,{\"Location\"}),",
-                "    #\"Replaced Value3\" = Table.ReplaceValue(#\"Replaced Value2\",\"TOILET04\",\"TOILET 04\",Replacer.ReplaceText,{\"Location\"}),",
-                "    #\"Replaced Value4\" = Table.ReplaceValue(#\"Replaced Value3\",\"TOILET05\",\"TOILET 05\",Replacer.ReplaceText,{\"Location\"}),",
-                "    #\"Replaced Value5\" = Table.ReplaceValue(#\"Replaced Value4\",\"TOILET06\",\"TOILET 06\",Replacer.ReplaceText,{\"Location\"}),",
-                "    #\"Replaced Value6\" = Table.ReplaceValue(#\"Replaced Value5\",\"STUNT AREA\",\"STUNT ARENA\",Replacer.ReplaceText,{\"Location\"})",
+                "    Source = PowerBI.Dataflows(null),",
+                "    #\"900de5b0-2f7b-4d94-a465-ee52acdc5d72\" = Source{[workspaceId=\"900de5b0-2f7b-4d94-a465-ee52acdc5d72\"]}[Data],",
+                "    #\"a671d159-a017-4946-8f8f-c6a5b637746a\" = #\"900de5b0-2f7b-4d94-a465-ee52acdc5d72\"{[dataflowId=\"a671d159-a017-4946-8f8f-c6a5b637746a\"]}[Data],",
+                "    Coordinates_wifi1 = #\"a671d159-a017-4946-8f8f-c6a5b637746a\"{[entity=\"Coordinates_wifi\"]}[Data]",
                 "in",
-                "    #\"Replaced Value6\""
+                "    Coordinates_wifi1"
               ],
               "type": "m"
             }
@@ -27221,6 +27022,10 @@
           {
             "name": "PBI_ResultType",
             "value": "Table"
+          },
+          {
+            "name": "PBI_NavigationStepName",
+            "value": "Navigation"
           }
         ],
         "columns": [
@@ -27236,20 +27041,6 @@
             "formatString": "0",
             "lineageTag": "62abb46b-5fde-45a1-b310-c5d134922cc2",
             "sourceColumn": "Pavilion_Size",
-            "summarizeBy": "none"
-          },
-          {
-            "name": "Season_ID",
-            "annotations": [
-              {
-                "name": "SummarizationSetBy",
-                "value": "Automatic"
-              }
-            ],
-            "dataType": "int64",
-            "formatString": "0",
-            "lineageTag": "8c614989-05e3-44d6-b7fe-0928b677eb75",
-            "sourceColumn": "Season_ID",
             "summarizeBy": "none"
           },
           {
@@ -27341,7 +27132,7 @@
             "formatString": "0",
             "isDataTypeInferred": true,
             "lineageTag": "1cc25018-111b-459f-963f-4286ffa9c2b0",
-            "summarizeBy": "none",
+            "summarizeBy": "sum",
             "type": "calculated"
           },
           {
@@ -27357,7 +27148,7 @@
             "formatString": "0",
             "isDataTypeInferred": true,
             "lineageTag": "669698d9-cb4b-4f2b-9fab-557e1f3ec3cc",
-            "summarizeBy": "none",
+            "summarizeBy": "sum",
             "type": "calculated"
           },
           {
@@ -27377,7 +27168,21 @@
             "formatString": "0",
             "lineageTag": "f2da0f92-413c-483e-9c34-520abe812ae4",
             "sourceColumn": "No. of Employees",
-            "summarizeBy": "none"
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "Season_ID",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "lineageTag": "6e3f282c-0565-4f1f-8c33-99fbf8217cc8",
+            "sourceColumn": "Season_ID",
+            "summarizeBy": "count"
           }
         ],
         "lineageTag": "fc02e7d0-316d-4a49-8ec1-5033ef8e4668",
@@ -27416,16 +27221,12 @@
             "source": {
               "expression": [
                 "let",
-                "    Source = SharePoint.Files(\"https://dubaiholding.sharepoint.com/sites/DHEIT-FinanceShared/\", [ApiVersion = 15]),",
-                "    #\"Filtered Rows\" = Table.SelectRows(Source, each ([Name] = \"Pavilion Wise Details.xlsx\")),",
-                "    #\"Events xlsx_https://dubaiholding sharepoint com/sites/DHEIT-FinanceShared/Shared Documents/GV Dataflow/Lana Alhaj - Handover - DHE Data Scientist/GV/00  Dashbaords/S27 Dashboards/HOD S27/\" = #\"Filtered Rows\"{[Name=\"Pavilion Wise Details.xlsx\",#\"Folder Path\"=\"https://dubaiholding.sharepoint.com/sites/DHEIT-FinanceShared/Shared Documents/GV Dataflow/Lana Alhaj - Handover - DHE Data Scientist/GV/00. Dashbaords/S27 Dashboards/HOD S27/\"]}[Content],",
-                "    #\"Imported Excel Workbook\" = Excel.Workbook(#\"Events xlsx_https://dubaiholding sharepoint com/sites/DHEIT-FinanceShared/Shared Documents/GV Dataflow/Lana Alhaj - Handover - DHE Data Scientist/GV/00  Dashbaords/S27 Dashboards/HOD S27/\"),",
-                "    Sheet1_Sheet = #\"Imported Excel Workbook\"{[Item=\"Sheet1\",Kind=\"Sheet\"]}[Data],",
-                "    #\"Promoted Headers\" = Table.PromoteHeaders(Sheet1_Sheet, [PromoteAllScalars=true]),",
-                "    #\"Changed Type\" = Table.TransformColumnTypes(#\"Promoted Headers\",{{\"Pavilion_Size\", Int64.Type}, {\"Season_id\", Int64.Type}, {\"Location_id\", type any}, {\"Location\", type text}}),",
-                "    #\"Renamed Columns\" = Table.RenameColumns(#\"Changed Type\",{{\"Season_id\", \"Season_ID\"}, {\"Location\", \"Location\"}})",
+                "    Source = PowerBI.Dataflows(null),",
+                "    #\"900de5b0-2f7b-4d94-a465-ee52acdc5d72\" = Source{[workspaceId=\"900de5b0-2f7b-4d94-a465-ee52acdc5d72\"]}[Data],",
+                "    #\"a671d159-a017-4946-8f8f-c6a5b637746a\" = #\"900de5b0-2f7b-4d94-a465-ee52acdc5d72\"{[dataflowId=\"a671d159-a017-4946-8f8f-c6a5b637746a\"]}[Data],",
+                "    #\"Pavilion Wise Details1\" = #\"a671d159-a017-4946-8f8f-c6a5b637746a\"{[entity=\"Pavilion Wise Details\"]}[Data]",
                 "in",
-                "    #\"Renamed Columns\""
+                "    #\"Pavilion Wise Details1\""
               ],
               "type": "m"
             }
@@ -29024,7 +28825,11 @@
               }
             ],
             "dataType": "int64",
-            "expression": "IF ([Date]>=DATE(2022,1,1), WEEKDAY([Date]-2) , WEEKDAY([Date]-1) )",
+            "expression": [
+              "IF ([Date]>=DATE(2023,1,1), WEEKDAY([Date]-3) , WEEKDAY([Date]-2) )",
+              "",
+              "// IF ([Date]>=DATE(2022,1,1), WEEKDAY([Date]-2) , WEEKDAY([Date]-1) )"
+            ],
             "formatString": "0",
             "isDataTypeInferred": true,
             "lineageTag": "a13bb435-4231-4e08-a74b-9a6afd79c72a",
@@ -31172,6 +30977,10 @@
           {
             "name": "PBI_ResultType",
             "value": "Table"
+          },
+          {
+            "name": "PBI_NavigationStepName",
+            "value": "Navigation"
           }
         ],
         "columns": [
@@ -31299,16 +31108,12 @@
             "source": {
               "expression": [
                 "let",
-                "    Source = SharePoint.Files(\"https://dubaiholding.sharepoint.com/sites/DHEIT-FinanceShared/\", [ApiVersion = 15]),",
-                "    #\"Filtered Rows\" = Table.SelectRows(Source, each ([Name] = \"Events.xlsx\")),",
-                "    #\"Events xlsx_https://dubaiholding sharepoint com/sites/DHEIT-FinanceShared/Shared Documents/GV Dataflow/Lana Alhaj - Handover - DHE Data Scientist/GV/00  Dashbaords/S27 Dashboards/HOD S27/\" = #\"Filtered Rows\"{[Name=\"Events.xlsx\",#\"Folder Path\"=\"https://dubaiholding.sharepoint.com/sites/DHEIT-FinanceShared/Shared Documents/GV Dataflow/Lana Alhaj - Handover - DHE Data Scientist/GV/00. Dashbaords/S27 Dashboards/HOD S27/\"]}[Content],",
-                "    #\"Imported Excel Workbook\" = Excel.Workbook(#\"Events xlsx_https://dubaiholding sharepoint com/sites/DHEIT-FinanceShared/Shared Documents/GV Dataflow/Lana Alhaj - Handover - DHE Data Scientist/GV/00  Dashbaords/S27 Dashboards/HOD S27/\"),",
-                "    Sheet1_Sheet = #\"Imported Excel Workbook\"{[Item=\"Sheet1\",Kind=\"Sheet\"]}[Data],",
-                "    #\"Promoted Headers\" = Table.PromoteHeaders(Sheet1_Sheet, [PromoteAllScalars=true]),",
-                "    #\"Removed Columns1\" = Table.RemoveColumns(#\"Promoted Headers\",{\"Column6\", \"Column7\"}),",
-                "    #\"Changed Type\" = Table.TransformColumnTypes(#\"Removed Columns1\",{{\"Season\", Int64.Type}, {\"Concert\", type text}, {\"Concert Type\", type text}, {\"Date\", type date}, {\"Start Time\", Int64.Type}})",
+                "    Source = PowerBI.Dataflows(null),",
+                "    #\"900de5b0-2f7b-4d94-a465-ee52acdc5d72\" = Source{[workspaceId=\"900de5b0-2f7b-4d94-a465-ee52acdc5d72\"]}[Data],",
+                "    #\"a671d159-a017-4946-8f8f-c6a5b637746a\" = #\"900de5b0-2f7b-4d94-a465-ee52acdc5d72\"{[dataflowId=\"a671d159-a017-4946-8f8f-c6a5b637746a\"]}[Data],",
+                "    Concerts1 = #\"a671d159-a017-4946-8f8f-c6a5b637746a\"{[entity=\"Concerts\"]}[Data]",
                 "in",
-                "    #\"Changed Type\""
+                "    Concerts1"
               ],
               "type": "m"
             }
@@ -33004,6 +32809,10 @@
           {
             "name": "PBI_ResultType",
             "value": "Table"
+          },
+          {
+            "name": "PBI_NavigationStepName",
+            "value": "Navigation"
           }
         ],
         "columns": [
@@ -33343,11 +33152,6 @@
                 "value": "Automatic"
               }
             ],
-            "changedProperties": [
-              {
-                "property": "DataType"
-              }
-            ],
             "dataType": "int64",
             "formatString": "0",
             "lineageTag": "69bb8a12-87a6-414a-a0e2-70e6536e2965",
@@ -33436,6 +33240,40 @@
             "lineageTag": "30fca0b0-f18f-4e35-b553-b558f800261a",
             "summarizeBy": "sum",
             "type": "calculated"
+          },
+          {
+            "name": "CABANA",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              },
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "dataType": "double",
+            "lineageTag": "424bf1cf-d00b-4e21-af35-e585cc44f058",
+            "sourceColumn": "CABANA",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "ICE RINK",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              },
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "dataType": "double",
+            "lineageTag": "4ea13d73-5bf2-4c89-910a-b258b1f240e4",
+            "sourceColumn": "ICE RINK",
+            "summarizeBy": "sum"
           }
         ],
         "lineageTag": "cb2e19e0-191d-4c82-9084-454e2d07cc14",
@@ -33946,15 +33784,12 @@
             "source": {
               "expression": [
                 "let",
-                "    Source = SharePoint.Files(\"https://dubaiholding.sharepoint.com/sites/DHEIT-FinanceShared/\", [ApiVersion = 15]),",
-                "    #\"Filtered Rows\" = Table.SelectRows(Source, each ([Name] = \"Forecast.xlsx\")),",
-                "    #\"Events xlsx_https://dubaiholding sharepoint com/sites/DHEIT-FinanceShared/Shared Documents/GV Dataflow/Lana Alhaj - Handover - DHE Data Scientist/GV/00  Dashbaords/S27 Dashboards/HOD S27/\" = #\"Filtered Rows\"{[Name=\"Forecast.xlsx\",#\"Folder Path\"=\"https://dubaiholding.sharepoint.com/sites/DHEIT-FinanceShared/Shared Documents/GV Dataflow/Lana Alhaj - Handover - DHE Data Scientist/GV/00. Dashbaords/S27 Dashboards/HOD S27/\"]}[Content],",
-                "    #\"Imported Excel Workbook\" = Excel.Workbook(#\"Events xlsx_https://dubaiholding sharepoint com/sites/DHEIT-FinanceShared/Shared Documents/GV Dataflow/Lana Alhaj - Handover - DHE Data Scientist/GV/00  Dashbaords/S27 Dashboards/HOD S27/\"),",
-                "    Sheet1_Sheet = #\"Imported Excel Workbook\"{[Item=\"Sheet1\",Kind=\"Sheet\"]}[Data],",
-                "    #\"Promoted Headers\" = Table.PromoteHeaders(Sheet1_Sheet, [PromoteAllScalars=true]),",
-                "    #\"Changed Type\" = Table.TransformColumnTypes(#\"Promoted Headers\",{{\"day_num_tag\", Int64.Type}, {\"DATE\", type date}, {\"B2C : Gate Tickets\", type number}, {\"B2C : Online Tickets\", type number}, {\"B2C : Gate and Online\", type number}, {\"B2B : Corporate and Travel Agents Tickets\", type number}, {\"B2C + B2B Tickets\", type number}, {\"Pre-purchased Pack Tickets\", type number}, {\"Complimentary Tickets\", type number}, {\"Total Visitation (Tickets Utilized) 1\", type number}, {\"B2C : Gate Sales\", type number}, {\"B2C : Online Sales\", type number}, {\"B2C : Gate and Online Sales\", type number}, {\"B2B : Corporate and Travel Agents Sales\", type number}, {\"B2C + B2B Ticket Revenue 2\", type number}, {\"CARNAVAL : GV Rides + 3rd Party Games 3\", type number}, {\"STUNT SHOW\", type number}, {\"RIPLEYS\", type number}, {\"PETER RABBIT 4\", type number}, {\"VALET AND VIP PARKING\", type number}, {\"Total Operating Revenue\", type number}})",
+                "    Source = PowerBI.Dataflows(null),",
+                "    #\"900de5b0-2f7b-4d94-a465-ee52acdc5d72\" = Source{[workspaceId=\"900de5b0-2f7b-4d94-a465-ee52acdc5d72\"]}[Data],",
+                "    #\"a671d159-a017-4946-8f8f-c6a5b637746a\" = #\"900de5b0-2f7b-4d94-a465-ee52acdc5d72\"{[dataflowId=\"a671d159-a017-4946-8f8f-c6a5b637746a\"]}[Data],",
+                "    Forecast1 = #\"a671d159-a017-4946-8f8f-c6a5b637746a\"{[entity=\"Forecast\"]}[Data]",
                 "in",
-                "    #\"Changed Type\""
+                "    Forecast1"
               ],
               "type": "m"
             }
@@ -34675,6 +34510,10 @@
           {
             "name": "PBI_ResultType",
             "value": "Table"
+          },
+          {
+            "name": "PBI_NavigationStepName",
+            "value": "Navigation"
           }
         ],
         "columns": [
@@ -35060,18 +34899,12 @@
             "source": {
               "expression": [
                 "let",
-                "    Source = SharePoint.Files(\"https://dubaiholding.sharepoint.com/sites/DHEIT-FinanceShared/\", [ApiVersion = 15]),",
-                "    #\"Filtered Rows\" = Table.SelectRows(Source, each ([Name] = \"S27 Kaizen Pricing.xlsx\")),",
-                "    #\"Events xlsx_https://dubaiholding sharepoint com/sites/DHEIT-FinanceShared/Shared Documents/GV Dataflow/Lana Alhaj - Handover - DHE Data Scientist/GV/00  Dashbaords/S27 Dashboards/HOD S27/\" = #\"Filtered Rows\"{[Name=\"S27 Kaizen Pricing.xlsx\",#\"Folder Path\"=\"https://dubaiholding.sharepoint.com/sites/DHEIT-FinanceShared/Shared Documents/GV Dataflow/Lana Alhaj - Handover - DHE Data Scientist/GV/00. Dashbaords/S27 Dashboards/HOD S27/\"]}[Content],",
-                "    #\"Imported Excel Workbook\" = Excel.Workbook(#\"Events xlsx_https://dubaiholding sharepoint com/sites/DHEIT-FinanceShared/Shared Documents/GV Dataflow/Lana Alhaj - Handover - DHE Data Scientist/GV/00  Dashbaords/S27 Dashboards/HOD S27/\"),",
-                "    Sheet1_sheet = #\"Imported Excel Workbook\"{[Item=\"Sheet1\",Kind=\"Sheet\"]}[Data],",
-                "    FilterNullAndWhitespace = each List.Select(_, each _ <> null and (not (_ is text) or Text.Trim(_) <> \"\")),",
-                "    #\"Removed Bottom Rows\" = Table.RemoveLastN(Sheet1_sheet, each try List.IsEmpty(List.Skip(FilterNullAndWhitespace(Record.FieldValues(_)), 1)) otherwise false),",
-                "    #\"Removed Top Rows\" = Table.Skip(#\"Removed Bottom Rows\", each try List.IsEmpty(List.Skip(FilterNullAndWhitespace(Record.FieldValues(_)), 1)) otherwise false),",
-                "    #\"Promoted Headers\" = Table.PromoteHeaders(#\"Removed Top Rows\", [PromoteAllScalars=true]),",
-                "    #\"Changed Type\" = Table.TransformColumnTypes(#\"Promoted Headers\",{{\"Date\", type date}, {\"Kaizen - B2C Visitation#(lf)#(lf)(2022-09-28 Projection)\", Int64.Type}})",
+                "    Source = PowerBI.Dataflows(null),",
+                "    #\"900de5b0-2f7b-4d94-a465-ee52acdc5d72\" = Source{[workspaceId=\"900de5b0-2f7b-4d94-a465-ee52acdc5d72\"]}[Data],",
+                "    #\"a671d159-a017-4946-8f8f-c6a5b637746a\" = #\"900de5b0-2f7b-4d94-a465-ee52acdc5d72\"{[dataflowId=\"a671d159-a017-4946-8f8f-c6a5b637746a\"]}[Data],",
+                "    #\"Kaizen Modelling1\" = #\"a671d159-a017-4946-8f8f-c6a5b637746a\"{[entity=\"Kaizen Modelling\"]}[Data]",
                 "in",
-                "    #\"Changed Type\""
+                "    #\"Kaizen Modelling1\""
               ],
               "type": "m"
             }

@@ -29462,12 +29462,12 @@
             "lineageTag": "601d2820-9828-4b69-8296-944d07cc96ad"
           },
           {
-            "name": "S27 Event Name",
+            "name": "S28 Event Name",
             "expression": [
               "",
               "",
-              "VAR selectedseason =27",
-              "VAR compare = 26",
+              "VAR selectedseason =28",
+              "VAR compare = 27",
               "VAR like_to_like = SELECTEDVALUE('Like to Like'[Value])",
               "",
               "VAR events_selected_season=CALCULATE(MAX('GuestCounts'[Event]),'GuestCounts'[Season_ID]=selectedseason)",

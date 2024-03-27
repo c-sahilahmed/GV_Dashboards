@@ -26878,7 +26878,7 @@
               "",
               "// \"Weekday|  Day before  |  Day After \"& UNICHAR(10)&",
               "// \"  No.  | Weekend Shift| Weekend Shift\"& UNICHAR(10)&",
-              "\"______ (No.) Before W/E Shift | After W/E Shift ______     (1) Monday|Tuesday (2)Tuesday|Wednesday (3)Wednesday|Thursday (3)Wednesday|Thursday (4)Thursday|Friday (5)Friday|Saturday (6)Saturday|Sunday (7)Sunday|Monday  \"",
+              "\"______ (No.) S27 | S28 (No.) ______     (1) Tuesday|Wednesday (2)Wednesday|Thursday (3)Thursday|Friday (4)Friday|Saturday (5)Saturday|Sunday (6)Sunday|Monday (7)Monday|Tuesday\"",
               ""
             ],
             "lineageTag": "2f07020e-3be4-43dd-894b-e552db28333a"

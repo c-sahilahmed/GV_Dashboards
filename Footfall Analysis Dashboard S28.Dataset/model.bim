@@ -20723,45 +20723,6 @@
         "toTable": "Pav Sensor Footfall by Hour"
       },
       {
-        "name": "227f842f-5f55-4ca0-9e26-179aaea61415",
-        "fromColumn": "day_num_tag",
-        "fromTable": "DwellByPavAndDate_alllocations",
-        "isActive": false,
-        "toColumn": "day_num_tag",
-        "toTable": "S27_GuestCounts"
-      },
-      {
-        "name": "81f1cfe7-95c6-492d-98f3-82730ba6ff37",
-        "fromColumn": "day_num_tag",
-        "fromTable": "GuestCounts",
-        "toColumn": "day_num_tag",
-        "toTable": "S27_GuestCounts"
-      },
-      {
-        "name": "8558a1c2-d59a-4c8d-a166-0fe0efd667cc",
-        "fromColumn": "day_num_tag",
-        "fromTable": "Pav Sensor + Park Footfall 2",
-        "isActive": false,
-        "toColumn": "day_num_tag",
-        "toTable": "S27_GuestCounts"
-      },
-      {
-        "name": "90b2a1ad-6f24-474a-8a6d-838963a3c4b6",
-        "fromColumn": "day_num_tag",
-        "fromTable": "Forecast",
-        "isActive": false,
-        "toColumn": "day_num_tag",
-        "toTable": "S27_GuestCounts"
-      },
-      {
-        "name": "6c215ad5-c6d3-4c92-8530-fca3b121ae20",
-        "fromColumn": "day_num_tag",
-        "fromTable": "Pav Sensor Footfall by Hour",
-        "isActive": false,
-        "toColumn": "day_num_tag",
-        "toTable": "S27_GuestCounts"
-      },
-      {
         "name": "91c62bfc-a77f-4755-a557-dbb3a295ece9",
         "crossFilteringBehavior": "bothDirections",
         "fromColumn": "fromZone",
@@ -21078,13 +21039,6 @@
         "toTable": "LocalDateTable_1cfec12f-28ed-43dc-9fd6-16a5dc60e76b"
       },
       {
-        "name": "d4ba7638-c391-43bb-a348-de9866b57aa9",
-        "fromColumn": "day_num_tag",
-        "fromTable": "Gates Hourwise Entry",
-        "toColumn": "day_num_tag",
-        "toTable": "S27_GuestCounts"
-      },
-      {
         "name": "fe21a0f8-091c-4d36-a4f1-17ed079a02ad",
         "fromColumn": "Date",
         "fromTable": "Sales Data all Seasons",
@@ -21099,15 +21053,6 @@
         "joinOnDateBehavior": "datePartOnly",
         "toColumn": "Date",
         "toTable": "LocalDateTable_91e355da-7e93-4850-ae33-6d6e8da8a81c"
-      },
-      {
-        "name": "8eb991fa-3296-4464-9ef9-853ac07e24c0",
-        "crossFilteringBehavior": "bothDirections",
-        "fromCardinality": "one",
-        "fromColumn": "day_num_tag",
-        "fromTable": "S28_GuestCounts",
-        "toColumn": "day_num_tag",
-        "toTable": "S27_GuestCounts"
       },
       {
         "name": "b2737307-0690-46f6-8213-aaa433a26599",
@@ -21146,6 +21091,52 @@
         "fromTable": "ePavilion Wise Details",
         "toColumn": "Location",
         "toTable": "Coordinates_wifi"
+      },
+      {
+        "name": "31b352c8-5721-44e9-b1c3-e7768ad21af0",
+        "fromColumn": "day_num_tag",
+        "fromTable": "Pav Sensor Footfall by Hour",
+        "isActive": false,
+        "toColumn": "day_num_tag",
+        "toTable": "S28_GuestCounts"
+      },
+      {
+        "name": "f2eac64b-1547-40e1-b406-5868e233be25",
+        "fromColumn": "day_num_tag",
+        "fromTable": "Pav Sensor + Park Footfall 2",
+        "isActive": false,
+        "toColumn": "day_num_tag",
+        "toTable": "S28_GuestCounts"
+      },
+      {
+        "name": "7d9576ca-7059-40bd-9bed-11bb0c4bcfa0",
+        "fromColumn": "day_num_tag",
+        "fromTable": "GuestCounts",
+        "toColumn": "day_num_tag",
+        "toTable": "S28_GuestCounts"
+      },
+      {
+        "name": "ee522d39-7e79-4e85-a2da-f7e031dfacc1",
+        "fromColumn": "day_num_tag",
+        "fromTable": "Gates Hourwise Entry",
+        "toColumn": "day_num_tag",
+        "toTable": "S28_GuestCounts"
+      },
+      {
+        "name": "a70e7c1d-10cb-4b13-ba74-6683ff45f7d4",
+        "fromColumn": "day_num_tag",
+        "fromTable": "Forecast",
+        "isActive": false,
+        "toColumn": "day_num_tag",
+        "toTable": "S28_GuestCounts"
+      },
+      {
+        "name": "50fd4ff1-8192-4303-a887-43a72c6d20b2",
+        "fromColumn": "day_num_tag",
+        "fromTable": "DwellByPavAndDate_alllocations",
+        "isActive": false,
+        "toColumn": "day_num_tag",
+        "toTable": "S28_GuestCounts"
       }
     ],
     "sourceQueryCulture": "en-GB",
@@ -32601,7 +32592,7 @@
             "formatString": "0",
             "lineageTag": "8f16d647-3c48-4b88-9680-e75f235a824a",
             "sourceColumn": "day_num_tag",
-            "summarizeBy": "none"
+            "summarizeBy": "sum"
           },
           {
             "name": "WeekdayNum",

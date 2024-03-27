@@ -4,8 +4,8 @@
     {
       "ordinal": 0,
       "scrollPosition": {
-        "x": 1648.121097046414,
-        "y": 226.15611814345993
+        "x": 409.60000610351563,
+        "y": 0
       },
       "nodes": [
         {
@@ -296,7 +296,7 @@
         },
         {
           "location": {
-            "x": 1146.2999999999984,
+            "x": 2382.2999999999984,
             "y": 0
           },
           "nodeIndex": "S27_GuestCounts",
@@ -466,7 +466,7 @@
         },
         {
           "location": {
-            "x": 1821.2999999999929,
+            "x": 1747.2999999999929,
             "y": 0
           },
           "nodeIndex": "Dwell - Ground events",
@@ -518,8 +518,8 @@
         },
         {
           "location": {
-            "x": 3328.3436133486766,
-            "y": 676.33333333333326
+            "x": 2083.7721150227835,
+            "y": 0
           },
           "nodeIndex": "S28_GuestCounts",
           "nodeLineageTag": "9972c52d-8a70-4529-b81c-054a68a4e99f",
@@ -527,11 +527,11 @@
             "height": 300,
             "width": 234
           },
-          "zIndex": 0
+          "zIndex": 40
         }
       ],
       "name": "All tables",
-      "zoomValue": 80,
+      "zoomValue": 50,
       "pinKeyFieldsToTop": false,
       "showExtraHeaderInfo": false,
       "hideKeyFieldsWhenCollapsed": true,

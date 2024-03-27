@@ -424,7 +424,7 @@
           "z": 28000.00
         },
         {
-          "config": "{\"name\":\"4aea89107e96bbedda30\",\"layouts\":[{\"id\":0,\"position\":{\"x\":205.08474576271186,\"y\":250.84745762711864,\"z\":10000,\"width\":484.7457627118644,\"height\":45.76271186440678,\"tabOrder\":10000}}],\"singleVisual\":{\"visualType\":\"textbox\",\"drillFilterOtherVisuals\":true,\"objects\":{\"general\":[{\"properties\":{\"paragraphs\":[{\"textRuns\":[{\"value\":\"* Season day 1 is ignored when comparing to S26 due to weekend shift\",\"textStyle\":{\"fontSize\":\"10pt\"}}]},{\"textRuns\":[{\"value\":\"** Targets represent Season 27 estimates currently submitted to DHE for approval.\",\"textStyle\":{\"fontSize\":\"10pt\"}}]}]}}]},\"vcObjects\":{\"background\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}}}}]}}}",
+          "config": "{\"name\":\"4aea89107e96bbedda30\",\"layouts\":[{\"id\":0,\"position\":{\"x\":205.08474576271186,\"y\":250.84745762711864,\"z\":10000,\"width\":484.7457627118644,\"height\":45.76271186440678,\"tabOrder\":10000}}],\"singleVisual\":{\"visualType\":\"textbox\",\"drillFilterOtherVisuals\":true,\"objects\":{\"general\":[{\"properties\":{\"paragraphs\":[{\"textRuns\":[{\"value\":\"* Season day 1 is ignored when comparing to S26 due to weekend shift\",\"textStyle\":{\"fontSize\":\"10pt\"}}]},{\"textRuns\":[{\"value\":\"** Targets represent Season 28 estimates\",\"textStyle\":{\"fontSize\":\"10pt\"}}]}]}}]},\"vcObjects\":{\"background\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}}}}]}}}",
           "filters": "[]",
           "height": 45.76,
           "width": 484.75,

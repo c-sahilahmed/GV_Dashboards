@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "SemanticModel",
+    "displayName": "Footfall Analysis Dashboard S28"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "386f1155-d91d-48ca-ad18-733b72b3190e"
+  }
+}

@@ -12,7 +12,7 @@
       },
       {
         "name": "PBIDesktopVersion",
-        "value": "2.126.1261.0 (24.02)"
+        "value": "2.127.1327.0 (24.03)"
       },
       {
         "name": "PBI_ProTooling",
@@ -25,7 +25,6 @@
         "name": "en-US",
         "linguisticMetadata": {
           "content": {
-            "DynamicImprovement": "HighConfidence",
             "Entities": {
               "average_movement": {
                 "Definition": {
@@ -29445,22 +29444,17 @@
             "lineageTag": "601d2820-9828-4b69-8296-944d07cc96ad"
           },
           {
-            "name": "S28 Event Name",
+            "name": "S28 Week Day",
             "expression": [
               "",
               "",
-              "VAR selectedseason =28",
-              "VAR compare = 27",
-              "VAR like_to_like = SELECTEDVALUE('Like to Like'[Value])",
-              "",
-              "VAR events_selected_season=CALCULATE(MAX('GuestCounts'[Event]),'GuestCounts'[Season_ID]=selectedseason)",
-              "VAR events_compared_season=CALCULATE(MAX('GuestCounts'[Event]),'GuestCounts'[Season_ID]=compare)",
+              "VAR selectedseason = 28",
+              "VAR events_selected_season=CALCULATE(MAX('GuestCounts'[Day_Type]),'GuestCounts'[Season_ID]=selectedseason)",
               "",
               "RETURN",
-              " \"S\"&selectedseason&\": \" & events_selected_season ",
-              ""
+              "events_selected_season"
             ],
-            "lineageTag": "1df56799-c3e0-4e29-b6ec-3915e6dc6f75"
+            "lineageTag": "bfbcba83-c9a9-47d6-84d1-4345ad0ce406"
           },
           {
             "name": "Travel Agents",
@@ -29885,17 +29879,22 @@
             "lineageTag": "27c9cab9-6d50-4eae-88e5-e5e5fbe34f39"
           },
           {
-            "name": "S28 Week Day",
+            "name": "S28 Event Name",
             "expression": [
               "",
               "",
-              "VAR selectedseason = 28",
-              "VAR events_selected_season=CALCULATE(MAX('GuestCounts'[Day_Type]),'GuestCounts'[Season_ID]=selectedseason)",
+              "VAR selectedseason =28",
+              "VAR compare = 27",
+              "VAR like_to_like = SELECTEDVALUE('Like to Like'[Value])",
+              "",
+              "VAR events_selected_season=CALCULATE(MAX('GuestCounts'[Event]),'GuestCounts'[Season_ID]=selectedseason)",
+              "VAR events_compared_season=CALCULATE(MAX('GuestCounts'[Event]),'GuestCounts'[Season_ID]=compare)",
               "",
               "RETURN",
-              "events_selected_season"
+              " \"S\"&selectedseason&\": \" & events_selected_season ",
+              ""
             ],
-            "lineageTag": "bfbcba83-c9a9-47d6-84d1-4345ad0ce406"
+            "lineageTag": "1df56799-c3e0-4e29-b6ec-3915e6dc6f75"
           }
         ],
         "partitions": [
@@ -33564,73 +33563,6 @@
             "lineageTag": "0af51821-3e5b-4f04-ace7-bcee91966db1"
           },
           {
-            "name": "Selected Season forecast",
-            "annotations": [
-              {
-                "name": "PBI_FormatHint",
-                "value": "{\"isGeneralNumber\":true}"
-              }
-            ],
-            "expression": [
-              "",
-              "VAR selectedseason= SELECTEDVALUE('Selected Season'[SeasonID])",
-              "REturn Calculate(SUM('Forecast'[Total Visitation (Tickets Utilized) 1]),'Forecast'[Season_ID]=selectedseason)"
-            ],
-            "lineageTag": "6611bb04-c108-49d1-a52c-da2670cc16f7"
-          },
-          {
-            "name": "Forecast Accuracy",
-            "changedProperties": [
-              {
-                "property": "FormatString"
-              }
-            ],
-            "expression": [
-              "",
-              "VAR selectedseason = SELECTEDVALUE('Selected Season'[SeasonID])//SELECTEDVALUE('GuestCounts'[Season_id])",
-              "VAR like_to_like = SELECTEDVALUE('Like to Like'[Value])",
-              "VAR selected_park_days=CALCULATE(MAX('GuestCounts'[day_num_tag_shifted]),'GuestCounts'[Season_ID]=selectedseason)",
-              "",
-              "",
-              "VAR max_date=selected_park_days",
-              "//  1 - (ABS( 'Forecast'[Variance Forecast]) / SUM('Forecast'[Total Visitation (Tickets Utilized) 1]))",
-              "//  REturn ABS( 'Forecast'[Variance Forecast]) /",
-              "Return  1 - (ABS( 'Forecast'[Variance Forecast]) /CALCULATE(",
-              "     SUM('GuestCounts'[Total_Park_Attendence]),",
-              "     FILTER('GuestCounts',",
-              "     [Season_id]=selectedseason  && 'GuestCounts'[day_num_tag_shifted]<=max_date)) )"
-            ],
-            "formatString": "0%;-0%;0%",
-            "lineageTag": "b2ec9c55-1bfb-4760-a89e-be388cc9fb9f"
-          },
-          {
-            "name": "Days Target Missed vs Forecast Last 7 days",
-            "expression": [
-              "",
-              "VAR last_date=Calculate(Max('GuestCounts'[day_num_tag_shifted])-7,'GuestCounts'[Season_ID]=27)",
-              "VAR count_below_Target=",
-              "COUNTROWS(",
-              "    FILTER(",
-              "        Forecast,",
-              "        ('Forecast'[Visitation_Forecast]>",
-              "        'Footfall Measures'[S27 park footfall all days to date])",
-              "         &&( 'Forecast'[day_num_tag_shifted]>last_date))",
-              "",
-              "    )",
-              "",
-              "Return IF(count_below_Target=BLANK(),0,count_below_Target)",
-              ""
-            ],
-            "formatString": "0",
-            "lineageTag": "a0c5be8d-c090-4a43-a96b-0cb14548eec2"
-          },
-          {
-            "name": "Max",
-            "expression": "9000000",
-            "formatString": "0",
-            "lineageTag": "df63b0f4-f0dd-43d7-9682-67560dae40bf"
-          },
-          {
             "name": "S28 Actual Value vs Forecast",
             "annotations": [
               {
@@ -33715,6 +33647,73 @@
               ""
             ],
             "lineageTag": "18d24256-9cbc-46bb-89dd-e872f37b0b48"
+          },
+          {
+            "name": "Selected Season forecast",
+            "annotations": [
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "expression": [
+              "",
+              "VAR selectedseason= SELECTEDVALUE('Selected Season'[SeasonID])",
+              "REturn Calculate(SUM('Forecast'[Total Visitation (Tickets Utilized) 1]),'Forecast'[Season_ID]=selectedseason)"
+            ],
+            "lineageTag": "6611bb04-c108-49d1-a52c-da2670cc16f7"
+          },
+          {
+            "name": "Forecast Accuracy",
+            "changedProperties": [
+              {
+                "property": "FormatString"
+              }
+            ],
+            "expression": [
+              "",
+              "VAR selectedseason = SELECTEDVALUE('Selected Season'[SeasonID])//SELECTEDVALUE('GuestCounts'[Season_id])",
+              "VAR like_to_like = SELECTEDVALUE('Like to Like'[Value])",
+              "VAR selected_park_days=CALCULATE(MAX('GuestCounts'[day_num_tag_shifted]),'GuestCounts'[Season_ID]=selectedseason)",
+              "",
+              "",
+              "VAR max_date=selected_park_days",
+              "//  1 - (ABS( 'Forecast'[Variance Forecast]) / SUM('Forecast'[Total Visitation (Tickets Utilized) 1]))",
+              "//  REturn ABS( 'Forecast'[Variance Forecast]) /",
+              "Return  1 - (ABS( 'Forecast'[Variance Forecast]) /CALCULATE(",
+              "     SUM('GuestCounts'[Total_Park_Attendence]),",
+              "     FILTER('GuestCounts',",
+              "     [Season_id]=selectedseason  && 'GuestCounts'[day_num_tag_shifted]<=max_date)) )"
+            ],
+            "formatString": "0%;-0%;0%",
+            "lineageTag": "b2ec9c55-1bfb-4760-a89e-be388cc9fb9f"
+          },
+          {
+            "name": "Days Target Missed vs Forecast Last 7 days",
+            "expression": [
+              "",
+              "VAR last_date=Calculate(Max('GuestCounts'[day_num_tag_shifted])-7,'GuestCounts'[Season_ID]=27)",
+              "VAR count_below_Target=",
+              "COUNTROWS(",
+              "    FILTER(",
+              "        Forecast,",
+              "        ('Forecast'[Visitation_Forecast]>",
+              "        'Footfall Measures'[S27 park footfall all days to date])",
+              "         &&( 'Forecast'[day_num_tag_shifted]>last_date))",
+              "",
+              "    )",
+              "",
+              "Return IF(count_below_Target=BLANK(),0,count_below_Target)",
+              ""
+            ],
+            "formatString": "0",
+            "lineageTag": "a0c5be8d-c090-4a43-a96b-0cb14548eec2"
+          },
+          {
+            "name": "Max",
+            "expression": "9000000",
+            "formatString": "0",
+            "lineageTag": "df63b0f4-f0dd-43d7-9682-67560dae40bf"
           },
           {
             "name": "S28 current target footfall vs goal %",

@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "SemanticModel",
+    "displayName": "GV S28 Performance Dashboard"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "42fbc679-ebbd-4136-81e4-fd0b3127be79"
+  }
+}

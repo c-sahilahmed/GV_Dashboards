@@ -1,0 +1,216 @@
+{
+  "version": "1.1.0",
+  "diagrams": [
+    {
+      "ordinal": 0,
+      "scrollPosition": {
+        "x": 264.95036074989719,
+        "y": 0
+      },
+      "nodes": [
+        {
+          "location": {
+            "x": 913.99567099567093,
+            "y": 32.251082251082259
+          },
+          "nodeIndex": "Calendar",
+          "nodeLineageTag": "56eb7765-18ed-43fc-af17-793ecd8632fc",
+          "size": {
+            "height": 189.46153846153845,
+            "width": 234
+          },
+          "zIndex": 13
+        },
+        {
+          "location": {
+            "x": 627.89285714285711,
+            "y": 1092.6071428571427
+          },
+          "nodeIndex": "GatesEntries",
+          "nodeLineageTag": "3c2eed8a-eff5-4942-b78a-ad33eb6578c6",
+          "size": {
+            "height": 248,
+            "width": 234
+          },
+          "zIndex": 11
+        },
+        {
+          "location": {
+            "x": 903.92857142857144,
+            "y": 1196.8831168831171
+          },
+          "nodeIndex": "GuestsCount",
+          "nodeLineageTag": "f970623c-bbc8-40f7-8439-677d9d90aec2",
+          "size": {
+            "height": 152.7597402597404,
+            "width": 234
+          },
+          "zIndex": 12
+        },
+        {
+          "location": {
+            "x": 262.5,
+            "y": 0
+          },
+          "nodeIndex": "ParkingHourly",
+          "nodeLineageTag": "cf31acd3-99b4-4e7a-abd5-5e0c238041c0",
+          "size": {
+            "height": 296,
+            "width": 234
+          },
+          "zIndex": 14
+        },
+        {
+          "location": {
+            "x": 0,
+            "y": 0
+          },
+          "nodeIndex": "ParkingSlots",
+          "nodeLineageTag": "d4055a3b-3579-4477-b951-56b7803c6108",
+          "size": {
+            "height": 184.92857142857144,
+            "width": 234
+          },
+          "zIndex": 8
+        },
+        {
+          "location": {
+            "x": 1618.6953463203467,
+            "y": 37.5
+          },
+          "nodeIndex": "PavilionFootfall",
+          "nodeLineageTag": "eb980ab8-8653-4925-b49c-b88b58f949e1",
+          "size": {
+            "height": 309.48712690817956,
+            "width": 234
+          },
+          "zIndex": 9
+        },
+        {
+          "location": {
+            "x": 1895.5703067257941,
+            "y": 304.78170203779956
+          },
+          "nodeIndex": "PavilionSales",
+          "nodeLineageTag": "b93bce53-dfa6-4670-97b1-922241afd881",
+          "size": {
+            "height": 275.32289796923953,
+            "width": 234
+          },
+          "zIndex": 10
+        },
+        {
+          "location": {
+            "x": 2148.2785814328304,
+            "y": 0
+          },
+          "nodeIndex": "Locations",
+          "nodeLineageTag": "ed7184c6-692a-4007-a543-efa387ed9c8d",
+          "size": {
+            "height": 232.42133882377783,
+            "width": 234
+          },
+          "zIndex": 15
+        },
+        {
+          "location": {
+            "x": 2217.2815056745367,
+            "y": 349.23780487804879
+          },
+          "nodeIndex": "ShopsDetails",
+          "nodeLineageTag": "e2c59a7c-1a82-4d29-a2a6-77329d6fff51",
+          "size": {
+            "height": 201.24458874458867,
+            "width": 234
+          },
+          "zIndex": 7
+        },
+        {
+          "location": {
+            "x": 2501.2815056745367,
+            "y": 623.92424242424227
+          },
+          "nodeIndex": "Footfall Measures",
+          "nodeLineageTag": "5338b9b7-d79a-4193-b1d4-625957c9a592",
+          "size": {
+            "height": 104,
+            "width": 234
+          },
+          "zIndex": 1
+        },
+        {
+          "location": {
+            "x": 2785.2815056745367,
+            "y": 623.92424242424227
+          },
+          "nodeIndex": "Date Measures",
+          "nodeLineageTag": "498369a5-539b-4aa4-a1dd-25d54b65d039",
+          "size": {
+            "height": 104,
+            "width": 234
+          },
+          "zIndex": 2
+        },
+        {
+          "location": {
+            "x": 3069.2815056745367,
+            "y": 587.92424242424227
+          },
+          "nodeIndex": "Calendar_Slicer",
+          "nodeLineageTag": "16527441-4d78-4ffe-b272-fff04a84fb78",
+          "size": {
+            "height": 176,
+            "width": 234
+          },
+          "zIndex": 3
+        },
+        {
+          "location": {
+            "x": 3353.2815056745367,
+            "y": 623.92424242424227
+          },
+          "nodeIndex": "Compared Season 1",
+          "nodeLineageTag": "9e4d7c46-03e6-4ab5-bf40-cee1cc456674",
+          "size": {
+            "height": 104,
+            "width": 234
+          },
+          "zIndex": 4
+        },
+        {
+          "location": {
+            "x": 3637.2815056745367,
+            "y": 623.92424242424227
+          },
+          "nodeIndex": "Compared Season 2",
+          "nodeLineageTag": "e1d9cf63-39fa-43a9-98e6-9a11ab6f054a",
+          "size": {
+            "height": 104,
+            "width": 234
+          },
+          "zIndex": 5
+        },
+        {
+          "location": {
+            "x": 1187.7316017316018,
+            "y": 1127.8484848484845
+          },
+          "nodeIndex": "GuestCountsUnPivoted",
+          "size": {
+            "height": 224,
+            "width": 234
+          },
+          "zIndex": 6
+        }
+      ],
+      "name": "All tables",
+      "zoomValue": 76,
+      "pinKeyFieldsToTop": false,
+      "showExtraHeaderInfo": false,
+      "hideKeyFieldsWhenCollapsed": false,
+      "tablesLocked": false
+    }
+  ],
+  "selectedDiagram": "All tables",
+  "defaultDiagram": "All tables"
+}

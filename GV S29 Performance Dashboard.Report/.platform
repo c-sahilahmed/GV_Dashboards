@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "Report",
+    "displayName": "GV S29 Performance Dashboard"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "aa2b3fb3-e52e-43f4-a3cf-0818ea909c9a"
+  }
+}

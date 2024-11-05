@@ -1,0 +1,719 @@
+{
+  "visual": {
+    "name": "outliersDetection",
+    "displayName": "PowerBI-visuals-outliers-det",
+    "guid": "outliersDetection7FCA",
+    "visualClassName": "Visual",
+    "version": "1.0.2",
+    "description": "Find outliers in your data, using the most appropriate method and plot.",
+    "supportUrl": "http://community.powerbi.com/",
+    "gitHubUrl": "https://github.com/Microsoft/powerbi-visuals-outliers-det"
+  },
+  "apiVersion": "1.11.0",
+  "author": {
+    "name": "Microsoft",
+    "email": "pbicvsupport@microsoft.com"
+  },
+  "assets": {
+    "icon": "assets/icon.png"
+  },
+  "externalJS": [
+    "node_modules/powerbi-visuals-utils-dataviewutils/lib/index.js"
+  ],
+  "style": "style/visual.less",
+  "capabilities": {
+    "dataRoles": [
+      {
+        "displayName": "ID",
+        "description": "Unique identifier, used to force the order of rows and prevent removal of identical rows(optional)",
+        "kind": "GroupingOrMeasure",
+        "name": "ID"
+      },
+      {
+        "displayName": "Variables",
+        "description": "Only numerical fields are allowed. Two or more columns are transformed to 1st principle component (except for LOF method)",
+        "kind": "GroupingOrMeasure",
+        "name": "Values"
+      },
+      {
+        "displayName": "Independent Variables",
+        "description": "Numerical field. Used only with Cooks Distance method ",
+        "kind": "GroupingOrMeasure",
+        "name": "IndepVar"
+      },
+      {
+        "displayName": "Tooltips",
+        "kind": "GroupingOrMeasure",
+        "description": "Fields to be used as mouseover tooltips",
+        "name": "Tooltips"
+      }
+    ],
+    "dataViewMappings": [
+      {
+        "conditions": [
+          {
+            "Values": {
+              "max": 6
+            },
+            "ID": {
+              "max": 1
+            },
+            "IndepVar": {
+              "max": 3
+            },
+            "Tooltips": {
+              "max": 3
+            }
+          }
+        ],
+        "scriptResult": {
+          "dataInput": {
+            "table": {
+              "rows": {
+                "select": [
+                  {
+                    "for": {
+                      "in": "Values"
+                    }
+                  },
+                  {
+                    "for": {
+                      "in": "ID"
+                    }
+                  },
+                  {
+                    "for": {
+                      "in": "IndepVar"
+                    }
+                  },
+                  {
+                    "for": {
+                      "in": "Tooltips"
+                    }
+                  }
+                ],
+                "dataReductionAlgorithm": {
+                  "top": {}
+                }
+              }
+            }
+          },
+          "script": {
+            "scriptProviderDefault": "R",
+            "scriptOutputType": "html",
+            "source": {
+              "objectName": "rcv_script",
+              "propertyName": "source"
+            },
+            "provider": {
+              "objectName": "rcv_script",
+              "propertyName": "provider"
+            },
+            "scriptSourceDefault": "# Copyright (c) Microsoft Corporation.  All rights reserved.\r\n\r\n# Third Party Programs. This software enables you to obtain software applications from other sources. \r\n# Those applications are offered and distributed by third parties under their own license terms.\r\n# Microsoft is not developing, distributing or licensing those applications to you, but instead, \r\n# as a convenience, enables you to use this software to obtain those applications directly from \r\n# the application providers.\r\n# By using the software, you acknowledge and agree that you are obtaining the applications directly\r\n# from the third party providers and under separate license terms, and that it is your responsibility to locate, \r\n# understand and comply with those license terms.\r\n# Microsoft grants you no license rights for third-party software or applications that is obtained using this software.\r\n\r\n\r\n############ User Parameters #########\r\n# Set of parameters from GUI\r\n# comments on params and functions\r\n\r\n\r\n##PBI_PARAM The type of plot for visualization\r\n#Type:string, Default:\"scatter\", Range:NA, PossibleValues:\"scatter\",\"boxplot\",\"density\" \r\nplotType = 'scatter' # 'boxplot', 'scatter', 'density'\r\nif(exists(\"mySettingsViz_plotType\")){\r\n  plotType = mySettingsViz_plotType\r\n}\r\n\r\n\r\n##PBI_PARAM Color of scatterplot inlier points\r\n#Type:string, Default:\"orange\", Range:NA, PossibleValues:\"orange\",\"blue\",\"green\",\"black\" etc\r\ninlierColor = \"blue\"\r\nif(exists(\"mySettingsMark_inlierColor\")){\r\n  inlierColor = mySettingsMark_inlierColor\r\n}\r\n\r\n##PBI_PARAM Color of scatterplot outlier points\r\n#Type:string, Default:\"orange\", Range:NA, PossibleValues:\"orange\",\"blue\",\"green\",\"black\" etc\r\noutlierColor = \"red\";\r\nif(exists(\"mySettingsMark_outlierColor\")){\r\n  outlierColor = mySettingsMark_outlierColor\r\n}\r\n\r\n#PBI_PARAM Size of points on the plot\r\n#Type:numeric, Default: 1 , Range:[0.1,5], PossibleValues:NA, Remarks: NA\r\npntSize = 1\r\nif(exists(\"mySettingsMark_weight\")){\r\n  pntSize = mySettingsMark_weight / 10\r\n}\r\n\r\n#PBI_PARAM Sparsification of scatterplot points\r\n#Type:bool, Default:TRUE, Range:NA, PossibleValues:NA, Remarks: NA\r\nsparsify = TRUE\r\nif(exists(\"mySettingsMark_sparsify\")){\r\n  sparsify = mySettingsMark_sparsify\r\n}\r\n\r\n#PBI_PARAM Transparency of scatterplot points\r\n#Type:numeric, Default:0.4, Range:[0,1], PossibleValues:NA, Remarks: NA\r\ntransparency = 0.4\r\nif(exists(\"mySettingsMark_percentile\")){\r\n  transparency = mySettingsMark_percentile/100\r\n}\r\n\r\n#PBI_PARAM Size of labels on axes\r\n#Type:numeric, Default:12, Range:[0,20], PossibleValues:NA, Remarks: NA\r\nsizeLabel = 12\r\nif(exists(\"mySettingsAxes_textSize\")){\r\n  sizeLabel = mySettingsAxes_textSize\r\n}\r\n\r\n#PBI_PARAM Size of ticks on axes \r\n#Type:numeric, Default:6, Range:[1,20], PossibleValues:NA, Remarks: NA\r\nsizeTicks = 6\r\nif(exists(\"mySettingsAxes_sizeTicks\")){\r\n  sizeTicks = as.numeric(mySettingsAxes_sizeTicks)\r\n}\r\n\r\n#PBI_PARAM Color of labels on axes\r\n#Type:string, Default:\"gray\", Range:NA, PossibleValues:\"orange\",\"blue\",\"green\",\"black\" etc\r\ncolLabel = \"gray\"\r\nif(exists(\"mySettingsAxes_colLabel\")){\r\n  colLabel = mySettingsAxes_colLabel\r\n}\r\n\r\n#PBI_PARAM Format of X-axis\r\n#Type:string, Default:\"none\", Range:NA, PossibleValues:\"none\",\"scientific\",\"dollar\",\"comma\" \r\nscaleXformat = \"none\"\r\nif(exists(\"mySettingsAxes_scaleXformat\")){\r\n  scaleXformat = mySettingsAxes_scaleXformat\r\n}\r\n\r\n#PBI_PARAM Format of X-axis\r\n#Type:string, Default:\"none\", Range:NA, PossibleValues:\"none\",\"scientific\",\"dollar\",\"comma\" \r\nscaleYformat = \"none\"\r\nif(exists(\"mySettingsAxes_scaleYformat\")){\r\n  scaleYformat = mySettingsAxes_scaleYformat\r\n}\r\n\r\n#PBI_PARAM Vizualize outlier scores, rather than original values (not applicable for 'manual' method)\r\n#Type:bool, Default:TRUE, Range:NA, PossibleValues:NA, Remarks: NA\r\nvisualizeOutlierScore = FALSE\r\nif(exists(\"mySettingsViz_visualizeOutlierScore\")){\r\n  visualizeOutlierScore = mySettingsViz_visualizeOutlierScore\r\n}\r\n\r\n#PBI_PARAM Outlier's rejection method. PeaksAndSubpeaks =  all. Peaks =  outliers above average. Subpeaks = outliers below average. \r\n#Type:string, Default:'PeaksAndSubpeaks', Range:NA, PossibleValues:'Peaks', 'Subpeaks', 'PeaksAndSubpeaks'\r\nthresholdType = 'PeaksAndSubpeaks' # 'Peaks', 'Subpeaks', 'PeaksAndSubpeaks'\r\nif(exists(\"mySettingsDet_thresholdType\")){\r\n  thresholdType = mySettingsDet_thresholdType\r\n}\r\n\r\n#PBI_PARAM Outliers  method. \r\n#Type:string, Default:'zscore', Range:NA, PossibleValues: 'zscore' , 'Tukey' , 'LOF', 'manual', 'coots'\r\n# 'zscore' = threshold applied on standardized value\r\n# 'Tukey' = threshold applied on IQR-scaled value\r\n# 'LOF' = result is based on local density \r\n# 'manual' = lower and upper thresholds defined by user\r\n# 'coots' =  outlier score is a measure computed with respect to a regression model \r\nalgName = 'zscore' # 'zscore' , 'Tukey' , LOF, manual, etc  \r\nif(exists(\"mySettingsDet_algName\")){\r\n  algName = mySettingsDet_algName\r\n}\r\n\r\n#PBI_PARAM Number of standard deviations (threshold)\r\n#Type:numeric, Default:4, Range:[2,10], PossibleValues:NA\r\nnumSig = 4\r\nif(exists(\"mySettingsDet_numSig\")){\r\n  numSig = as.numeric(mySettingsDet_numSig)\r\n}\r\n\r\n#PBI_PARAM IQRs (threshold)\r\n#Type:numeric, Default:1.5, Range:[1,10], PossibleValues:NA\r\nIQR = 1.5\r\nif(exists(\"mySettingsDet_IQR\")){\r\n  IQR = as.numeric(mySettingsDet_IQR)\r\n}\r\n\r\n#PBI_PARAM LOF threshold in terms of mean measure in population\r\n#Type:numeric, Default:3, Range:[2,10], PossibleValues:NA\r\nLOFThresh = 3\r\nif(exists(\"mySettingsDet_LOFThresh\")){\r\n  LOFThresh = as.numeric(mySettingsDet_LOFThresh)\r\n}\r\n\r\n#PBI_PARAM LOF neighbour cardinality\r\n#Type:numeric, Default:3, Range:[2,10], PossibleValues:NA\r\nLOFK = 3\r\nif(exists(\"mySettingsDet_LOFK\")){\r\n  LOFK = as.numeric(mySettingsDet_LOFK)\r\n}\r\n\r\n#PBI_PARAM manual threshold lower\r\n#Type:numeric, Default:-100, Range:[-Inf,Inf], PossibleValues:NA\r\nlThresh = -100\r\nif(exists(\"mySettingsDet_lThresh\")){\r\n  lThresh = mySettingsDet_lThresh\r\n}\r\n\r\n#PBI_PARAM manual threshold upper\r\n#Type:numeric, Default:-100, Range:[-Inf,Inf], PossibleValues:NA\r\nhThresh = 100\r\nif(exists(\"mySettingsDet_hThresh\")){\r\n  hThresh = mySettingsDet_hThresh\r\n}\r\n\r\n#PBI_PARAM Cook's threshold upper\r\n#Type:numeric, Default:3, Range:[1,Inf], PossibleValues:NA\r\ncooksThresh = 3\r\nif(exists(\"mySettingsDet_cooksThresh\")){\r\n  cooksThresh = as.numeric(mySettingsDet_cooksThresh)\r\n}\r\n\r\n#PBI_PARAM To scale numerical dimensions?\r\n#Type:bool, Default:TRUE, Range:NA, PossibleValues:NA\r\ntoScale = TRUE\r\nif(exists(\"mySettingsDet_toScale\")){\r\n  toScale = mySettingsDet_toScale\r\n}\r\n\r\n##PBI_PARAM: export out data to HTML?\r\n#Type:logical, Default:FALSE, Range:NA, PossibleValues:NA, Remarks: NA\r\nkeepOutData = FALSE\r\nif(exists(\"settings_export_params_show\"))\r\n  keepOutData = settings_export_params_show \r\n\r\n##PBI_PARAM: method of export interface\r\n#Type: string , Default:\"copy\",  Range:NA, PossibleValues:\"copy\", \"download\",  Remarks: NA\r\nexportMethod = \"copy\"\r\nif(exists(\"settings_export_params_method\"))\r\n  exportMethod = settings_export_params_method \r\n\r\n##PBI_PARAM: limit the out table exported\r\n#Type: string , Default:1000,  Range:NA, PossibleValues:\"1000\", \"10000\", Inf,  Remarks: NA\r\nlimitExportSize = 1000\r\nif(exists(\"settings_export_params_limitExportSize\"))\r\n  limitExportSize = as.numeric(settings_export_params_limitExportSize)\r\n\r\n###############Internal parameters definitions#################\r\n# Set of parameters, which are not exported to GUI (yet)\r\n\r\nminRows = 10 # for Z/manual/Tukey/cooks\r\nminRowsLOF = 20 # for LOF need more rows\r\nUSEPLOTLY = TRUE #for debug purposes\r\nsizeWarn = 10 # size of warning fonts\r\nSMALL_EPSILON = 0.000001\r\n\r\nmaxRows = 95000 # randomly remove extra rows\r\nmaxRowsLOF = 6500 # randomly remove extra rows\r\nyRangeExtend = 1.055\r\n\r\noptions(warn=-1)\r\n###############Library Declarations###############\r\n\r\n############### Utility functions ###############\r\nlibraryRequireInstall = function(packageName, ...)\r\n{\r\n  if(!require(packageName, character.only = TRUE)) \r\n    warning(paste(\"*** The package: '\", packageName, \"' was not installed ***\", sep=\"\"))\r\n}\r\n\r\nlibraryRequireInstall(\"XML\")\r\nlibraryRequireInstall(\"htmlwidgets\")\r\n\r\ninternalSaveWidget <- function(widget, fname)\r\n{\r\n  tempFname = paste(fname, \".tmp\", sep=\"\")\r\n  htmlwidgets::saveWidget(widget, file = tempFname, selfcontained = FALSE)\r\n  FlattenHTML(tempFname, fname)\r\n}\r\n\r\nFlattenHTML <- function(fnameIn, fnameOut)\r\n{\r\n  # Read and parse HTML file\r\n  # Embed all js and css files into one unified file\r\n  \r\n  if(!file.exists(fnameIn))\r\n    return(FALSE)\r\n  \r\n  dir = dirname(fnameIn)\r\n  html = htmlTreeParse(fnameIn, useInternal = TRUE)\r\n  top = xmlRoot(html)\r\n  \r\n  # extract all <script> tags with src value\r\n  srcNode=getNodeSet(top, '//script[@src]')\r\n  for (node in srcNode)\r\n  {\r\n    b = xmlAttrs(node)\r\n    fname = file.path(dir, b['src'])\r\n    alternateSrc = FindSrcReplacement(fname)\r\n    if (!is.null(alternateSrc))\r\n    {\r\n      s = alternateSrc\r\n      names(s) = 'src'\r\n      newNode = xmlNode(\"script\",attrs = s)\r\n      replaceNodes(node, newNode)\r\n    }else{\r\n      str=ReadFileForEmbedding(fname);\r\n      if (!is.null(str))\r\n      {      \r\n        newNode = xmlNode(\"script\", str, attrs = c(type = \"text/javascript\"))\r\n        replaceNodes(node, newNode)\r\n      }\r\n    }\r\n  }\r\n  \r\n  # extract all <link> tags with src value\r\n  linkNode=getNodeSet(top, '//link[@href]')\r\n  for (node in linkNode)\r\n  {\r\n    b = xmlAttrs(node)\r\n    fname = file.path(dir, b['href'])\r\n    str = ReadFileForEmbedding(fname, FALSE);\r\n    if (!is.null(str))\r\n    {\r\n      newNode = xmlNode(\"style\", str)\r\n      replaceNodes(node, newNode)\r\n    }\r\n  }\r\n  \r\n  saveXML(html, file = fnameOut)\r\n  return(TRUE)\r\n}\r\n\r\nReadFileForEmbedding <- function(fname, addCdata = TRUE)\r\n{\r\n  data = ReadFullFile(fname)\r\n  if (is.null(data))\r\n    return(NULL)\r\n\r\n  str = paste(data, collapse ='\\n')\r\n  if (addCdata) {\r\n    str = paste(cbind('// <![CDATA[', str,'// ]]>'), collapse ='\\n')\r\n  }\r\n  return(str)\r\n}\r\n\r\nReadFullFile <- function(fname)\r\n{\r\n  if(!file.exists(fname))\r\n    return(NULL)\r\n  \r\n  con = file(fname, open = \"r\")\r\n  data = readLines(con)\r\n  close(con)\r\n  return(data)\r\n}\r\n\r\nFindSrcReplacement <- function(str)\r\n{\r\n  # finds reference to 'plotly' js and replaces with a version from CDN\r\n  # This allows the HTML to be smaller, since this script is not fully embedded in it\r\n  str <- iconv(str, to=\"UTF-8\")\r\n  pattern = \"plotlyjs-(\\\\w.+)/plotly-latest.min.js\"\r\n  match1=regexpr(pattern, str)\r\n  attr(match1, 'useBytes') <- FALSE\r\n  strMatch=regmatches(str, match1, invert = FALSE)\r\n  if (length(strMatch) == 0) return(NULL)\r\n  \r\n  pattern2 = \"-(\\\\d.+)/\"\r\n  match2 = regexpr(pattern2, strMatch[1])\r\n  attr(match2, 'useBytes') <- FALSE\r\n  strmatch = regmatches(strMatch[1], match2)\r\n  if (length(strmatch) == 0) return(NULL)\r\n  \r\n  # CDN url is https://cdn.plot.ly/plotly-<Version>.js\r\n  # This matches the specific version used in the plotly package used.\r\n  verstr = substr(strmatch, 2, nchar(strmatch)-1)\r\n  str = paste('https://cdn.plot.ly/plotly-', verstr,'.min.js', sep='')\r\n  return(str)\r\n}\r\n#ReadFullFileReplaceString\r\nReadFullFileReplaceString <- function(fnameIn, fnameOut, sourceString,targetString)\r\n{\r\n  if(!file.exists(fnameIn))\r\n    return(NULL)\r\n  \r\n  tx  <- readLines(fnameIn)\r\n  tx2  <- gsub(pattern = sourceString, replace = targetString, x = tx)\r\n  writeLines(tx2, con = fnameOut)\r\n}\r\n#################################################\r\n\r\n# Copyright (c) Microsoft Corporation.  All rights reserved.\r\n\r\n# Third Party Programs. This software enables you to obtain software applications from other sources. \r\n# Those applications are offered and distributed by third parties under their own license terms.\r\n# Microsoft is not developing, distributing or licensing those applications to you, but instead, \r\n# as a convenience, enables you to use this software to obtain those applications directly from \r\n# the application providers.\r\n# By using the software, you acknowledge and agree that you are obtaining the applications directly\r\n# from the third party providers and under separate license terms, and that it is your responsibility to locate, \r\n# understand and comply with those license terms.\r\n# Microsoft grants you no license rights for third-party software or applications that is obtained using this software.\r\n\r\n#utils.r \r\n#file with small util methods no external dependencies\r\n\r\nlibraryRequireInstall = function(packageName, ...)\r\n{\r\n  if(!require(packageName, character.only = TRUE)) \r\n    warning(paste(\"*** The package: '\", packageName, \"' was not installed ***\", sep=\"\"))\r\n}\r\n\r\n# Postprocess text string (usually to show as labels)\r\n# if very very long abbreviate\r\n# if looooooong convert to lo...\r\n# if shorter than maxChar remove \r\ncutStr2Show = function(strText, strCex = 0.8, abbrTo = 100, isH = TRUE, maxChar = 3, partAvailable = 1)\r\n{\r\n  # partAvailable, wich portion of window is available, in [0,1]\r\n  if(is.null(strText))\r\n    return (NULL)\r\n  \r\n  SCL = 0.075 * strCex / 0.8\r\n  pardin = par()$din\r\n  gStand = partAvailable*(isH*pardin[1]+(1-isH)*pardin[2]) /SCL\r\n  \r\n  # if very very long abbreviate\r\n  if(nchar(strText)>abbrTo && nchar(strText)> 1)\r\n    strText = abbreviate(strText, abbrTo)\r\n  \r\n  # if looooooong convert to lo...\r\n  if(nchar(strText)>round(gStand) && nchar(strText)> 1)\r\n    strText = paste(substring(strText,1,floor(gStand)),\"...\",sep = \"\")\r\n  \r\n  # if shorter than maxChar remove \r\n  if(gStand <= maxChar)\r\n    strText = NULL\r\n  \r\n  return(strText) \r\n}\r\n\r\n#if it attributeColumn is legal colors() use them \r\n#if all the entries in attributeColumn are the same number - use defaultColor\r\n#if it has many numeric variables color from green to red range \r\n#if it has few unique strings - use rainbow to color them \r\nColorPerPoint = function (attributeColumn, defaultColor = pointsCol, sizeColRange = 30)\r\n{\r\n  N = length(attributeColumn)\r\n  if(sum(attributeColumn %in% colors()) == N) # all legal colors\r\n    return(attributeColumn)\r\n  \r\n  UN = length(unique(attributeColumn))\r\n  if(UN == 1) # single number \r\n    return(defaultColor)\r\n  \r\n  sortedUniqueValues = sort(unique(attributeColumn))\r\n  \r\n  if((UN > sizeColRange*3) || (UN >= N - 2 && is.numeric(attributeColumn))) # many numbers --> color range \r\n  {\r\n    rangeColors = terrain.colors(sizeColRange)# 30 colors\r\n    if(is.numeric(attributeColumn))\r\n    {\r\n      breaks = seq(min(sortedUniqueValues), max(sortedUniqueValues), length.out = sizeColRange + 1)\r\n      pointsCol = as.character(cut(attributeColumn, breaks, labels = rangeColors))\r\n      return(pointsCol)\r\n    }\r\n    else\r\n    {# spread colors\r\n      outCol = rep(rangeColors, each = ceiling(N / sizeColRange), length.out = N)\r\n      return(outCol)\r\n    }\r\n  } else {\r\n    rangeColors = rainbow(UN)\r\n    names(rangeColors) = sortedUniqueValues\r\n    return(rangeColors[as.character(attributeColumn)])\r\n  }\r\n}\r\n\r\n\r\n#randomly remove points from scatter if too many \r\nSparsifyScatter = function (xyDataFrame, numXstrips = 9, numYstrips = 7, minMaxPoints = c(3000,9000), minmaxInStrip =  c(900,9000), maxInCell = 300, remDuplicated = TRUE)\r\n{\r\n  \r\n  N_big = N = nrow(xyDataFrame)\r\n  usePoints = rep(TRUE, N)\r\n  \r\n  if(N <= minMaxPoints[1]) # do nothing\r\n    return (usePoints)\r\n  \r\n  if(remDuplicated) # remove duplicated\r\n  {\r\n    usePoints = usePoints & (!duplicated(xyDataFrame))\r\n    N = sum(usePoints)\r\n  }\r\n  \r\n  if(N <= minMaxPoints[1]) # do nothing\r\n    return (usePoints)\r\n  \r\n  rangeX = range(xyDataFrame[,1])\r\n  rangeY = range(xyDataFrame[,2])\r\n  \r\n  gridX = seq(rangeX[1],rangeX[2], length.out = numXstrips + 1)\r\n  gridY = seq(rangeY[1],rangeY[2], length.out = numYstrips + 1)\r\n  \r\n  #go cell by cell and sparsify \r\n  for (iX in seq(1,numXstrips))\r\n  {\r\n    smallRangeX = c(gridX[iX],gridX[iX+1])\r\n    inStrip = xyDataFrame[,1]>= smallRangeX[1] & xyDataFrame[,1]<= smallRangeX[2] &  usePoints\r\n    if(sum(inStrip) > minmaxInStrip[1])\r\n      for (iY in seq(1,numYstrips))\r\n      {\r\n        smallRangeY = c(gridY[iY],gridY[iY+1])\r\n        inCell = xyDataFrame[,2]>= smallRangeY[1] & xyDataFrame[,2]<= smallRangeY[2] &  inStrip\r\n        if(sum(inCell) > maxInCell)\r\n        {\r\n          inCellIndexes = seq(1,N_big)[inCell]\r\n          #randomly select maxInCell out of inCellIndexes\r\n          iii = sample(inCellIndexes,size = sum(inCell) - maxInCell, replace = FALSE)\r\n          usePoints[iii] = FALSE\r\n        }\r\n      }\r\n    \r\n  }\r\n  N = sum(usePoints)\r\n  \r\n  #if by the end still too many points --> go on whole set  \r\n  if(N > minMaxPoints[2])\r\n  {\r\n    inIndexes = seq(1,N_big)[usePoints]\r\n    #randomly select minMaxPoints[2] out of inIndexes\r\n    iii = sample(inIndexes,size = minMaxPoints[2], replace = FALSE)\r\n    usePoints[-iii] = FALSE\r\n    \r\n  }\r\n  return (usePoints)\r\n}\r\n\r\n# return FALSE if canvas is too small\r\ngoodPlotDimension = function(minWidthInch = 3,minHeightInch = 2.2)\r\n{\r\n  re = (par()$din[1] > minWidthInch) & (par()$din[2] > minHeightInch)\r\n  return(re)\r\n}\r\n\r\n#scale all numeric columns\r\nstandardizeColumns = function (mydataFrame)\r\n{\r\n  Q = mydataFrame\r\n  Q[,sapply(Q,is.numeric)]= sapply(Q[,sapply(Q,is.numeric)],scale)\r\n  names(Q)[sapply(Q,is.numeric)]= paste(\"scaled_\",names(Q)[sapply(Q,is.numeric)],sep = \"\")\r\n  return(Q) \r\n}\r\n\r\n#PCA applied to all numeric columns\r\npcaColumns = function (myDF,center = TRUE, toscale = TRUE)\r\n{\r\n  Q = myDF\r\n  x =  prcomp(Q[,sapply(Q,is.numeric)],center = center, scale. = toscale)$x\r\n  Q[,sapply(Q,is.numeric)]= x\r\n  names(Q)[sapply(Q,is.numeric)] = colnames(x)\r\n  return(Q) \r\n}\r\n\r\n#remove non-numeric columns\r\nRemoveNonNumeric = function(df)\r\n{\r\n  newDF = as.data.frame(df[,sapply(df,is.numeric)])\r\n  colnames(newDF) = colnames(df)[sapply(df,is.numeric)]\r\n  if(length(newDF)==0)\r\n    newDF = NULL\r\n  return(newDF)\r\n}\r\n\r\n#paste tooltips together separated by <br>\r\ngenerateNiceTooltips = function(dataset, br = \"<br>\", digits = 2, maxRows = 3)\r\n{\r\n \r\n  myNames = colnames(dataset)\r\n  \r\n  nuc = sapply(dataset,is.numeric)\r\n  if(sum(nuc))\r\n    dataset[,nuc] = round(dataset[,nuc], digits)\r\n  \r\n  LMN = length(myNames)\r\n  s = 1\r\n  \r\n  nms = myNames[s:LMN]\r\n  dta = dataset[,s:LMN]\r\n  niceTooltips = NULL\r\n  \r\n  chunksInOneLine =  ceiling(LMN/maxRows)\r\n  countInLine = 0;\r\n  \r\n  for (n in c(1:length(nms)))\r\n  {\r\n #   browser()\r\n    countInLine = countInLine + 1\r\n    br1 = ifelse(countInLine %% chunksInOneLine == 0, br, ';')\r\n      \r\n    \r\n    if(length(nms) == 1)\r\n      niceTooltips = paste(nms,\" = \", dta, sep = \"\") \r\n    else\r\n    {\r\n      niceTooltips = paste(niceTooltips,nms[n],\" = \", dta[,n], sep = \"\")  \r\n      if(n < length(nms))\r\n        niceTooltips = paste(niceTooltips, br1, sep = \"\")\r\n    }\r\n  }\r\n  return(niceTooltips)\r\n}\r\n\r\n\r\n\r\nlibraryRequireInstall(\"ggplot2\");\r\nlibraryRequireInstall(\"plotly\")\r\nlibraryRequireInstall(\"DMwR\")\r\nlibraryRequireInstall(\"scales\")\r\nlibraryRequireInstall(\"caTools\")\r\n\r\n###############Internal functions definitions#################\r\n\r\n#Error checking + messages\r\nCheckInputForErrors = function(XX,YY,algName,params)\r\n{\r\n  \r\n  E = NULL\r\n  if(is.null(XX))\r\n  {  \r\n    E[length(E) + 1] = \"'Variables' field should include at least one numeric column\"\r\n    return(E)\r\n  }\r\n  if(nrow(XX) < params$minRows)\r\n  {\r\n    E[length(E) + 1] = paste(\"'Variables' table has fewer rows than what are required for analysis\", as.character(params$minRows))\r\n    return(E)\r\n  }\r\n  \r\n  if(nrow(XX) < params$minRowsLOF && algName == \"LOF\")\r\n  {\r\n    E[length(E) + 1] = paste(\"'Variables' table has less rows than required for LOF analysis\", as.character(params$minRowsLOF))\r\n    return(E)\r\n  }\r\n  \r\n  if(is.null(YY)  && algName == \"cooks\")\r\n  {  \r\n    E[length(E) + 1] = \"'Independent Variables' field should include at least one numeric column\"\r\n    return(E)\r\n  }\r\n  \r\n}\r\n\r\n#small hack because lofactor with small K sometimes return NaN\r\nmy_lofactor = function(DF, k)\r\n{\r\n  scores = lofactor(DF, k = k)\r\n  if(any(is.nan(scores)))\r\n    scores = lofactor(DF, k = k + 1)\r\n  \r\n  return (scores)\r\n}\r\n\r\n\r\nRemoveExtraRows = function(Values,ID, IndepVar , Tooltips, algName, params)\r\n{\r\n  NR = 0\r\n  if(!is.null(Values))\r\n    NR = nrow(Values)\r\n  \r\n  N = NR\r\n  NR = ifelse(NR > params$maxRows, params$maxRows, NR)\r\n  if(algName == 'LOF')\r\n    NR = ifelse(NR > params$maxRowsLOF, params$maxRowsLOF, NR)\r\n  \r\n  if(N > NR)\r\n  {\r\n    ii = sort(sample(N,NR, replace = FALSE))\r\n    \r\n    Values = Values[ii, , drop=FALSE]\r\n    if(!is.null(ID))\r\n      ID = ID[ii, , drop=FALSE]\r\n    if(!is.null(IndepVar))\r\n      IndepVar = IndepVar[ii, , drop=FALSE]\r\n    if(!is.null(Tooltips))\r\n      Tooltips = Tooltips[ii, , drop=FALSE]\r\n  }  \r\n  \r\n  return(list(Values = Values,ID = ID, IndepVar = IndepVar , Tooltips = Tooltips))\r\n  \r\n  \r\n}\r\n\r\n\r\n# clean, standardize and check input data\r\nTransformInputData = function(Values,ID, IndepVar, Tooltips, algName, toScale, params)\r\n{\r\n  XX = Values\r\n  YY = IndepVar\r\n  TT = Tooltips\r\n  Errors = NULL\r\n  \r\n  #remove bad columns \r\n  XX = RemoveNonNumeric(XX)\r\n  YY = RemoveNonNumeric(YY)\r\n  \r\n  #remove bad rows\r\n  if(!is.null(XX))\r\n  {\r\n    goodRows = complete.cases(XX)\r\n    if(!is.null(YY))\r\n      goodRows = as.logical(complete.cases(YY) * goodRows)\r\n    \r\n    countBad = sum(!goodRows)\r\n    if(countBad)\r\n    {\r\n      if(!is.null(XX))\r\n        XX = subset(XX,goodRows)\r\n      \r\n      if(!is.null(YY))\r\n        YY = subset(YY,goodRows)\r\n      \r\n      if(!is.null(TT))\r\n        TT = subset(TT,goodRows)\r\n      \r\n      if(!is.null(ID))\r\n        ID = subset(ID,goodRows)\r\n      \r\n      if(!is.null(Values))\r\n        Values = subset(Values,goodRows)\r\n      \r\n      if(!is.null(IndepVar))\r\n        IndepVar = subset(IndepVar,goodRows)\r\n      \r\n    }\r\n  }\r\n  \r\n  \r\n  #check for errors\r\n  Errors = CheckInputForErrors(XX, YY, algName, params)\r\n  if(is.null(Errors))\r\n  {\r\n    if(!is.null(ID))\r\n    {\r\n      if(is.factor(ID[,1]))\r\n        ID[,1] = as.character(ID[,1])\r\n      \r\n      # sort all by ID \r\n      ord = sort(ID[,1], index.return = TRUE)$ix\r\n      if(!is.null(XX))\r\n        XX[,] = XX[ord,]\r\n      if(!is.null(YY))\r\n        YY[,] = YY[ord,]\r\n      if(!is.null(TT))\r\n        TT[,] = TT[ord,]\r\n      if(!is.null(Values))\r\n        Values[,] = Values[ord,]\r\n      if(!is.null(IndepVar))\r\n        IndepVar[,] = IndepVar[ord,]\r\n      \r\n      ID[,1] = ID[ord,1]\r\n    }\r\n    \r\n    NXX = NYY = NTT = 0\r\n    \r\n    if(!is.null(XX))\r\n      NXX = ncol(XX)\r\n    if(!is.null(YY))\r\n      NYY = ncol(YY)\r\n    if(!is.null(TT))\r\n      NTT = ncol(TT)\r\n    \r\n    if(length(intersect(algName,c('zscore', 'manual', 'Tukey', 'LOF'))) && is.null(Errors))\r\n    {\r\n      if(NXX > 1)\r\n      {\r\n        if(length(intersect(algName,'LOF')))\r\n        {#only scale\r\n          if(toScale)\r\n            XX = standardizeColumns(XX)\r\n        }\r\n        else{# scale + PCA + keep 1 \r\n          XX1 = pcaColumns(XX, toscale = toScale)\r\n          XX1[,seq(from = 2, to = NXX)] = NULL\r\n          colnames(XX1)[1] = paste(\"PC1(\" ,paste(colnames(XX), sep= \"\", collapse = \",\")\r\n                                   ,\")\" ,sep = \"\")\r\n          XX = XX1\r\n        }\r\n        \r\n      }\r\n    }\r\n    if(length(intersect(algName,c('cooks')))  && is.null(Errors))\r\n    {\r\n      if(NXX > 1)\r\n      {\r\n        XX1 = pcaColumns(XX, toscale = toScale)\r\n        XX1[,seq(from = 2, to = NXX)] = NULL\r\n        colnames(XX1)[1] = paste(\"PC1(\",paste(colnames(XX),sep=\"\", collapse = \",\")\r\n                                 ,\")\",sep =\"\")\r\n        XX = XX1\r\n      }\r\n      \r\n    }\r\n  }\r\n  \r\n  #result in list\r\n  res = list(XX= XX, YY = YY, TT = TT, Errors = Errors, Values = Values,ID = ID, IndepVar = IndepVar, Tooltips = TT)\r\n  return(res) \r\n  \r\n}\r\n\r\n# define X/Y data and labels wrt input data and parameters\r\nTransformVisualizationData = function (DFX,DFY, plotType,algName,params,outlier_score, toScale = TRUE)\r\n{\r\n  \r\n  res = NULL\r\n  NRX = nrow(DFX)\r\n  NCX = ncol(DFX)\r\n  \r\n  VXX = NULL\r\n  VYY = NULL\r\n  VXX_name = \"VXX_name\"\r\n  VYY_name = \"VYY_name\"\r\n  \r\n  \r\n  if(length(intersect(algName,c('zscore', 'manual', 'tukey', 'Tukey'))))\r\n  {\r\n    VXX = DFX[,1]\r\n    VYY = seq(1,NRX)\r\n    VXX_name = colnames(DFX)[1]\r\n    VYY_name = \"order\"\r\n    if(params$visualizeOutlierScore && length(intersect(algName,c('zscore', 'tukey', 'Tukey'))))\r\n    {\r\n      VXX = outlier_score\r\n      VXX_name = paste('score(',colnames(DFX)[1],')',sep=\"\")\r\n    }\r\n  }\r\n  \r\n  if(length(intersect(algName,c('LOF'))))\r\n  {\r\n    #density and boxplot --> VXX is outlier_score, VYY is seq(1,NRX)\r\n    if(length(intersect(plotType,c('density','boxplot'))))\r\n    {\r\n      VXX = outlier_score\r\n      VYY = seq(1,NRX)\r\n      \r\n      VXX_name = paste(\"score(\",paste(colnames(DFX), sep = \"\", collapse = \",\"), \")\", sep = \"\") \r\n      VYY_name = \"order\"\r\n    }\r\n    \r\n    #scatter + NCX == 1 --> VXX is DFX, VYY is seq(1,NRX)\r\n    if(length(intersect(plotType,c('scatter'))) && NCX == 1)\r\n    {\r\n      VXX = DFX[,1]\r\n      VYY = seq(1,NRX)\r\n      \r\n      VXX_name = colnames(DFX)[1]\r\n      VYY_name = \"order\"\r\n      if(params$visualizeOutlierScore)\r\n      {\r\n        VXX = outlier_score\r\n        VXX_name = paste(\"score(\", VXX_name, \")\", sep = \"\") \r\n      }\r\n    }\r\n    \r\n    #scatter + NCX == 2 --> VXX is DFX[,1], VYY is DFX[,2]\r\n    if(length(intersect(plotType,c('scatter'))) && NCX == 2)\r\n    {\r\n      VXX = DFX[,1]\r\n      VYY = DFX[,2]\r\n      \r\n      VXX_name = colnames(DFX)[1]\r\n      VYY_name = colnames(DFX)[2]\r\n      if(params$visualizeOutlierScore)\r\n      {\r\n        VXX = outlier_score\r\n        VXX_name = paste(\"score(\", VXX_name, \")\", sep = \"\") \r\n        \r\n        VYY = seq(1,NRX)\r\n        VYY_name = \"order\"\r\n      }\r\n    }\r\n    #scatter + NCX > 2 --> VXX is PC1(DFX), VYY is PC2(DFX)\r\n    if(length(intersect(plotType,c('scatter'))) && NCX > 2)\r\n    {\r\n      temp = pcaColumns(DFX, toscale = TRUE)\r\n      # colnames(temp)[c(1,2)] = c(\"PC1\",\"PC2\")\r\n      VXX = temp[, 1]\r\n      VYY = temp[, 2]\r\n      \r\n      VXX_name = paste(\"PC1(\", paste(colnames(DFX), sep = \"\", collapse = \",\") ,\")\", sep = \"\")\r\n      VYY_name = paste(\"PC2(\",paste(colnames(DFX), sep = \"\", collapse = \",\"),\")\", sep = \"\")\r\n      \r\n      if(params$visualizeOutlierScore)\r\n      {\r\n        VXX = outlier_score\r\n        VXX_name = paste(\"score(\",paste(colnames(DFX), sep = \"\", collapse = \",\"), \")\", sep = \"\") \r\n        \r\n        VYY = seq(1,NRX)\r\n        VYY_name = \"order\"\r\n      }\r\n    }\r\n  }\r\n  \r\n  if(length(intersect(algName,c('cooks'))))\r\n  {\r\n    NCY = ncol(DFY)\r\n    #density and boxplot --> VXX is cooks_dist, VYY is seq(1,NRX)\r\n    if(length(intersect(plotType, c('density','boxplot'))) || params$visualizeOutlierScore )\r\n    {\r\n      VXX = outlier_score\r\n      VYY = seq(1,NRX)\r\n      \r\n      VYY_name = \"order\"\r\n      VXX_name = paste(\"score(\",paste(colnames(DFX), sep = \"\", collapse = \",\"),\r\n                       \"~\",\r\n                       paste(colnames(DFY), sep = \"\", collapse = \",\"),\r\n                       \")\", sep = \"\")\r\n    }\r\n    else\r\n    {\r\n      #scatter + NCX == 1 --> VXX is DFX\r\n      if(length(intersect(plotType, c('scatter'))) && NCX == 1)\r\n      {\r\n        VXX = DFX[, 1]\r\n        VXX_name = colnames(DFX)[1] \r\n      }\r\n      \r\n      #scatter + NCY == 1 --> VYY is DFY\r\n      if(length(intersect(plotType, c('scatter'))) && NCY == 1)\r\n      {\r\n        VYY = DFY[,1]\r\n        VYY_name = colnames(DFY)[1] \r\n      }\r\n      \r\n      #scatter + NCX > 1 --> VXX is PC1(DFX)\r\n      if(length(intersect(plotType, c('scatter'))) && NCX > 1)\r\n      {\r\n        temp = pcaColumns(DFX, toscale = toScale)#TODO toScale\r\n        colnames(temp)[c(1, 2)] = c(\"PC1_X\", \"PC2_X\")\r\n        VXX = temp[, 1]\r\n        VYY_name = paste(\"PC1(\",paste(colnames(DFX), sep = \"\", collapse = \",\"),\")\",sep =\"\")\r\n      }\r\n      #scatter + NCY > 1 --> VYY is PC1(DFY)\r\n      if(length(intersect(plotType,c('scatter'))) && NCY > 1)\r\n      {\r\n        temp = pcaColumns(DFY, toscale = TRUE)\r\n        VYY = temp[,1]\r\n        VYY_name = paste(\"PC1(\", paste(colnames(DFY), sep = \"\", collapse = \",\"),\")\", sep =\"\")\r\n      }\r\n    }\r\n  }\r\n  \r\n  #result in list\r\n  res = list(VXX= VXX, VYY = VYY, VXX_name = VXX_name, VYY_name = VYY_name)\r\n  return(res) \r\n}\r\n\r\n# the function for outlier detection with several algorithms\r\ngetOutliers= function(DFX, DFY, algType, peaksOrSubpeaks,params)\r\n{\r\n  myOutliers = NULL\r\n  outlier_scores = NULL\r\n  \r\n  \r\n  if(algType == 'Tukey')\r\n  {\r\n    tuk = boxplot.stats(DFX[,1], do.conf = FALSE, coef = params$IQR)\r\n    myOutliers = DFX[,1] %in% tuk$out \r\n    outlier_scores = abs((DFX[, 1] - median(DFX[, 1]) + SMALL_EPSILON)) / (IQR(DFX[,1]) + SMALL_EPSILON)\r\n  }\r\n  else\r\n  {\r\n    if(algType == 'zscore')\r\n    {\r\n      outlier_scores = (abs(scale(DFX[, 1])))\r\n      myOutliers =  (outlier_scores > params$numSig)\r\n    }\r\n    else \r\n    {\r\n      if(algType == 'manual')\r\n      {\r\n        outlier_scores = DFX[,1]\r\n        myOutliers =  (DFX[,1] > params$hThresh) | (DFX[,1] < params$lThresh) \r\n      }\r\n      else \r\n      {\r\n        if(algType == 'LOF')\r\n        {\r\n          outlier_scores = my_lofactor(DFX, k = params$LOFK)\r\n          # pick top as outliers\r\n          myOutliers <- (outlier_scores > mean(outlier_scores)*params$LOFThresh)\r\n          outlier_scores = (outlier_scores + SMALL_EPSILON) / (mean(outlier_scores) + SMALL_EPSILON) #normalize scale \r\n        }\r\n        else # cooks\r\n        {\r\n          mod <- lm(DFX[,1] ~ ., data=DFY)\r\n          outlier_scores <- cooks.distance(mod)\r\n          myOutliers <- (outlier_scores > mean(outlier_scores) * params$cooksThresh)\r\n          outlier_scores = (outlier_scores + SMALL_EPSILON) / (mean(outlier_scores) + SMALL_EPSILON) #normalize scale\r\n        }\r\n        \r\n      }\r\n      \r\n    }\r\n  }\r\n  \r\n  if(length(intersect(algType, c('Tukey','zscore','manual'))))\r\n  {\r\n    M = mean(DFX[,1]);\r\n    \r\n    if(peaksOrSubpeaks == 'Peaks')\r\n      myOutliers = myOutliers & (DFX[,1] > M)\r\n    if(peaksOrSubpeaks =='Subpeaks')\r\n      myOutliers = myOutliers & (DFX[,1] < M)\r\n  }\r\n  res = list(myOutliers = myOutliers, outlier_scores = outlier_scores)\r\n  return(res)\r\n  \r\n}\r\n\r\n#utility function for axes scale format\r\nscaleXYformat = function (scaleType, XorY, fp)\r\n{\r\n  if(XorY %in% \"X\")\r\n  {\r\n    if(scaleType %in% c(\"comma\"))\r\n      fp <- fp + scale_x_continuous( labels = comma)\r\n    \r\n    if(scaleType %in% c(\"scientific\"))\r\n      fp <- fp + scale_x_continuous(labels = scientific)\r\n    \r\n    if(scaleType %in% c(\"dollar\"))\r\n      fp <- fp + scale_x_continuous(labels = dollar)\r\n    \r\n  }\r\n  if(XorY %in% \"Y\")\r\n  {\r\n    if(scaleType %in% c(\"comma\"))\r\n      fp <- fp + scale_y_continuous( labels = comma)\r\n    \r\n    if(scaleType %in% c(\"scientific\"))\r\n      fp <- fp + scale_y_continuous(labels = scientific)\r\n    \r\n    if(scaleType %in% c(\"dollar\"))\r\n      fp <- fp + scale_y_continuous(labels = dollar)\r\n    \r\n  }\r\n  return (fp)\r\n  \r\n}\r\n\r\n#label format: hAxis.format scientific, dollar , comma\r\nGetGooFormat = function(scaleFormat)\r\n{\r\n  mapFormat = c('','scientific','currency', 'decimal')\r\n  names(mapFormat) = c('none','scientific','dollar', 'comma')\r\n  return(mapFormat[scaleFormat])\r\n}\r\n\r\nConvertDF64encoding = function (df, withoutEncoding = FALSE)\r\n{\r\n  header_row <- paste(names(df), collapse=\", \")\r\n  tab <- apply(df, 1, function(x)paste(x, collapse=\", \"))\r\n  \r\n  if(withoutEncoding){\r\n    text <- paste(c(header_row, tab), collapse=\"\\n\")\r\n    x <- text\r\n  }\r\n  else\r\n  {\r\n    text <- paste(c(header_row, tab), collapse=\"\\n\")\r\n    x <- caTools::base64encode(text)\r\n  }\r\n  return(x)\r\n}\r\n\r\n\r\nKeepOutDataInHTML = function(df, htmlFile = 'out.html', exportMethod = \"copy\", limitExportSize = 1000)\r\n{\r\n  if(!is.null(df) && nrow(df)>limitExportSize)\r\n    df = df[1:limitExportSize,]\r\n  \r\n  outDataString64 = ConvertDF64encoding(df)\r\n  \r\n  linkElem = '\\n<a href=\"\"  download=\"data.csv\"  style=\"position: absolute; top:0px; left: 0px; z-index: 20000;\" id = \"mydataURL\">export</a>\\n'\r\n  updateLinkElem = paste('<script>\\n link_element = document.getElementById(\"mydataURL\");link_element.href = outDataString64href;', '\\n</script> ', sep =' ')\r\n  var64 = paste('<script> outDataString64 =\"', outDataString64, '\"; </script>', sep =\"\")\r\n  var64href = paste('<script> outDataString64href =\"data:;base64,', outDataString64, '\"; </script>', sep =\"\")\r\n  \r\n  buttonElem = '<button style=\"position: absolute; top:0px; left: 0px; z-index: 20000;\"  onclick=\"myFunctionCopy(1)\">copy to clipboard</button>'\r\n  funcScript = '<script> \r\n  function myFunctionCopy(is64) \r\n  {\r\n  const el = document.createElement(\"textarea\");\r\n  if(is64)\r\n  {\r\n  el.value = atob(outDataString64);\r\n  }\r\n  else\r\n  {\r\n  el.value = outDataStringPlane;\r\n  }\r\n  document.body.appendChild(el);\r\n  el.select();\r\n  document.execCommand(\"copy\");\r\n  document.body.removeChild(el);};\t\r\n  </script>'\r\n  \r\n  if(exportMethod == \"copy\")\r\n    endOfBody = paste(var64,funcScript, buttonElem,'\\n</body>',sep =\"\")\r\n  else#\"download\"\r\n    endOfBody = paste(linkElem,var64, var64href,updateLinkElem,'\\n</body>',sep =\"\")\r\n  \r\n  ReadFullFileReplaceString('out.html', 'out.html', '</body>', endOfBody)\r\n  \r\n}\r\n\r\n############# Input validation & initializations ############# \r\n\r\nif(!exists('Values'))\r\n  Values = NULL\r\n\r\nif(!exists('ID'))\r\n  ID = NULL\r\n\r\nif(!exists('IndepVar'))\r\n  IndepVar = NULL\r\n\r\nif(!exists('Tooltips'))\r\n  Tooltips = NULL\r\n\r\n################### Actual code ####################\r\nparams = NULL\r\nparams$numSig = numSig\r\nparams$IQR = IQR\r\nparams$hThresh = hThresh\r\nparams$lThresh = lThresh\r\nparams$LOFThresh = LOFThresh\r\nparams$LOFK = LOFK\r\nparams$cooksThresh = cooksThresh\r\nparams$minRows = minRows # for Z/manual/Tukey/cooks\r\nparams$minRowsLOF = minRowsLOF\r\nparams$visualizeOutlierScore = visualizeOutlierScore\r\nparams$maxRows = maxRows\r\nparams$maxRowsLOF = maxRowsLOF\r\n\r\nrrr0 = RemoveExtraRows(Values,ID, IndepVar , Tooltips, algName, params)\r\nValues = rrr0$Values\r\nID = rrr0$ID\r\nIndepVar = rrr0$IndepVar\r\nTooltips = rrr0$Tooltips\r\n\r\nrrr = TransformInputData(Values,ID, IndepVar , Tooltips, algName, toScale,params)\r\nXX = rrr$XX\r\nYY = rrr$YY\r\nTT = rrr$TT\r\n\r\nValues = rrr$Values\r\nID = rrr$ID\r\nIndepVar = rrr$IndepVar\r\nTooltips = rrr$Tooltips\r\n\r\n\r\n#if errors skip all and show errors\r\nif(!is.null(rrr$Errors))\r\n{\r\n  plotType = 'errors'\r\n  params.errors = rrr$Errors\r\n}else{\r\n  \r\n  rrr_outliers = getOutliers(DFX = XX, DFY = YY, algType = algName, \r\n                             peaksOrSubpeaks = thresholdType,params = params)\r\n  \r\n  myOutliers = rrr_outliers$myOutliers\r\n  outliers_scores = rrr_outliers$outlier_scores\r\n  \r\n  rrr2 = TransformVisualizationData(XX,YY, plotType, algName, params, outliers_scores, toScale = toScale)\r\n  data4viz = data.frame(X = rrr2$VYY, Y = rrr2$VXX)\r\n  \r\n  NP = nrow(XX)   \r\n  pointsCol = rep(c(inlierColor), NP) \r\n  pointsCol[myOutliers] = outlierColor\r\n  pointsSize = rep(pntSize * 1.5, NP)\r\n  pointsSize[myOutliers] = pntSize * 2.5\r\n  \r\n  # sparsify \r\n  if(sparsify)\r\n  {\r\n    drawPoints = SparsifyScatter(data4viz)# remove points from dense regions\r\n    data4viz=data4viz[drawPoints,]\r\n    myOutliers = myOutliers[drawPoints]\r\n    pointsCol = pointsCol[drawPoints]\r\n    pointsSize = pointsSize[drawPoints]\r\n    outliers_scores = outliers_scores[drawPoints]\r\n    \r\n  }else\r\n    drawPoints = SparsifyScatter(data4viz,minMaxPoints = c(Inf, Inf))\r\n  \r\n  rrr2$VYY_name = cutStr2Show( rrr2$VYY_name, strCex = sizeLabel / 6, isH = FALSE, partAvailable = 0.85)\r\n  rrr2$VXX_name = cutStr2Show( rrr2$VXX_name, strCex = sizeLabel / 6, isH = (plotType == 'density'), partAvailable = 0.85)\r\n}\r\n\r\n\r\nif(plotType == 'scatter')\r\n{\r\n  # plot as scatter \r\n  g <- ggplot(data=data4viz, \r\n              aes( x = X, y = Y,  color=factor(myOutliers))) +  \r\n    geom_point(shape = 19, colour = alpha(pointsCol,transparency), size = pntSize * 2 ) + \r\n    xlab(rrr2$VYY_name) + ylab(rrr2$VXX_name) +\r\n    theme(legend.position = \"none\")\r\n  \r\n  g = scaleXYformat(scaleXformat,\"X\",g)\r\n  g = scaleXYformat(scaleYformat,\"Y\",g)\r\n  \r\n  g = g + labs (title = NULL, caption = NULL) + theme_bw() + \r\n    theme(plot.title  = element_text(hjust = 0.5, size = sizeWarn), \r\n          axis.title  =element_text(size =  sizeLabel, colour = colLabel),\r\n          axis.text = element_text(size =  sizeTicks),\r\n          panel.border = element_blank(), axis.line = element_line())\r\n  \r\n}\r\n\r\nif(plotType == 'boxplot')\r\n{ # plot as boxplot\r\n  data4viz$X = 'box plot'\r\n  g <- ggplot(data=data4viz, \r\n              aes( x = X, y = Y)) + \r\n    geom_boxplot(data=data4viz, aes(x = X, y = Y),outlier.shape = NA,  \r\n                 outlier.size = NA, notch = FALSE,show.legend=F) + \r\n    geom_point(aes(x= 0.7, y = Y), shape = 19, colour = alpha(pointsCol,transparency), size = pointsSize, show.legend = F) + \r\n    xlab(\"\") + ylab(rrr2$VXX_name) +\r\n    theme(legend.position = \"none\") \r\n  \r\n  g = scaleXYformat(scaleYformat,\"Y\", g)\r\n}\r\n\r\n# plot as distribution  \r\nif(plotType == 'density')\r\n{\r\n  colnames(data4viz) = c('Y','X')\r\n  g <-  ggplot(data4viz, aes(X)) +\r\n    geom_density(show.legend = F, alpha = 0.2, fill = \"#FF6666\") +\r\n    geom_point(aes(x= X, y = 0), colour = alpha(pointsCol,transparency), size = pointsSize) + \r\n    xlab(rrr2$VXX_name) + ylab(\"density\") +\r\n    theme(legend.position = \"none\") \r\n  \r\n  g = scaleXYformat(scaleXformat,\"X\", g)\r\n  \r\n}\r\n\r\nif(plotType == 'errors')\r\n  g <-  ggplot()\r\n\r\ng = g + labs (title = rrr$Errors[1], caption = NULL) + theme_bw() +\r\n  theme(plot.title  = element_text(hjust = 0.5, size = sizeWarn),\r\n        axis.title = element_text(size =  sizeLabel, colour = colLabel),\r\n        axis.text = element_text(size =  sizeTicks),\r\n        panel.border = element_blank(), axis.line = element_line())\r\n\r\n\r\nif(plotType == 'errors') # remove box from empty plot \r\n{ \r\n  g = g + theme(axis.line = element_blank())\r\n  ddd = data.frame()\r\n}\r\n\r\n\r\nif(USEPLOTLY)\r\n{\r\n  gply <-  ggplotly(g) \r\n  \r\n  disabledButtonsList <- list('toImage', 'sendDataToCloud', 'zoom2d', 'pan', 'pan2d', 'select2d', 'lasso2d', 'hoverClosestCartesian', 'hoverCompareCartesian')\r\n  gply$x$config$modeBarButtonsToRemove = disabledButtonsList\r\n  \r\n  gply <- config(gply, staticPlot = FALSE, editable = FALSE, sendData = FALSE, showLink = FALSE,\r\n                 displaylogo = FALSE,  collaborate = FALSE, cloud=FALSE)\r\n  \r\n  if(plotType != 'errors')# take care of tooltips\r\n  {\r\n    ddd = Values\r\n    if(!is.null(IndepVar)) ddd = cbind(ddd,IndepVar)\r\n    if(!is.null(Tooltips)) ddd = cbind(ddd,Tooltips)\r\n    ddd = cbind(ddd[drawPoints,, drop=FALSE],score = outliers_scores)\r\n    ntt = generateNiceTooltips(as.data.frame(ddd), digits = 2,  maxRows = 3)\r\n    \r\n    layerScatterInScatter = 1 # first layer is scatter in scatter \r\n    layerScatterInBoxplot = 2 # sec layer is scatter in boxplot/density\r\n    \r\n    # tooltips on scatter\r\n    if(plotType == 'scatter')\r\n      gply$x$data[[layerScatterInScatter]]$text = ntt\r\n    if(plotType %in% c('boxplot','density'))\r\n      gply$x$data[[layerScatterInBoxplot]]$text = ntt\r\n    \r\n    #extend Y-axis range slightly \r\n    yrange = gply$x$layout$yaxis$range\r\n    if(!is.null(yrange))\r\n      gply$x$layout$yaxis$range = (yrange - mean(yrange))*yRangeExtend + mean(yrange)\r\n  \r\n  }\r\n  if(Sys.getenv(\"RSTUDIO\") != \"\")#DEBUG\r\n    print(gply)\r\n}else{\r\n  print(g)\r\n}\r\n\r\n\r\n############# Create and save widget ###############\r\ninternalSaveWidget(gply, 'out.html');\r\n# resolve bug in plotly (margin of 40 px)\r\nReadFullFileReplaceString('out.html', 'out.html', ',\"padding\":40,', ',\"padding\":0,')\r\n\r\nif(keepOutData && plotType != 'errors') \r\n{\r\n  exportDF = as.data.frame(ddd)\r\n  exportDF$outliers = rrr_outliers$myOutliers\r\n  \r\n  KeepOutDataInHTML(df = exportDF, htmlFile = 'out.html', exportMethod = exportMethod, limitExportSize = limitExportSize)\r\n}\r\n"
+          }
+        }
+      }
+    ],
+    "objects": {
+      "rcv_script": {
+        "properties": {
+          "provider": {
+            "type": {
+              "text": true
+            }
+          },
+          "source": {
+            "type": {
+              "scripting": {
+                "source": true
+              }
+            }
+          }
+        }
+      },
+      "mySettingsDet": {
+        "displayName": "Detection",
+        "description": "Algorithms for outlier detection and their parameters",
+        "properties": {
+          "thresholdType": {
+            "displayName": "Outlier type",
+            "description": "Outlier type. Peaks are values above the average, subpeaks are values below average",
+            "type": {
+              "enumeration": [
+                {
+                  "displayName": "peaks and subpeaks",
+                  "value": "PeaksAndSubpeaks"
+                },
+                {
+                  "displayName": "subpeaks",
+                  "value": "Subpeaks"
+                },
+                {
+                  "displayName": "peaks",
+                  "value": "Peaks"
+                }
+              ]
+            }
+          },
+          "algName": {
+            "displayName": "Algorithm",
+            "description": "Select the method for outlier's detection. 'zscore' = threshold applied on standardized value, 'Tukey' = threshold applied on IQR-scaled value (IQR is a interquartile range), 'LOF'(Local Outlier Factor) = result is based on local density, 'manual' = lower and upper thresholds defined by user, 'coots' =  outlier score is a measure computed with respect to a regression model ",
+            "type": {
+              "enumeration": [
+                {
+                  "displayName": "manual",
+                  "value": "manual"
+                },
+                {
+                  "displayName": "zscore",
+                  "value": "zscore"
+                },
+                {
+                  "displayName": "tukey",
+                  "value": "Tukey"
+                },
+                {
+                  "displayName": "LOF",
+                  "value": "LOF"
+                },
+                {
+                  "displayName": "Cook's distance",
+                  "value": "cooks"
+                }
+              ]
+            }
+          },
+          "numSig": {
+            "displayName": "num sigmas",
+            "description": "Threshold for zscore",
+            "type": {
+              "enumeration": [
+                {
+                  "displayName": "2",
+                  "value": "2"
+                },
+                {
+                  "displayName": "2.5",
+                  "value": "2.5"
+                },
+                {
+                  "displayName": "3",
+                  "value": "3"
+                },
+                {
+                  "displayName": "3.5",
+                  "value": "3.5"
+                },
+                {
+                  "displayName": "4",
+                  "value": "4"
+                },
+                {
+                  "displayName": "5",
+                  "value": "5"
+                },
+                {
+                  "displayName": "7",
+                  "value": "7"
+                },
+                {
+                  "displayName": "10",
+                  "value": "10"
+                },
+                {
+                  "displayName": "20",
+                  "value": "20"
+                }
+              ]
+            }
+          },
+          "IQR": {
+            "displayName": "IQR",
+            "description": "Threshold in terms of interquartile range",
+            "type": {
+              "enumeration": [
+                {
+                  "displayName": "1.25",
+                  "value": "1.25"
+                },
+                {
+                  "displayName": "1.5",
+                  "value": "1.5"
+                },
+                {
+                  "displayName": "1.75",
+                  "value": "1.75"
+                },
+                {
+                  "displayName": "2",
+                  "value": "2"
+                },
+                {
+                  "displayName": "2.5",
+                  "value": "2.5"
+                },
+                {
+                  "displayName": "3",
+                  "value": "3"
+                },
+                {
+                  "displayName": "5",
+                  "value": "5"
+                },
+                {
+                  "displayName": "7",
+                  "value": "7"
+                },
+                {
+                  "displayName": "10",
+                  "value": "10"
+                }
+              ]
+            }
+          },
+          "LOFThresh": {
+            "displayName": "threshold",
+            "description": "LOF threshold",
+            "type": {
+              "enumeration": [
+                {
+                  "displayName": "2",
+                  "value": "2"
+                },
+                {
+                  "displayName": "2.5",
+                  "value": "2.5"
+                },
+                {
+                  "displayName": "3",
+                  "value": "3"
+                },
+                {
+                  "displayName": "3.5",
+                  "value": "3.5"
+                },
+                {
+                  "displayName": "4",
+                  "value": "4"
+                },
+                {
+                  "displayName": "5",
+                  "value": "5"
+                },
+                {
+                  "displayName": "7",
+                  "value": "7"
+                },
+                {
+                  "displayName": "10",
+                  "value": "10"
+                },
+                {
+                  "displayName": "20",
+                  "value": "20"
+                }
+              ]
+            }
+          },
+          "LOFK": {
+            "displayName": "neighborhood cardinality",
+            "description": "Number of neighbors that will be used in the calculation of the local outlier factors",
+            "type": {
+              "enumeration": [
+                {
+                  "displayName": "1",
+                  "value": "1"
+                },
+                {
+                  "displayName": "2",
+                  "value": "2"
+                },
+                {
+                  "displayName": "3",
+                  "value": "3"
+                },
+                {
+                  "displayName": "4",
+                  "value": "4"
+                },
+                {
+                  "displayName": "5",
+                  "value": "5"
+                },
+                {
+                  "displayName": "7",
+                  "value": "7"
+                },
+                {
+                  "displayName": "10",
+                  "value": "10"
+                }
+              ]
+            }
+          },
+          "lThresh": {
+            "displayName": "lower threshold",
+            "description": "Lower threshold",
+            "type": {
+              "numeric": true
+            }
+          },
+          "hThresh": {
+            "displayName": "upper threshold",
+            "description": "Upper threshold",
+            "type": {
+              "numeric": true
+            }
+          },
+          "cooksThresh": {
+            "displayName": "threshold",
+            "description": "Cook's distance threshold, with respect to average Cook's distance",
+            "type": {
+              "enumeration": [
+                {
+                  "displayName": "2",
+                  "value": "2"
+                },
+                {
+                  "displayName": "2.5",
+                  "value": "2.5"
+                },
+                {
+                  "displayName": "3",
+                  "value": "3"
+                },
+                {
+                  "displayName": "3.5",
+                  "value": "3.5"
+                },
+                {
+                  "displayName": "5",
+                  "value": "5"
+                },
+                {
+                  "displayName": "7",
+                  "value": "7"
+                },
+                {
+                  "displayName": "10",
+                  "value": "10"
+                }
+              ]
+            }
+          },
+          "toScale": {
+            "displayName": "scale (if applicable)",
+            "description": "Standardization is applied to multivariate fields (if applicable)",
+            "type": {
+              "bool": true
+            }
+          }
+        }
+      },
+      "mySettingsViz": {
+        "displayName": "Visualization",
+        "properties": {
+          "plotType": {
+            "displayName": "Plot type",
+            "description": "Plot type",
+            "type": {
+              "enumeration": [
+                {
+                  "displayName": "scatter",
+                  "value": "scatter"
+                },
+                {
+                  "displayName": "boxplot",
+                  "value": "boxplot"
+                },
+                {
+                  "displayName": "density",
+                  "value": "density"
+                }
+              ]
+            }
+          },
+          "googleVizScatter": {
+            "displayName": "Scatter plot alternative type",
+            "description": "Use googleViz instead of plotly for scatter plot",
+            "type": {
+              "bool": true
+            }
+          },
+          "visualizeOutlierScore": {
+            "displayName": "Visualize outlier's score",
+            "description": "Visualize outlier's score instead of original data values",
+            "type": {
+              "bool": true
+            }
+          }
+        }
+      },
+      "mySettingsMark": {
+        "displayName": "Markers",
+        "description": "Point marker settings",
+        "properties": {
+          "inlierColor": {
+            "displayName": "Inliers color",
+            "description": "Inliers color",
+            "type": {
+              "fill": {
+                "solid": {
+                  "color": true
+                }
+              }
+            }
+          },
+          "outlierColor": {
+            "displayName": "Outliers color",
+            "description": "Outliers color",
+            "type": {
+              "fill": {
+                "solid": {
+                  "color": true
+                }
+              }
+            }
+          },
+          "weight": {
+            "displayName": "Point size",
+            "type": {
+              "numeric": true
+            }
+          },
+          "percentile": {
+            "displayName": "Opacity",
+            "description": "Point Opacity",
+            "type": {
+              "numeric": true
+            }
+          },
+          "sparsify": {
+            "displayName": "Sparsify",
+            "description": "Sparsify (make more sparse) dense regions of the scatter plot. Recommended for overcoming any overdrawing or memory issues.",
+            "type": {
+              "bool": true
+            }
+          }
+        }
+      },
+      "mySettingsAxes": {
+        "displayName": "Axes",
+        "description": "Axes and labels settings",
+        "properties": {
+          "colLabel": {
+            "displayName": "Labels color",
+            "description": "Labels color",
+            "type": {
+              "fill": {
+                "solid": {
+                  "color": true
+                }
+              }
+            }
+          },
+          "textSize": {
+            "displayName": "Labels size",
+            "type": {
+              "numeric": true
+            }
+          },
+          "scaleXformat": {
+            "displayName": "Scale X format",
+            "description": "Scale X format",
+            "type": {
+              "enumeration": [
+                {
+                  "displayName": "none",
+                  "value": "none"
+                },
+                {
+                  "displayName": "comma",
+                  "value": "comma"
+                },
+                {
+                  "displayName": "scientific",
+                  "value": "scientific"
+                },
+                {
+                  "displayName": "dollar",
+                  "value": "dollar"
+                }
+              ]
+            }
+          },
+          "scaleYformat": {
+            "displayName": "Scale Y format",
+            "description": "Scale Y format",
+            "type": {
+              "enumeration": [
+                {
+                  "displayName": "none",
+                  "value": "none"
+                },
+                {
+                  "displayName": "comma",
+                  "value": "comma"
+                },
+                {
+                  "displayName": "scientific",
+                  "value": "scientific"
+                },
+                {
+                  "displayName": "dollar",
+                  "value": "dollar"
+                }
+              ]
+            }
+          },
+          "sizeTicks": {
+            "displayName": "Size ticks",
+            "description": "Size ticks",
+            "type": {
+              "enumeration": [
+                {
+                  "displayName": "4",
+                  "value": "4"
+                },
+                {
+                  "displayName": "6",
+                  "value": "6"
+                },
+                {
+                  "displayName": "8",
+                  "value": "8"
+                },
+                {
+                  "displayName": "10",
+                  "value": "10"
+                },
+                {
+                  "displayName": "12",
+                  "value": "12"
+                },
+                {
+                  "displayName": "14",
+                  "value": "14"
+                },
+                {
+                  "displayName": "16",
+                  "value": "16"
+                },
+                {
+                  "displayName": "18",
+                  "value": "18"
+                },
+                {
+                  "displayName": "20",
+                  "value": "20"
+                }
+              ]
+            }
+          }
+        }
+      },
+      "settings_export_params": {
+        "displayName": "Export data",
+        "description": "Export results",
+        "properties": {
+          "show": {
+            "type": {
+              "bool": true
+            }
+          },
+          "limitExportSize": {
+            "displayName": "Maximum exported rows",
+            "description": "Limit number of rows",
+            "type": {
+              "enumeration": [
+                {
+                  "displayName": "1000",
+                  "value": "1000"
+                },
+                {
+                  "displayName": "10000",
+                  "value": "10000"
+                },
+                {
+                  "displayName": "50000",
+                  "value": "50000"
+                },
+                {
+                  "displayName": "unlimited",
+                  "value": "100000"
+                }
+              ]
+            }
+          },
+          "method": {
+            "displayName": "Method",
+            "description": "Method",
+            "type": {
+              "enumeration": [
+                {
+                  "displayName": "copy to clipboard",
+                  "value": "copy"
+                },
+                {
+                  "displayName": "download (only service)",
+                  "value": "download"
+                }
+              ]
+            }
+          }
+        }
+      }
+    },
+    "suppressDefaultTitle": true
+  },
+  "dependencies": {
+    "cranPackages": [
+      {
+        "name": "scales",
+        "displayName": "scales: Scale Functions for Visualization",
+        "url": "https://cran.r-project.org/web/packages/scales/index.html"
+      },
+      {
+        "name": "reshape",
+        "displayName": "reshape:  lets you flexibly restructure and aggregate data",
+        "url": "https://cran.r-project.org/web/packages/reshape/index.html"
+      },
+      {
+        "name": "ggplot2",
+        "displayName": "ggplot2: Create Elegant Data Visualisations Using the Grammar of Graphics",
+        "url": "https://cran.r-project.org/web/packages/ggplot2/index.html"
+      },
+      {
+        "name": "htmlwidgets",
+        "displayName": "htmlwidgets: HTML Widgets for R",
+        "url": "https://cran.r-project.org/web/packages/htmlwidgets/index.html"
+      },
+      {
+        "name": "XML",
+        "displayName": "XML: Tools for Parsing and Generating XML Within R and S-Plus",
+        "url": "https://cran.r-project.org/web/packages/XML/index.html"
+      },
+      {
+        "name": "DMwR",
+        "displayName": "DMwR: Functions and data for Data Mining with R",
+        "url": "https://cran.r-project.org/web/packages/DMwR/index.html"
+      },
+      {
+        "name": "plotly",
+        "displayName": "plotly: Create Interactive Web Graphics via plotly",
+        "url": "https://cran.r-project.org/web/packages/plotly/index.html"
+      },
+      {
+        "name": "caTools",
+        "displayName": "caTools: moving window statistics, GIF, Base64, ROC AUC, etc",
+        "url": "https://cran.r-project.org/web/packages/caTools/index.html"
+      }
+    ]
+  },
+  "stringResources": {},
+  "content": {
+    "js": "var powerbi;!function(e){var t;!function(e){var t;!function(e){var t;!function(e){var t;!function(e){function t(e,t,r){void 0===e&&(e=[]);var n=e;return i(n),t&&(n.identityFields=t),r&&(n.source=r),n}function i(e,t){e.grouped=t?function(){return t}:function(){return r(e)}}function r(e){for(var t,i=[],r=0,n=e.length;n>r;r++){var o=e[r];if(!t||t.identity!==o.identity){if(t={values:[]},o.identity){t.identity=o.identity;var s=o.source;void 0!==s.groupName?t.name=s.groupName:s.displayName&&(t.name=s.displayName)}i.push(t)}t.values.push(o)}return i}e.createValueColumns=t,e.setGrouped=i,e.groupValues=r}(t=e.DataViewTransform||(e.DataViewTransform={}))}(t=e.dataview||(e.dataview={}))}(t=e.utils||(e.utils={}))}(t=e.extensibility||(e.extensibility={}))}(powerbi||(powerbi={}));var powerbi;!function(e){var t;!function(e){var t;!function(e){var t;!function(e){var t;!function(e){function t(e,t){if(!e||!e.length)return-1;var i=e[0];if(i.values&&i.values.length>0)for(var n=0,o=i.values.length;o>n;++n){var s=i.values[n];if(s&&s.source&&r(s.source,t))return n}return-1}function i(e,t){if(e&&e.length)for(var i=0,n=e.length;n>i;i++)if(r(e[i].source,t))return i;return-1}function r(e,t){var i=e.roles;return i&&i[t]}function n(e,t){return null!=e&&null!=e.metadata&&e.metadata.columns&&e.metadata.columns.some(function(e){return e.roles&&void 0!==e.roles[t]})}function o(e,t){return e&&e.source&&e.source.roles&&e.source.roles[t]===!0}e.getMeasureIndexOfRole=t,e.getCategoryIndexOfRole=i,e.hasRole=r,e.hasRoleInDataView=n,e.hasRoleInValueColumn=o}(t=e.DataRoleHelper||(e.DataRoleHelper={}))}(t=e.dataview||(e.dataview={}))}(t=e.utils||(e.utils={}))}(t=e.extensibility||(e.extensibility={}))}(powerbi||(powerbi={}));var powerbi;!function(e){var t;!function(e){var t;!function(e){var t;!function(e){var t;!function(e){function t(e,t,i){if(!e)return i;var r=e[t];return void 0===r?i:r}function i(e,i,r){var n=t(e,i);return n&&n.solid?n.solid.color:r}e.getValue=t,e.getFillColorByPropertyName=i}(t=e.DataViewObject||(e.DataViewObject={}))}(t=e.dataview||(e.dataview={}))}(t=e.utils||(e.utils={}))}(t=e.extensibility||(e.extensibility={}))}(powerbi||(powerbi={}));var powerbi;!function(e){var t;!function(e){var t;!function(e){var t;!function(e){var t;!function(t){function i(t,i,r){return t?e.DataViewObject.getValue(t[i.objectName],i.propertyName,r):r}function r(e,t,i){return e&&e[t]?e[t]:i}function n(e,t,r){var n=i(e,t);return n&&n.solid?n.solid.color:r}function o(e,t,r){var n=i(e,t,r);return n&&n.solid?n.solid.color:void 0===n||null===n||\"object\"==typeof n&&!n.solid?r:n}t.getValue=i,t.getObject=r,t.getFillColor=n,t.getCommonValue=o}(t=e.DataViewObjects||(e.DataViewObjects={}))}(t=e.dataview||(e.dataview={}))}(t=e.utils||(e.utils={}))}(t=e.extensibility||(e.extensibility={}))}(powerbi||(powerbi={}));var powerbi;!function(e){var t;!function(t){var i;!function(t){var i;!function(t){var i,r=e.extensibility.utils.dataview.DataRoleHelper;!function(e){function t(e,t,i){if(e.categories&&e.categories.length>0){var n=e.categories[0];return n.source&&r.hasRole(n.source,t)&&r.hasRole(n.source,i)}return!1}function i(e){return void 0!==e.groupName?e.groupName:e.queryName}function n(e){var t=s(e);return null!=t&&t.imageUrl===!0}function o(e){var t=s(e);return null!=t&&t.webUrl===!0}function s(e){return e&&e.type&&e.type.misc}function a(e){return e&&e.metadata&&e.metadata.columns&&e.metadata.columns.length?e.metadata.columns.some(function(e){return n(e)===!0}):!1}e.categoryIsAlsoSeriesRole=t,e.getSeriesName=i,e.isImageUrlColumn=n,e.isWebUrlColumn=o,e.getMiscellaneousTypeDescriptor=s,e.hasImageUrlColumn=a}(i=t.converterHelper||(t.converterHelper={}))}(i=t.dataview||(t.dataview={}))}(i=t.utils||(t.utils={}))}(t=e.extensibility||(e.extensibility={}))}(powerbi||(powerbi={}));var powerbi;!function(e){var t;!function(e){var t;!function(e){var t;!function(e){var t=function(){function t(){}return t.getDefault=function(){return new this},t.createPropertyIdentifier=function(e,t){return{objectName:e,propertyName:t}},t.parse=function(t){var i,r=this.getDefault();if(!t||!t.metadata||!t.metadata.objects)return r;i=r.getProperties();for(var n in i)for(var o in i[n]){var s=r[n][o];r[n][o]=e.DataViewObjects.getCommonValue(t.metadata.objects,i[n][o],s)}return r},t.isPropertyEnumerable=function(e){return!t.InnumerablePropertyPrefix.test(e)},t.enumerateObjectInstances=function(e,t){var i=e&&e[t.objectName];if(!i)return[];var r={objectName:t.objectName,selector:null,properties:{}};for(var n in i)i.hasOwnProperty(n)&&(r.properties[n]=i[n]);return{instances:[r]}},t.prototype.getProperties=function(){var e=this,i={},r=Object.keys(this);return r.forEach(function(r){if(t.isPropertyEnumerable(r)){var n=Object.keys(e[r]);i[r]={},n.forEach(function(e){t.isPropertyEnumerable(r)&&(i[r][e]=t.createPropertyIdentifier(r,e))})}}),i},t}();t.InnumerablePropertyPrefix=/^_/,e.DataViewObjectsParser=t}(t=e.dataview||(e.dataview={}))}(t=e.utils||(e.utils={}))}(t=e.extensibility||(e.extensibility={}))}(powerbi||(powerbi={}));var __extends=this&&this.__extends||function(){var e=Object.setPrototypeOf||{__proto__:[]}instanceof Array&&function(e,t){e.__proto__=t}||function(e,t){for(var i in t)t.hasOwnProperty(i)&&(e[i]=t[i])};return function(t,i){function r(){this.constructor=t}e(t,i),t.prototype=null===i?Object.create(i):(r.prototype=i.prototype,new r)}}(),powerbi;!function(e){var t;!function(e){var t;!function(e){var t;!function(e){\"use strict\";function t(){s=0}function i(){return 0===s}function r(e,t){var i=[];if(e&&e.hasChildNodes()){for(var r=e.children,o=0;o<r.length;o++){var s=void 0;s=\"script\"===r.item(o).nodeName.toLowerCase()?n(r.item(o)):r.item(o).cloneNode(!0),t.appendChild(s),i.push(s)}return i}}function n(e){for(var t=document.createElement(\"script\"),i=e.attributes,r=0;r<i.length;r++)t.setAttribute(i[r].name,i[r].textContent),\"src\"===i[r].name.toLowerCase()&&(s++,t.onload=function(){s--});return t.innerHTML=e.innerHTML,t}function o(){var e=window.setInterval(function(){i()&&(window.clearInterval(e),window.hasOwnProperty(\"HTMLWidgets\")&&window.HTMLWidgets.staticRender&&window.HTMLWidgets.staticRender())},100)}var s=0;e.ResetInjector=t,e.injectorReady=i,e.ParseElement=r,e.RunHTMLWidgetRenderer=o}(t=e.outliersDetection7FCA||(e.outliersDetection7FCA={}))}(t=e.visual||(e.visual={}))}(t=e.extensibility||(e.extensibility={}))}(powerbi||(powerbi={}));var powerbi;!function(e){var t;!function(t){var i;!function(t){var i;!function(t){\"use strict\";var i=e.extensibility.utils.dataview.DataViewObjectsParser,r=function(e){function t(){var t=null!==e&&e.apply(this,arguments)||this;return t.mySettingsDet=new n,t.mySettingsViz=new o,t.mySettingsMark=new s,t.mySettingsAxes=new a,t.settings_export_params=new u,t}return __extends(t,e),t}(i);t.VisualSettings=r;var n=function(){function e(){this.thresholdType=\"PeaksAndSubpeaks\",this.algName=\"zscore\",this.numSig=\"4\",this.IQR=\"3\",this.LOFThresh=\"3\",this.LOFK=\"3\",this.lThresh=-100,this.hThresh=100,this.cooksThresh=\"5\",this.toScale=!0}return e}();t.mySettingsDet=n;var o=function(){function e(){this.plotType=\"scatter\",this.visualizeOutlierScore=!1}return e}();t.mySettingsViz=o;var s=function(){function e(){this.inlierColor=\"blue\",this.outlierColor=\"red\",this.weight=10,this.sparsify=!0,this.percentile=40}return e}();t.mySettingsMark=s;var a=function(){function e(){this.colLabel=\"gray\",this.textSize=10,this.scaleXformat=\"none\",this.scaleYformat=\"none\",this.sizeTicks=\"8\"}return e}();t.mySettingsAxes=a;var u=function(){function e(){this.show=!1,this.limitExportSize=\"10000\",this.method=\"copy\"}return e}();t.SettingsExportParams=u}(i=t.outliersDetection7FCA||(t.outliersDetection7FCA={}))}(i=t.visual||(t.visual={}))}(t=e.extensibility||(e.extensibility={}))}(powerbi||(powerbi={}));var powerbi;!function(e){var t;!function(t){var i;!function(t){var i;!function(t){\"use strict\";var i=!1,r=[e.VisualUpdateType.Resize,e.VisualUpdateType.ResizeEnd,e.VisualUpdateType.Resize+e.VisualUpdateType.ResizeEnd],n=function(){function e(e){e&&e.element&&(this.rootElement=e.element),this.headNodes=[],this.bodyNodes=[]}return e.prototype.update=function(t){if(t&&t.type&&t.viewport&&t.dataViews&&0!==t.dataViews.length&&t.dataViews[0]){var i=t.dataViews[0];this.settings=e.parseSettings(i);var n=null;i.scriptResult&&i.scriptResult.payloadBase64&&(n=i.scriptResult.payloadBase64),-1===r.indexOf(t.type)?n&&this.injectCodeFromPayload(n):this.onResizing(t.viewport)}},e.prototype.onResizing=function(e){},e.prototype.injectCodeFromPayload=function(e){if(t.ResetInjector(),e){var r=document.createElement(\"html\");try{r.innerHTML=window.atob(e)}catch(n){return}if(i||0===this.headNodes.length){for(;this.headNodes.length>0;){var o=this.headNodes.pop();document.head.removeChild(o)}var s=r.getElementsByTagName(\"head\");if(s&&s.length>0){var a=s[0];this.headNodes=t.ParseElement(a,document.head)}}for(;this.bodyNodes.length>0;){var o=this.bodyNodes.pop();this.rootElement.removeChild(o)}var u=r.getElementsByTagName(\"body\");if(u&&u.length>0){var l=u[0];this.bodyNodes=t.ParseElement(l,this.rootElement)}t.RunHTMLWidgetRenderer()}},e.parseSettings=function(e){return t.VisualSettings.parse(e)},e.prototype.enumerateObjectInstances=function(e){var t=e.objectName,i=[],r=this.settings;switch(t){case\"mySettingsDet\":i.push({objectName:t,properties:{thresholdType:r.mySettingsDet.thresholdType,algName:r.mySettingsDet.algName}}),\"zscore\"==r.mySettingsDet.algName&&i.push({objectName:t,properties:{numSig:r.mySettingsDet.numSig}}),\"manual\"==r.mySettingsDet.algName&&i.push({objectName:t,properties:{lThresh:r.mySettingsDet.lThresh,hThresh:r.mySettingsDet.hThresh}}),\"LOF\"==r.mySettingsDet.algName&&i.push({objectName:t,properties:{LOFThresh:r.mySettingsDet.LOFThresh,LOFK:r.mySettingsDet.LOFK}}),\"Tukey\"==r.mySettingsDet.algName&&i.push({objectName:t,properties:{IQR:r.mySettingsDet.IQR}}),\"cooks\"==r.mySettingsDet.algName&&i.push({objectName:t,properties:{cooksThresh:r.mySettingsDet.cooksThresh}}),i.push({objectName:t,properties:{toScale:r.mySettingsDet.toScale},selector:null});break;case\"mySettingsViz\":i.push({objectName:t,properties:{plotType:r.mySettingsViz.plotType,visualizeOutlierScore:r.mySettingsViz.visualizeOutlierScore},selector:null});break;case\"mySettingsMark\":i.push({objectName:t,properties:{inlierColor:r.mySettingsMark.inlierColor,outlierColor:r.mySettingsMark.outlierColor,weight:r.mySettingsMark.weight,percentile:r.mySettingsMark.percentile},selector:null});break;case\"mySettingsAxes\":i.push({objectName:t,properties:{colLabel:r.mySettingsAxes.colLabel,textSize:r.mySettingsAxes.textSize,sizeTicks:r.mySettingsAxes.sizeTicks},selector:null}),\"scatter\"!=r.mySettingsViz.plotType&&\"density\"!=r.mySettingsViz.plotType||i.push({objectName:t,properties:{scaleXformat:r.mySettingsAxes.scaleXformat}}),\"scatter\"!=r.mySettingsViz.plotType&&\"boxplot\"!=r.mySettingsViz.plotType||i.push({objectName:t,properties:{scaleYformat:r.mySettingsAxes.scaleYformat}});break;case\"settings_export_params\":i.push({objectName:t,properties:{show:this.settings.settings_export_params.show,limitExportSize:this.settings.settings_export_params.limitExportSize,method:this.settings.settings_export_params.method},selector:null})}return i},e}();t.Visual=n}(i=t.outliersDetection7FCA||(t.outliersDetection7FCA={}))}(i=t.visual||(t.visual={}))}(t=e.extensibility||(e.extensibility={}))}(powerbi||(powerbi={}));var powerbi;!function(e){var t;!function(t){var i;!function(t){t.outliersDetection7FCA={name:\"outliersDetection7FCA\",displayName:\"PowerBI-visuals-outliers-det\",\"class\":\"Visual\",version:\"1.0.2\",apiVersion:\"1.11.0\",create:function(t){return new e.extensibility.visual.outliersDetection7FCA.Visual(t)},custom:!0}}(i=t.plugins||(t.plugins={}))}(t=e.visuals||(e.visuals={}))}(powerbi||(powerbi={}));",
+    "css": ".visual-outliersDetection7FCA .rcv_autoScaleImageContainer{position:relative}.visual-outliersDetection7FCA .rcv_autoScaleImageContainer .rcv_autoScaleImage{max-width:100%;max-height:100%;position:absolute;top:50%;left:50%;transform:translateY(-50%) translateX(-50%);-webkit-transform:translateY(-50%) translateX(-50%)}",
+    "iconBase64": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAASbAAAEmwBs/gH1wAAABl0RVh0U29mdHdhcmUAcGFpbnQubmV0IDQuMC4yMIYnWQMAAAJjSURBVDhPpVRNaxNBGB5baiqNX21VkJY2F8EifjS04MmTWPAiupOY7q5WVtpqu4ewBBJ3k+lF1IpF/Pbkr/APiJ6Fnjy1IKgHe6ygIO/4zGQ2ukkbMH3gYTPvzDw878eEVavVC2EYekKItGSsC9zFdoJarWZDtAbBA2otOe/ekSiErkVRdLdcLh9UayVG2UwIPqbxzG0aH32kD7bBrJztEVJ06QUcXgfvFYvFfh0A6OSRPgiuQ/ATTRwdMOEtkZcu52Rv5sj+xuX0aS2IlO/DaUNQZrM9cLYKwTUlbsIJxGXh5LzPSUcq4veTlpQVILQAwRWVLmVHIxNOQAkqwt0dLUjOb4vsi9ohBJMpT2SOybGxtCKdGTluwi2QAlOBJuZ+OacccjLatRF88G/KONpBl80d05QmQYDLbs0twCXfb5F7Ft/dJsSYTyl9XtUQg73cIshkfQyaUJCFQRT/S70J9gcUs+5MmPPh0pKLlJ+iKW3HI4ZFzvm4q4oWedpI3HUWCeEg5edwOKgDCbTW0iJrDxy+Q1cJs/c6flny3EivFoXQNObwRSCCwziwgoOrnNx5c59hvYz4Bvim8RoAn/xU3GUI/f0PgLsC+HJm3bvcSAUzpQpvkz2UTK8wqS+1gxKEw1fex7lJuPipLiKlz+p9TtFUCrE1E/t+46t1yFzbHkj5Kpqia6jeIoq+mKf8sNlml8gdgOMrN3/YQ+pJNlLbDnCYh+BDCDaNTYcwKT/DLA5DNN0pgyDokxJTYQTf4lsCF7C5+L/EPR/0fN/fxyqVygks5sBb2JzvhOouyjZTKpX2/gHQdp9wGvlIkAAAAABJRU5ErkJggg=="
+  }
+}

@@ -1,0 +1,152 @@
+{
+  "version": "1.1.0",
+  "diagrams": [
+    {
+      "ordinal": 0,
+      "scrollPosition": {
+        "x": 0,
+        "y": 0
+      },
+      "nodes": [
+        {
+          "location": {
+            "x": 0,
+            "y": 0
+          },
+          "nodeIndex": "Query1",
+          "nodeLineageTag": "087f4e2f-a047-424c-8301-405716e8bc79",
+          "size": {
+            "height": 434.79989425878279,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 414.7,
+            "y": 0
+          },
+          "nodeIndex": "Query2",
+          "nodeLineageTag": "ac04dbae-74ea-4c28-8f5f-dd910de2ef05",
+          "size": {
+            "height": 362.64290072475922,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 1108.7728223931642,
+            "y": 352.182375944471
+          },
+          "nodeIndex": "Compare with",
+          "nodeLineageTag": "5025edf6-913f-49a8-8213-3d733151885b",
+          "size": {
+            "height": 145,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 1403.9663303242244,
+            "y": 494.56280335513475
+          },
+          "nodeIndex": "Like to Like",
+          "nodeLineageTag": "3955e641-f96c-4d51-a3d3-b798efba7a27",
+          "size": {
+            "height": 145,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 1116.069904359113,
+            "y": 38.189698975113153
+          },
+          "nodeIndex": "Venn Diagram",
+          "nodeLineageTag": "2d46005c-53f7-4321-ba70-7bcc7074efb7",
+          "size": {
+            "height": 224,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 1412.2327380018735,
+            "y": 0
+          },
+          "nodeIndex": "VIP_WonderPassPlaysByCategory",
+          "nodeLineageTag": "92e07840-7fba-4c5f-8a10-df7a247c8f3f",
+          "size": {
+            "height": 176,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 809.98383080140991,
+            "y": 0
+          },
+          "nodeIndex": "Distinct packs",
+          "nodeLineageTag": "c547ddfc-4b0e-4db2-be7a-d1529b4fe79d",
+          "size": {
+            "height": 200,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 1412.4920487198526,
+            "y": 245.43338904308143
+          },
+          "nodeIndex": "VIP_Parking",
+          "nodeLineageTag": "32319580-804d-4b54-97d5-2c33f8fd2b8e",
+          "size": {
+            "height": 176,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 265.58137704350281,
+            "y": 377.52882824891373
+          },
+          "nodeIndex": "Family Pack",
+          "nodeLineageTag": "894e8154-65c2-4d32-a80e-bf3627a356c0",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 726.06471555738085,
+            "y": 403.1768470250542
+          },
+          "nodeIndex": "Distinct family packs",
+          "nodeLineageTag": "721bae21-4b77-4f3a-9671-70614ffb89df",
+          "size": {
+            "height": 200,
+            "width": 234
+          },
+          "zIndex": 0
+        }
+      ],
+      "name": "All tables",
+      "zoomValue": 79.376916865072772,
+      "pinKeyFieldsToTop": false,
+      "showExtraHeaderInfo": false,
+      "hideKeyFieldsWhenCollapsed": false,
+      "tablesLocked": false
+    }
+  ],
+  "selectedDiagram": "All tables",
+  "defaultDiagram": "All tables"
+}

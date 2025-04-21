@@ -8,7 +8,7 @@
       },
       {
         "name": "PBIDesktopVersion",
-        "value": "2.137.1102.0 (24.10)"
+        "value": "2.141.1558.0 (25.03)+75b5f06a991f8f8a8a4d6b6fcd0f66e1ec2d6fdc"
       },
       {
         "name": "PBI_QueryOrder",
@@ -25345,6 +25345,10 @@
           {
             "name": "PBI_ResultType",
             "value": "Table"
+          },
+          {
+            "name": "PBI_NavigationStepName",
+            "value": "Navigation"
           }
         ],
         "columns": [
@@ -29077,6 +29081,10 @@
           {
             "name": "PBI_ResultType",
             "value": "Table"
+          },
+          {
+            "name": "PBI_NavigationStepName",
+            "value": "Navigation"
           }
         ],
         "columns": [
@@ -32528,6 +32536,32 @@
             "lineageTag": "6c0d73ad-ba50-4dec-b0e5-632eebe3149f",
             "sourceColumn": "Mini_Golf_Remaining",
             "summarizeBy": "sum"
+          },
+          {
+            "name": "PurchaserAccountId",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "a3ae701c-9fbd-4308-8663-c9c654331367",
+            "sourceColumn": "PurchaserAccountId",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "GuestAccountId",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "6e03987f-e38b-4f21-9a2f-97c78d36b704",
+            "sourceColumn": "GuestAccountId",
+            "summarizeBy": "none"
           }
         ],
         "lineageTag": "894e8154-65c2-4d32-a80e-bf3627a356c0",
@@ -33453,6 +33487,38 @@
             "lineageTag": "7a9ebc3a-d2e6-4f3f-8f7e-af5387612f5e",
             "sourceColumn": "Family Pack[Mini_Golf_Remaining]",
             "summarizeBy": "sum",
+            "type": "calculatedTableColumn"
+          },
+          {
+            "name": "PurchaserAccountId",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "isDataTypeInferred": true,
+            "isNameInferred": true,
+            "lineageTag": "62e6a7d7-5427-4232-95b5-37be68d366a7",
+            "sourceColumn": "Family Pack[PurchaserAccountId]",
+            "summarizeBy": "none",
+            "type": "calculatedTableColumn"
+          },
+          {
+            "name": "GuestAccountId",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "isDataTypeInferred": true,
+            "isNameInferred": true,
+            "lineageTag": "f3531657-deae-4f0d-a8a3-c760b7b3ec05",
+            "sourceColumn": "Family Pack[GuestAccountId]",
+            "summarizeBy": "none",
             "type": "calculatedTableColumn"
           }
         ],

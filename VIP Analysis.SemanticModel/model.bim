@@ -8,7 +8,7 @@
       },
       {
         "name": "PBIDesktopVersion",
-        "value": "2.141.1558.0 (25.03)+75b5f06a991f8f8a8a4d6b6fcd0f66e1ec2d6fdc"
+        "value": "2.142.928.0 (25.04)+de52df9f0bb74ad93a80d89c52d63fe6d07e0e1b"
       },
       {
         "name": "PBI_QueryOrder",
@@ -25904,19 +25904,26 @@
             "dataType": "string",
             "expression": [
               "",
-              "",
-              "IF(CONTAINSSTRING([VW_VIPActivationDataset_Category],\"media\"),\"8. Media Pack\", ",
-              "",
-              "IF(CONTAINSSTRING([Sales_Type_Final],\"mini\"),\"7. Mini\", ",
-              "IF(CONTAINSSTRING([Sales_Type_Final],\"comp\"),\"6. Complimentary\", ",
-              "IF(CONTAINSSTRING([Sales_Type_Final],\"media\"),\"8. Media Pack\", ",
-              "IF(CONTAINSSTRING([VW_VIPActivationDataset_Category],\"Private\"),\"1. Private\", ",
-              "IF(CONTAINSSTRING([VW_VIPActivationDataset_Category],\"Diamond\"),\"2. Diamond\", ",
-              "IF(CONTAINSSTRING([VW_VIPActivationDataset_Category],\"Platinum\"),\"3. Platinum\", ",
-              "IF(CONTAINSSTRING([VW_VIPActivationDataset_Category],\"Gold\"),\"4. Gold\", ",
-              "IF(CONTAINSSTRING([VW_VIPActivationDataset_Category],\"Silver\"),\"5. Silver\", ",
-              "",
-              "[VW_VIPActivationDataset_Category])))))))))"
+              "IF (",
+              "    CONTAINSSTRING ( [VW_VIPActivationDataset_Category], \"media\" ), \"8. Media Pack\",",
+              "    IF ( CONTAINSSTRING ( [Sales_Type_Final], \"mini\" ), \"7. Mini\",",
+              "        IF ( CONTAINSSTRING ( [Sales_Type_Final], \"comp\" ), \"6. Complimentary\",",
+              "            IF ( CONTAINSSTRING ( [Sales_Type_Final], \"media\" ), \"8. Media Pack\",",
+              "                IF ( CONTAINSSTRING ( [VW_VIPActivationDataset_Category], \"Private\" ), \"1. Private\",",
+              "                    IF ( CONTAINSSTRING ( [VW_VIPActivationDataset_Category], \"Diamond\" ), \"2. Diamond\",",
+              "                        IF ( CONTAINSSTRING ( [VW_VIPActivationDataset_Category], \"Platinum\" ), \"3. Platinum\",",
+              "                            IF ( CONTAINSSTRING ( [VW_VIPActivationDataset_Category], \"Gold\" ), \"4. Gold\",",
+              "                                IF ( CONTAINSSTRING ( [VW_VIPActivationDataset_Category], \"Silver\" ), \"5. Silver\",",
+              "                                    [VW_VIPActivationDataset_Category]",
+              "                                )",
+              "                            )",
+              "                        )",
+              "                    )",
+              "                )",
+              "            )",
+              "        )",
+              "    )",
+              ")"
             ],
             "isDataTypeInferred": true,
             "lineageTag": "bb0b1a48-e13f-4cab-83d4-89c103c19451",
@@ -26062,20 +26069,58 @@
             "dataType": "string",
             "expression": [
               "",
-              "var daydiff= ",
-              "IF(Query1[Season_ID]=28,DATEDIFF(DATE(2023,10,19),[Activated_at],DAY),",
-              "IF(Query1[Season_ID]=27,DATEDIFF(Date(2022,10,26),[Activated_at],Day),",
-              "IF(Query1[Season_ID]=26,DATEDIFF(Date(2021,10,25),[Activated_at],Day),",
-              "IF(Query1[Season_ID]=25,DATEDIFF(Date(2020,10,26),[Activated_at],Day)))))",
-              "return ",
-              "if (daydiff<0,\"1. Activated before season starts\",",
-              " if(daydiff<30,\"2. Activated within first months\",",
-              " if(daydiff<60,\"3. Activated within first 2 months\",",
-              "  if(daydiff<90,\"4. Activated within first 3 months\",",
-              " if(daydiff<120,\"5. Activated within first 4 months\",",
-              " if(daydiff<150,\"6. Activated within first 5 months\",",
-              " if(daydiff<180,\"7. Activated within first 6 months\",",
-              "\"8. Activated end of season\")))))))"
+              "VAR daydiff =",
+              "    IF (",
+              "            Query1[Season_ID] = 29,",
+              "            DATEDIFF ( DATE ( 2024, 10, 16 ), [Activated_at], DAY ),    ",
+              "        IF (",
+              "            Query1[Season_ID] = 28,",
+              "            DATEDIFF ( DATE ( 2023, 10, 19 ), [Activated_at], DAY ),",
+              "            IF (",
+              "                Query1[Season_ID] = 27,",
+              "                DATEDIFF ( DATE ( 2022, 10, 26 ), [Activated_at], DAY ),",
+              "                IF (",
+              "                    Query1[Season_ID] = 26,",
+              "                    DATEDIFF ( DATE ( 2021, 10, 25 ), [Activated_at], DAY ),",
+              "                    IF (",
+              "                        Query1[Season_ID] = 25,",
+              "                        DATEDIFF ( DATE ( 2020, 10, 26 ), [Activated_at], DAY )",
+              "                    )",
+              "                )",
+              "            )",
+              "        )",
+              "    )",
+              "",
+              "RETURN",
+              "    IF (",
+              "        daydiff < 0,",
+              "        \"1. Activated before season starts\",",
+              "        IF (",
+              "            daydiff < 30,",
+              "            \"2. Activated within first months\",",
+              "            IF (",
+              "                daydiff < 60,",
+              "                \"3. Activated within first 2 months\",",
+              "                IF (",
+              "                    daydiff < 90,",
+              "                    \"4. Activated within first 3 months\",",
+              "                    IF (",
+              "                        daydiff < 120,",
+              "                        \"5. Activated within first 4 months\",",
+              "                        IF (",
+              "                            daydiff < 150,",
+              "                            \"6. Activated within first 5 months\",",
+              "                            IF (",
+              "                                daydiff < 180,",
+              "                                \"7. Activated within first 6 months\",",
+              "                                \"8. Activated end of season\"",
+              "                            )",
+              "                        )",
+              "                    )",
+              "                )",
+              "            )",
+              "        )",
+              "    )"
             ],
             "isDataTypeInferred": true,
             "lineageTag": "86d65b7f-9d2f-4b18-a4c7-a8cf17e35012",
@@ -27013,14 +27058,20 @@
             "name": "Activated_vs_Inventory_%__number_only_compared_season",
             "expression": [
               "",
-              "VAR selectedseason = SELECTEDVALUE('Query1'[Season_ID])",
-              "VAR compare = SELECTEDVALUE('Compare with'[Value])",
-              "",
+              "VAR selectedseason =",
+              "    SELECTEDVALUE ( 'Query1'[Season_ID] )",
+              "VAR compare =",
+              "    SELECTEDVALUE ( 'Compare with'[Value] )",
               "RETURN",
-              "CALCULATE(DISTINCTCOUNT('Query1'[VW_VIP_ActivationDataset_Pack_No]),'Query1'[Activated_carplate]=1,'Query1'[Season_ID]=VALUE(compare))/CALCULATE(DISTINCTCOUNT('Query1'[VW_VIP_ActivationDataset_Pack_No]),'Query1'[Season_ID]=VALUE(compare))",
-              "",
-              "",
-              ""
+              "    CALCULATE (",
+              "        DISTINCTCOUNT ( 'Query1'[VW_VIP_ActivationDataset_Pack_No] ),",
+              "        'Query1'[Activated_carplate] = 1,",
+              "        'Query1'[Season_ID] = VALUE ( compare )",
+              "    )",
+              "        / CALCULATE (",
+              "            DISTINCTCOUNT ( 'Query1'[VW_VIP_ActivationDataset_Pack_No] ),",
+              "            'Query1'[Season_ID] = VALUE ( compare )",
+              "        )"
             ],
             "formatString": "0.000%;-0.000%;0.000%",
             "lineageTag": "6e523bc7-b43b-45ed-9ae3-3d8165b1fbe0"
@@ -27440,12 +27491,20 @@
             "name": "Media_Activated_selected_season",
             "expression": [
               "",
-              "VAR selected = SELECTEDVALUE('Query1'[Season_ID])",
-              "VAR compare = SELECTEDVALUE('Compare with'[Value])",
-              "",
+              "VAR selected =",
+              "    SELECTEDVALUE ( 'Query1'[Season_ID] )",
+              "VAR compare =",
+              "    SELECTEDVALUE ( 'Compare with'[Value] )",
               "RETURN",
-              "    CALCULATE(DISTINCTCOUNT('Query1'[VW_VIP_ActivationDataset_Pack_No]),OR('Query1'[VW_VIPActivationDataset_Category]=\"Media Pack\",'Query1'[VW_VIPActivationDataset_Category]=\"Media Pack-A\"),'Query1'[Activated_carplate]=1,'Query1'[Season_ID]=selected)",
-              ""
+              "    CALCULATE (",
+              "        DISTINCTCOUNT ( 'Query1'[VW_VIP_ActivationDataset_Pack_No] ),",
+              "        OR (",
+              "            'Query1'[VW_VIPActivationDataset_Category] = \"Media Pack\",",
+              "            'Query1'[VW_VIPActivationDataset_Category] = \"Media Pack-A\"",
+              "        ),",
+              "        'Query1'[Activated_carplate] = 1,",
+              "        'Query1'[Season_ID] = selected",
+              "    )"
             ],
             "formatString": "0",
             "lineageTag": "5bc78572-05a8-418e-9e47-9078b837f1e9"
@@ -28184,6 +28243,10 @@
           {
             "name": "PBI_ResultType",
             "value": "Table"
+          },
+          {
+            "name": "PBI_NavigationStepName",
+            "value": "Navigation"
           }
         ],
         "columns": [
@@ -28636,7 +28699,7 @@
             "name": "Compare with-eafe38f8-376b-467a-8919-32b6f264f928",
             "mode": "import",
             "source": {
-              "expression": "{CONVERT(22,INTEGER),CONVERT(23,INTEGER),CONVERT(24,INTEGER),CONVERT(25,INTEGER),CONVERT(26,INTEGER),CONVERT(27,INTEGER)}",
+              "expression": "{CONVERT(22,INTEGER),CONVERT(23,INTEGER),CONVERT(24,INTEGER),CONVERT(25,INTEGER),CONVERT(26,INTEGER),CONVERT(27,INTEGER),CONVERT(28,INTEGER)}",
               "type": "calculated"
             }
           }
@@ -29589,6 +29652,10 @@
           {
             "name": "PBI_ResultType",
             "value": "Table"
+          },
+          {
+            "name": "PBI_NavigationStepName",
+            "value": "Navigation"
           }
         ],
         "columns": [
@@ -30698,10 +30765,15 @@
             "dataType": "int64",
             "expression": [
               "",
-              "",
-              "Var season =[Season_ID]",
-              "Var email_virgin=[Virgin_Email]",
-              "return calculate(Count('Distinct packs'[Virgin_Email]),'Distinct packs'[Virgin_Email]=email_virgin,'Distinct packs'[Season_ID]=season,aLL())"
+              "VAR season = [Season_ID]",
+              "VAR email_virgin = [Virgin_Email]",
+              "RETURN",
+              "    CALCULATE (",
+              "        COUNT ( 'Distinct packs'[Virgin_Email] ),",
+              "        'Distinct packs'[Virgin_Email] = email_virgin,",
+              "        'Distinct packs'[Season_ID] = season,",
+              "        ALL ()",
+              "    )"
             ],
             "formatString": "0",
             "isDataTypeInferred": true,
@@ -31973,6 +32045,10 @@
           {
             "name": "PBI_ResultType",
             "value": "Table"
+          },
+          {
+            "name": "PBI_NavigationStepName",
+            "value": "Navigation"
           }
         ],
         "columns": [

@@ -27522,7 +27522,9 @@
             "expression": [
               "",
               "\tVAR PeopleCountRefresh = FORMAT(CALCULATE(Max('Query1'[Activated_at])),\"D-MMM-YY\") ",
-              "\t/*VAR DwellTimeRefresh = FORMAT(CALCULATE(Max('DwellByPavAndDate'[Operation_Date]),ALL('DwellByPavAndDate')),\"D-MMM-YY\")*/ ",
+              "\t",
+              "    ",
+              "    /*VAR DwellTimeRefresh = FORMAT(CALCULATE(Max('DwellByPavAndDate'[Operation_Date]),ALL('DwellByPavAndDate')),\"D-MMM-YY\")*/ ",
               "   ",
               "RETURN",
               "\"<table style='width:100%'>",

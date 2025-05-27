@@ -2247,12 +2247,12 @@
           "z": 42000.00
         },
         {
-          "config": "{\"name\":\"d73e8d10b6219800400a\",\"layouts\":[{\"id\":0,\"position\":{\"x\":130.63563115487915,\"y\":6.875559534467323,\"z\":8000,\"width\":279.60608773500445,\"height\":67.60966875559534,\"tabOrder\":10000}}],\"singleVisual\":{\"visualType\":\"textbox\",\"drillFilterOtherVisuals\":true,\"objects\":{\"general\":[{\"properties\":{\"paragraphs\":[{\"textRuns\":[{\"value\":\"Dubai Holding Entertainment\",\"textStyle\":{\"fontFamily\":\"Segoe UI\",\"fontSize\":\"14pt\",\"color\":\"#101820\"}}]},{\"textRuns\":[{\"value\":\"GV VIP Activation Summary\",\"textStyle\":{\"fontWeight\":\"bold\",\"fontFamily\":\"Segoe UI Light\",\"fontSize\":\"11pt\",\"color\":\"#d64550\"}}]}]}}]}}}",
+          "config": "{\"name\":\"d73e8d10b6219800400a\",\"layouts\":[{\"id\":0,\"position\":{\"x\":130.63563115487915,\"y\":5,\"z\":8000,\"width\":279.60608773500445,\"height\":67.60966875559534,\"tabOrder\":10000}}],\"singleVisual\":{\"visualType\":\"textbox\",\"drillFilterOtherVisuals\":true,\"objects\":{\"general\":[{\"properties\":{\"paragraphs\":[{\"textRuns\":[{\"value\":\"Dubai Holding Entertainment\",\"textStyle\":{\"fontFamily\":\"Segoe UI\",\"fontSize\":\"14pt\",\"color\":\"#101820\"}}]},{\"textRuns\":[{\"value\":\"GV VIP Activation Summary\",\"textStyle\":{\"fontWeight\":\"bold\",\"fontFamily\":\"Segoe UI Light\",\"fontSize\":\"11pt\",\"color\":\"#d64550\"}}]}]}}]}}}",
           "filters": "[]",
           "height": 67.61,
           "width": 279.61,
           "x": 130.64,
-          "y": 6.88,
+          "y": 5.00,
           "z": 8000.00
         },
         {
